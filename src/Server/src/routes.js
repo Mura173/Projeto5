@@ -7,9 +7,9 @@ r.get('/db/health', async (_, res) => {
     try {
         const [rows] = await pool.query('SELECT 1 AS db_ok')
         res.json({ ok: true, db: rows[0].db_ok })
-    } catch(err) {
+    } catch (err) {
         console.log(err);
-        
+
         res.status(500).json({ ok: false, db: 'down' })
     }
 })
@@ -27,8 +27,8 @@ r.get('/users', async (_, res) => {
 })
 
 //logar usuario
-r.post('/user', async (req, res) => {
-    const {email, senha} = req.body
+r.post('/loginUser', async (req, res) => {
+    const { email, senha } = req.body
 
     try {
         const [rows] = await pool.query(
@@ -42,35 +42,42 @@ r.post('/user', async (req, res) => {
 
         res.json(rows)
 
-    } catch(err) {
+    } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Erro ao listar usuários' })
     }
 })
 
-//exemplo post
-r.post('/users', async (req, res) => {
-    const { name, email } = req.body
-    // Validação básica
-    if (!name || !email) {
-        return res.status(400).json({ error: 'name e email obrigatórios' })
+//post usuario
+r.post('/registerUser', async (req, res) => {
+    const { nome, email, senha, tipo_usuario } = req.body
+
+    if (nome == '' || nome == undefined || !nome || nome.length > 60 ||
+        email == '' || email == undefined || !email || email.length > 100 ||
+        senha == '' || senha == undefined || !senha || senha.length > 20 ||
+        tipo_usuario == '' || tipo_usuario == undefined || !tipo_usuario
+    ) {
+        return res.status(400).json({ error: 'preencha todos os campos(nome, email, senha, tipo_usuario) no formato correto' })
     }
+
+    if (tipo_usuario != 'Administrador' && tipo_usuario != 'Mentor' && tipo_usuario != 'Aluno') {
+        return res.status(400).json({ error: 'o tipo de usuario deve ser Administrador, Mentor ou Aluno' })
+    }
+
     try {
         // Insere no banco
         const [ins] = await pool.query(
-            'INSERT INTO users (name, email) VALUES (?, ?)',
-            [name, email]
+            'INSERT INTO Usuario (nome_usuario, email_usuario, senha_usuario, tipo_usuario) VALUES (?, ?, ?, ?)',
+            [nome, email, senha, tipo_usuario]
         )
         // Busca o usuário recém-criado
         const [rows] = await pool.query(
-            'SELECT id, name, email, created_at FROM users WHERE id = ?',
+            'SELECT * FROM Usuario WHERE ID_Usuario = ?',
             [ins.insertId]
         )
         res.status(201).json(rows[0])
     } catch (err) {
-        if (err.code === 'ER_DUP_ENTRY') {
-            return res.status(409).json({ error: 'email já cadastrado' })
-        }
+        console.log(err);
         res.status(500).json({ error: 'Erro ao criar usuário' })
     }
 })
