@@ -12,30 +12,7 @@
     --button-color-hover: #176549;
 }
 
-header{
-    height: 20vh;
-    background-color: var(--background-header);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2vh 5vh;
-}
 
-img{
-    height: 18%;
-    width: 18%;
-    padding: 0 1vw;
-}
-
-.rightNav{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.menu, .userImage{
-    width: 45%;
-}
 
 main{
     background-color: var(--background-body);
@@ -48,7 +25,7 @@ main{
 
 .container-home{
     height: 80%;
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,7 +79,8 @@ button:hover{
 
 
 .homeImage{
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
     object-fit: fill;
+    z-index: 0;
 }

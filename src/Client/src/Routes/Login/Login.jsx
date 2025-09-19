@@ -1,10 +1,9 @@
 import { useState } from "react";
 import "./Login.css";
-import LogoFecap from "../assets/logofecap.png";
-import AguiaVoando from "../assets/aguiavoando.svg";
+import LogoFecap from "../../assets/logofecap.png";
+import AguiaVoando from "../../assets/aguiavoando.svg";
 
 function Login() {
-  const [count, setCount] = useState(0);
 
   return (
     <>

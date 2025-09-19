@@ -1,10 +1,9 @@
 import { useState } from "react";
 import "./Cadastro.css";
-import LogoFecap from "../assets/logofecap.png";
-import LogoLead from "../assets/logolead.svg"; 
+import LogoFecap from "../../assets/logofecap.png";
+import LogoLead from "../../assets/logolead.svg"; 
 
 function Cadastro() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
