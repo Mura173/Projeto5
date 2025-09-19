@@ -4,7 +4,6 @@ import LogoFecap from "../assets/logofecap.png";
 import AguiaVoando from "../assets/aguiavoando.svg";
 
 function Login() {
-  const [count, setCount] = useState(0);
 
   return (
     <>

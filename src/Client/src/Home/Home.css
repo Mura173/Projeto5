@@ -22,8 +22,8 @@ header{
 }
 
 img{
-    height: 18%;
-    width: 18%;
+    height: 13%;
+    width: 13%;
     padding: 0 1vw;
 }
 
@@ -34,7 +34,7 @@ img{
 }
 
 .menu, .userImage{
-    width: 45%;
+    width: 40%;
 }
 
 main{
@@ -48,7 +48,7 @@ main{
 
 .container-home{
     height: 80%;
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -102,7 +102,8 @@ button:hover{
 
 
 .homeImage{
-    width: 70%;
-    height: 70%;
+    width: 80%;
+    height: 80%;
     object-fit: fill;
+    z-index: 0;
 }
