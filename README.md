@@ -75,6 +75,7 @@ cd ./Projeto5
 
 ### Configurando o Back-end
 ````bash
+cd ..
 cd ./src/Server
 npm install
 
