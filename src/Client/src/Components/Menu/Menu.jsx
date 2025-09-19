@@ -1,7 +1,5 @@
-import { useState } from "react";
 import "./Menu.css";
 function MenuComponent({menuStatus}){
-
     return(
         <> 
         <div className={menuStatus === false ? "closed" : "open"}>

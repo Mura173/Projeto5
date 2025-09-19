@@ -3,9 +3,9 @@ import { createRoot } from "react-dom/client";
 
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
-import Login from "./Login/Login.jsx";
-import Cadastro from "./Cadastro/Cadastro.jsx";
-import Home from "./Home/Home.jsx";
+import Login from "./Routes/Login/Login.jsx";
+import Cadastro from "./Routes/Cadastro/Cadastro.jsx";
+import Home from "./Routes/Home/Home.jsx";
 
 const router = createBrowserRouter([
   {

@@ -19,8 +19,9 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    height: 80vh;
-    width: 16vw;
+    height: 80%;
+    width: 16%;
+    z-index: 9999;
     background-color: var(--background-menu);
 }
 

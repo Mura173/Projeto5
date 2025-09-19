@@ -1,32 +1,13 @@
 import "./Home.css"
-import logoLead from "../assets/logoLEAD.svg";
-import LogoLiderancasEmpaticas from "../assets/logoLE.svg"
-import Menu from "../assets/Menu.png"
-import defaultImage from "../assets/defaultUserImage.svg"
-import homeAnimation from "../assets/homeAnimation.svg"
+import homeAnimation from "../../assets/homeAnimation.svg"
+import HeaderComponent from "../../Components/Header/Header";
 
-import { useState } from "react";
-
-import MenuComponent from "../Menu/menu";
 function Home() {
-    const [menuStatus, setMenuStatus] = useState(false);
-
+   
     return (
         <>
-            <header>
-                <div>
-                    <img src={logoLead} alt="" />
-                    <img src={LogoLiderancasEmpaticas} alt="" />
-                </div>
-
-                <div className="rightNav">
-                    <img src={Menu} alt="" className="menu" onClick={() => setMenuStatus(prev => !prev)} />
-                    <img src={defaultImage} alt="" className="userImage" />
-                </div>
-
-            </header>
-
-
+            <HeaderComponent />
+            
             <main>
                
                 <div className="container-home">
@@ -42,7 +23,6 @@ function Home() {
                 </div>
                         <img src={homeAnimation} alt="" className="homeImage"/>
                 
-                        <MenuComponent menuStatus={menuStatus}/>
             </main>
         </>
 
