@@ -9,18 +9,18 @@ function Login() {
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
 
-  async function userLogin(){
+  async function userLogin() {
 
     let userData = {
       email: email,
       senha: password,
-      role: role
+      RA: role
     }
 
 
     if (userData.email == '' || userData.email == undefined || !userData.email || userData.email.length > 100 ||
-        userData.senha == '' || userData.senha == undefined || !userData.senha || userData.senha.length > 20 ||
-        userData.role == '' || userData.role == undefined || !userData.role 
+      userData.senha == '' || userData.senha == undefined || !userData.senha || userData.senha.length > 20 ||
+      userData.role == '' || userData.role == undefined || !userData.role
     ) {
       Swal.fire({
         title: "Erro!",
@@ -30,10 +30,12 @@ function Login() {
       });
     }
 
-
     let response = await fetch("http://localhost:3000/api/loginUser", {
       method: "POST",
-      body: userData
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
     })
 
     if (response.ok) {
@@ -46,8 +48,8 @@ function Login() {
 
       setTimeout(() => {
         window.location.href = "/home"
-      }, 2000)
-      
+      }, 1500)
+
     }
   }
 
@@ -80,7 +82,7 @@ function Login() {
             </div>
             <div className="labels">
               <label>E-mail</label>
-              <input type="email" placeholder="Insira seu e-mail" onInput={(e) => setEmail(e.target.value)}/>
+              <input type="email" placeholder="Insira seu e-mail" onInput={(e) => setEmail(e.target.value)} />
               <p className="espacamento"></p>
               <label>Senha</label>
               <input type="password" placeholder="Digite sua senha" onInput={(e) => setPassword(e.target.value)} />
