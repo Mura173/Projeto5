@@ -9,26 +9,6 @@
   --black: #000;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--green-250);
-  font-family: "Montserrat";
-  overflow: hidden;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
 .espacamento {
   margin-bottom: 7px;
 }
@@ -86,12 +66,12 @@ a:hover {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-color: var(--green-250);
 }
 
 .backgroundImg {
   width: 880px;
-  /* object-fit: contain; */
-  align-items: right;
+  object-fit: contain;
   opacity: 0.3;
 }
 
@@ -229,4 +209,48 @@ label {
 
 .create-account a {
   color: var(--blue-link);
+}
+
+/* Responsividade para 1366x768 */
+@media (max-width: 1366px){
+
+  /* Parte da esquerda */
+  .aguiaVoandoImg {
+    width: 400px;
+  }
+  
+  .lead {
+    font-size: 40px;
+    margin: 15px;
+  }
+  
+  .siglaLead {
+    font-size: 20px;
+  }
+
+  /* Parte da direita */
+  .backgroundImg {
+    width: 650px;
+    object-fit: contain;
+    opacity: 0.3;
+  }
+
+  .login-txt {
+    top: 40px;
+  }
+
+  .login-box {
+    width: 650px;
+    min-height: 55vh;
+    height: 450px;
+    top: 100px;
+  }
+
+  .create-account {
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 768px){
+
 }

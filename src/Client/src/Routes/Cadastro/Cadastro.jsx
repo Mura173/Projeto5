@@ -8,8 +8,8 @@ function Cadastro() {
   return (
     <>
       <div className="container">
-        <main>
-          <img className="backgroundImg" src={LogoFecap} alt="logoFECAP" />
+        <main className="main-cadastro">
+          <img className="background-Img" src={LogoFecap} alt="logoFECAP" />
           <h1 className="register-txt">Cadastrar</h1>
           <div className="register-box">
             <div className="roles">
@@ -37,7 +37,7 @@ function Cadastro() {
             Já possui uma conta? <a href="#">Faça login</a>
           </p>
         </main>
-        <aside>
+        <aside className="aside-cadastro">
           <img className="logo-lead" src={LogoLead} alt="logoLead" />
         </aside>
       </div>

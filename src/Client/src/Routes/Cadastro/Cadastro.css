@@ -9,23 +9,11 @@
   --black: #000;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--green-250);
-  font-family: "Montserrat";
-  overflow: hidden;
-}
-
-a {
+.do-login a {
   text-decoration: none;
 }
 
-a:hover {
+.do-login a:hover {
   text-decoration: underline;
 }
 
@@ -51,14 +39,14 @@ a:hover {
   height: 100%;
 }
 
-main {
+.main-cadastro {
   display: flex;
   flex: 2;
   justify-content: center;
   align-items: center;
 }
 
-.backgroundImg {
+.background-Img {
   width: 880px;
   /* object-fit: contain; */
   align-items: right;
@@ -166,7 +154,7 @@ label {
 }
 
 /* Aside da direita */
-aside {
+.aside-cadastro {
   display: flex;
   flex: 1;
   flex-direction: column;

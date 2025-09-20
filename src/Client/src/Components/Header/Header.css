@@ -1,4 +1,4 @@
-header{
+.header-component {
     height: 20vh;
     background-color: var(--background-header);
     display: flex;
@@ -7,7 +7,7 @@ header{
     padding: 2vh 5vh;
 }
 
-img{
+.logo-images img{
     height: 13%;
     width: 13%;
     padding: 0 1vw;
@@ -17,6 +17,8 @@ img{
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-content: space-around;
+    margin-right: 20px;
 }
 
 .menu, .userImage{

@@ -3,6 +3,8 @@ import { createRoot } from "react-dom/client";
 
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
+import "./index.css";
+
 import Login from "./Routes/Login/Login.jsx";
 import Cadastro from "./Routes/Cadastro/Cadastro.jsx";
 import Home from "./Routes/Home/Home.jsx";
