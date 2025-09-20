@@ -231,8 +231,6 @@ label {
   /* Parte da direita */
   .backgroundImg {
     width: 650px;
-    object-fit: contain;
-    opacity: 0.3;
   }
 
   .login-txt {
