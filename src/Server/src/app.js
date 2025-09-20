@@ -5,6 +5,12 @@ const app = express()
 
 app.use(express.json())
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    next()
+  });
+  
+
 //teste conexão api
 app.get("/health", (_, response) => {
     response.json({ ok: true, server: 'up' })
