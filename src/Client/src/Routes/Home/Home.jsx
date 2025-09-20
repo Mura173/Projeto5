@@ -8,7 +8,7 @@ function Home() {
         <>
             <HeaderComponent />
             
-            <main>
+            <main className="main-home">
                
                 <div className="container-home">
                     <h1>Seja Bem-Vindo ao <h1 className="leadTitle">L.E.A.D</h1></h1>
@@ -16,8 +16,8 @@ function Home() {
                     Interdisciplinar para a organização Lideranças Empáticas. Nossa aplicação web tem como objetivo auxiliar os alunos e professores
                     a acompanhar o cadastro de arrecadações e doações.</p>
 
-                    <button>
-                        <p className="buttonText">Meus projetos</p>
+                    <button className="meus-projetosBtn">
+                        Meus projetos
                     </button>
 
                 </div>

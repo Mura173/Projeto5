@@ -1,9 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 :root{
     --background-menu: #00B090;
 }
@@ -25,12 +19,12 @@
     background-color: var(--background-menu);
 }
 
-hr{
+.container-menu hr{
     width: 100%;
     border: solid .2px #fff;
 }
 
-a{
+.container-menu a{
     margin: 3vh 0;
     color: #fff;
     font-family: 'Inter', sans-serif;

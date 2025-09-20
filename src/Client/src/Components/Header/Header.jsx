@@ -11,8 +11,8 @@ function HeaderComponent() {
     const [menuStatus, setMenuStatus] = useState(false);
 
     return<>
-        <header>
-            <div>
+        <header className='header-component'>
+            <div className='logo-images'>
                 <img src={logoLead} alt="" />
                 <img src={LogoLiderancasEmpaticas} alt="" />
             </div>
