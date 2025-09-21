@@ -71,7 +71,7 @@ function Cadastro() {
       <div className="container">
         <main className="main-cadastro">
           <img className="background-Img" src={LogoFecap} alt="logoFECAP" />
-          <h1 className="register-txt">Cadastrar</h1>
+          {/* <h1 className="register-txt">Cadastrar</h1> */}
           <div className="register-box">
             <div className="roles">
               <button onClick={() => setRole("Aluno")}>Aluno</button>
