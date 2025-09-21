@@ -73,7 +73,7 @@ function Login() {
             src={LogoFecap}
             alt="backgroundfecap"
           />
-          <h1 className="login-txt">Entrar</h1>
+          {/* <h1 className="login-txt">Entrar</h1> */}
           <div className="login-box">
             <div className="roles">
               <button value={"Aluno"} onClick={() => setRole("Aluno")}>Aluno</button>
