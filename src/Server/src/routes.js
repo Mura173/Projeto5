@@ -28,7 +28,7 @@ r.get('/users', async (_, res) => {
 
 //logar usuario
 r.post('/loginUser', async (req, res) => {
-    const { email, senha } = req.body
+    const {email, senha, RA} = req.body
 
     try {
         const [rows] = await pool.query(
@@ -40,7 +40,17 @@ r.post('/loginUser', async (req, res) => {
             return res.status(401).json({ error: 'Usuário ou senha incorretos' })
         }
 
-        res.json(rows)
+        const [rows2] = await pool.query(
+            'select * from Usuario where ID_Usuario = ?',
+            [rows[0].ID_Usuario]
+        )
+
+        if (RA === rows2[0].tipo_usuario) {
+            res.json(rows)
+        } 
+        else {
+            return res.status(401).json({ error: 'Cargo incorreto' })
+        }
 
     } catch (err) {
         console.log(err);
