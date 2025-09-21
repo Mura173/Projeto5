@@ -67,6 +67,7 @@
   align-items: center;
   overflow: hidden;
   background-color: var(--green-250);
+  height: 100vh;
 }
 
 .backgroundImg {
@@ -212,20 +213,25 @@ label {
 }
 
 /* Responsividade para 1366x768 */
-@media (max-width: 1366px){
-
+@media (max-width: 1366px) {
   /* Parte da esquerda */
   .aguiaVoandoImg {
     width: 400px;
   }
-  
+
   .lead {
     font-size: 40px;
     margin: 15px;
   }
-  
+
   .siglaLead {
     font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
   }
 
   /* Parte da direita */
@@ -249,6 +255,5 @@ label {
   }
 }
 
-@media (max-width: 768px){
-
+@media (max-width: 768px) {
 }
