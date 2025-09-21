@@ -9,14 +9,6 @@
   --black: #000;
 }
 
-.do-login a {
-  text-decoration: none;
-}
-
-.do-login a:hover {
-  text-decoration: underline;
-}
-
 .espacamento {
   margin-bottom: 7px;
 }
@@ -44,11 +36,13 @@
   flex: 2;
   justify-content: center;
   align-items: center;
+  background-color: var(--green-250);
+  height: 100vh;
 }
 
 .background-Img {
   width: 880px;
-  /* object-fit: contain; */
+  object-fit: contain;
   align-items: right;
   opacity: 0.3;
 }
@@ -140,6 +134,26 @@ label {
   font-size: 15px;
 }
 
+.cadastro-btn {
+  width: 130px;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid var(--green-50);
+  background: transparent;
+  color: var(--white);
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  position: absolute;
+  bottom: 20px;
+  left: 40%;
+}
+
+.cadastro-btn:hover {
+  background: var(--green-50);
+  color: var(--black);
+}
+
 /* Faca login */
 .do-login {
   position: absolute;
@@ -165,4 +179,51 @@ label {
 .logo-lead {
   width: 480px;
   margin: 50px 0 0 50px;
+}
+
+@media (max-width: 1366px) {
+  .background-Img {
+    width: 650px;
+  }
+
+  .register-txt {
+    top: 45px;
+  }
+
+  .register-box {
+    width: 600px;
+    min-height: 55vh;
+    height: 450px;
+    top: 120px;
+    overflow-y: auto;
+    max-height: 400px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--green-100) transparent;
+  }
+
+  /* Scrollbar da caixa de registro */
+
+  .register-box::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+  }
+
+  .register-box::-webkit-scrollbar-thumb {
+    background: var(--green-100);
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .cadastro-btn {
+    position: static;
+    left: auto;
+    bottom: auto;
+    display: block;
+    margin: 10px auto 0 auto;
+  }
+
+  .create-account {
+    bottom: 20px;
+  }
 }
