@@ -1,4 +1,4 @@
-import { pool } from './db.js'
+import { pool } from '../db.js'
 
 //listar usuarios
 export async function getUsers() {
@@ -6,15 +6,21 @@ export async function getUsers() {
         const [rows] = await pool.query(
             'select * from Usuario'
         )
-        res.json(rows)
+        return {
+            users: rows,
+            status_code: 200
+        }
     } catch {
-        res.status(500).json({ error: 'Erro ao listar usuários' })
+        return { 
+            error: 'Erro ao listar usuários',
+            status_code: 500
+        }
     }
 }
 
 //logar usuario
-export async function loginUser() {
-    const { email, senha, RA } = req.body
+export async function loginUser(data) {
+    const { email, senha, role } = data
 
     try {
         const [rows] = await pool.query(
@@ -23,7 +29,7 @@ export async function loginUser() {
         )
 
         if (rows.length < 1) {
-            return res.status(401).json({ error: 'Usuário ou senha incorretos' })
+            return { error: 'Usuário ou senha incorretos', status_code: 401 }
         }
 
         const [rows2] = await pool.query(
@@ -31,33 +37,33 @@ export async function loginUser() {
             [rows[0].ID_Usuario]
         )
 
-        if (RA === rows2[0].tipo_usuario) {
-            res.json(rows)
+        if (role === rows2[0].tipo_usuario) {
+            return {user: rows, status_code: 200}
         }
         else {
-            return res.status(401).json({ error: 'Cargo incorreto' })
+            return { error: 'Cargo incorreto', status_code: 401 }
         }
 
     } catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Erro ao listar usuários' })
+        return {error: 'Erro ao listar usuários', status_code: 500}
     }
 }
 
 //cadastrar usuario
-export async function registerUser() {
-    const { nome, email, senha, tipo_usuario } = req.body
+export async function registerUser(data) {
+    const { nome, email, senha, tipo_usuario } = data
 
     if (nome == '' || nome == undefined || !nome || nome.length > 60 ||
         email == '' || email == undefined || !email || email.length > 100 ||
         senha == '' || senha == undefined || !senha || senha.length > 20 ||
         tipo_usuario == '' || tipo_usuario == undefined || !tipo_usuario
     ) {
-        return res.status(400).json({ error: 'preencha todos os campos(nome, email, senha, tipo_usuario) no formato correto' })
+        return { error: 'preencha todos os campos(nome, email, senha, tipo_usuario) no formato correto', status_code: 400 }
     }
 
     if (tipo_usuario != 'Administrador' && tipo_usuario != 'Mentor' && tipo_usuario != 'Aluno') {
-        return res.status(400).json({ error: 'o tipo de usuario deve ser Administrador, Mentor ou Aluno' })
+        return { error: 'o tipo de usuario deve ser Administrador, Mentor ou Aluno', status_code: 400 }
     }
 
     try {
@@ -71,17 +77,15 @@ export async function registerUser() {
             'SELECT * FROM Usuario WHERE ID_Usuario = ?',
             [ins.insertId]
         )
-        res.status(201).json(rows[0])
+        return { user: rows, status_code: 201 }
     } catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Erro ao criar usuário' })
+        return { error: 'Erro ao cadastrar usuário', status_code: 500 }
     }
 }
 
 //deletar usuario
-export async function deleteUser() {
-    const { id } = req.params
-
+export async function deleteUser(id) {
     try {
         const [checkUser] = await pool.query(
             'SELECT * FROM Usuario WHERE ID_Usuario = ?',
@@ -89,24 +93,27 @@ export async function deleteUser() {
         )
 
         if (checkUser.length < 1) {
-            return res.status(404).json({ error: 'Usuário nao encontrado' })
+            return{error: 'Usuário nao encontrado', status_code: 404}
         }
 
         const [rows] = await pool.query(
             'DELETE FROM Usuario WHERE ID_Usuario = ?',
             [id]
         )
-        res.json(rows)
+        if (rows) {
+            return{message: 'Usuário deletado com sucesso', status_code: 200}
+        }
+        
     } catch (err) {
         console.log(err);
-        res.status(500).json({ error: 'Erro ao deletar usuário' })
+        return{error: 'Erro ao deletar usuário', status_code: 500}
     }
 }
 
 
 //atualizar usuario
-export async function updateUser() {
-    const { id, nome, email, senha, tipo_usuario } = req.body
+export async function updateUser(data) {
+    const { id, nome, email, senha, tipo_usuario } = data
 
     try {
         const [checkUser] = await pool.query(
@@ -115,18 +122,16 @@ export async function updateUser() {
         )
 
         if (checkUser.length < 1) {
-            return res.status(404).json({ error: 'Usuário nao encontrado' })
+           return { error: 'Usuário nao encontrado', status_code: 404 }
         }
 
         const [rows] = await pool.query(
             'UPDATE Usuario SET nome_usuario = ?, email_usuario = ?, senha_usuario = ?, tipo_usuario = ? WHERE ID_Usuario = ?',
             [nome, email, senha, tipo_usuario, id]
         )
-        res.json(rows)
+        return { message: 'Usuário atualizado com sucesso', status_code: 200}
+
     } catch (err) {
-        console.log(err);
-        res.status(500).json(
-            { error: 'Erro ao atualizar usuário' }
-        )
+        return { error: 'Erro ao atualizar usuário', status_code: 500 }
     }
 }

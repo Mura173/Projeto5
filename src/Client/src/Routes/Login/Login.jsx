@@ -14,8 +14,11 @@ function Login() {
     let userData = {
       email: email,
       senha: password,
-      RA: role
+      role: role
     }
+
+    console.log(userData);
+    
 
 
     if (userData.email == '' || userData.email == undefined || !userData.email || userData.email.length > 100 ||

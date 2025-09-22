@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Cadastro.css";
 import LogoFecap from "../../assets/logofecap.png";
-import LogoLead from "../../assets/logolead.svg";
+import LogoLead from "../../assets/logoLEAD.svg";
 import Swal from "sweetalert2";
 
 function Cadastro() {
