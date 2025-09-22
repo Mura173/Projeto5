@@ -25,16 +25,20 @@ function Cadastro() {
       userData.email == undefined ||
       !userData.email ||
       userData.email.length > 100 ||
+
       userData.senha == "" ||
       userData.senha == undefined ||
       !userData.senha ||
       userData.senha.length > 20 ||
+
       userData.role == "" ||
       userData.role == undefined ||
       !userData.role ||
+
       userData.RA == "" ||
       userData.RA == undefined ||
       !userData.RA ||
+
       userData.name == "" ||
       userData.name == undefined ||
       !userData.name
@@ -49,20 +53,23 @@ function Cadastro() {
 
     let response = await fetch("http://localhost:3000/api/registerUser", {
       method: "POST",
-      body: userData,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
     });
 
     if (response) {
       Swal.fire({
         title: "Sucesso!",
-        text: "Login realizado com sucesso!",
+        text: "Cadastro realizado com sucesso!",
         icon: "success",
         confirmButtonText: "OK",
       });
 
       setTimeout(() => {
         window.location.href = "/home";
-      }, 2000);
+      }, 1500);
     }
   }
 
