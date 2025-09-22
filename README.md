@@ -33,14 +33,10 @@ Além de conectar quem deseja ajudar com quem precisa, o projeto também serve c
       &emsp;&emsp;|-->Gestão Empresarial e Dinâmica das Organizações<br>
       &emsp;&emsp;|-->Projeto Interdisciplinar Programação Web<br>
       &emsp;&emsp;|-->Projetos em Banco de Dados<br>
-|-->executáveis<br>
-  &emsp;|-->windows<br>
-  &emsp;|-->android<br>
-  &emsp;|-->HTML<br>
 |-->imagens<br>
 |-->src<br>
-  &emsp;|-->Backend<br>
-  &emsp;|-->Frontend<br>
+  &emsp;|-->Client<br>
+  &emsp;|-->Server<br>
 |readme.md<br>
 
 ## 🛠 Instalação
