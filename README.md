@@ -1,7 +1,7 @@
 # FECAP - Fundação de Comércio Álvares Penteado
 
 <p align="center">
-<a href= "https://www.fecap.br/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhZPrRa89Kma0ZZogxm0pi-tCn_TLKeHGVxywp-LXAFGR3B1DPouAJYHgKZGV0XTEf4AE&usqp=CAU" alt="FECAP - Fundação de Comércio Álvares Penteado" border="0"></a>
+<a href= "https://github.com/2025-2-MCC2/Projeto5"><img src="Imagens/Logo.png" alt="Logo = L.E.A.D" width="50%" border="0"></a>
 </p>
 
 # Nome do Projeto: LEAD
@@ -21,8 +21,18 @@ Além de conectar quem deseja ajudar com quem precisa, o projeto também serve c
 -Raiz<br>
 |<br>
 |-->documentos<br>
-  &emsp;|-->[Entrega 1](https://github.com/2025-2-MCC2/Projeto5/tree/main/Documentos/Entrega%201)<br>
-  &emsp;|-->[Entrega 2](https://github.com/2025-2-MCC2/Projeto5/tree/main/Documentos/Entrega%202)<br>
+  &emsp;|-->Entrega 1<br>
+      &emsp;&emsp;|-->Cálculo 2<br>
+      &emsp;&emsp;|-->Desenvolvimento Web Full Stack<br>
+      &emsp;&emsp;|-->Gestão Empresarial e Dinâmica das Organizações<br>
+      &emsp;&emsp;|-->Projeto Interdisciplinar Programação Web<br>
+      &emsp;&emsp;|-->Projetos em Banco de Dados<br>
+  &emsp;|-->Entrega 2<br>
+      &emsp;&emsp;|-->Cálculo 2<br>
+      &emsp;&emsp;|-->Desenvolvimento Web Full Stack<br>
+      &emsp;&emsp;|-->Gestão Empresarial e Dinâmica das Organizações<br>
+      &emsp;&emsp;|-->Projeto Interdisciplinar Programação Web<br>
+      &emsp;&emsp;|-->Projetos em Banco de Dados<br>
 |-->executáveis<br>
   &emsp;|-->windows<br>
   &emsp;|-->android<br>
@@ -32,20 +42,6 @@ Além de conectar quem deseja ajudar com quem precisa, o projeto também serve c
   &emsp;|-->Backend<br>
   &emsp;|-->Frontend<br>
 |readme.md<br>
-
-A pasta raiz contem dois arquivos que devem ser alterados:
-
-<b>README.MD</b>: Arquivo que serve como guia e explicação geral sobre seu projeto. O mesmo que você está lendo agora.
-
-Há também 4 pastas que seguem da seguinte forma:
-
-<b>documentos</b>: Toda a documentação estará nesta pasta.
-
-<b>executáveis</b>: Binários e executáveis do projeto devem estar nesta pasta.
-
-<b>imagens</b>: Imagens do sistema
-
-<b>src</b>: Pasta que contém o código fonte.
 
 ## 🛠 Instalação
 
