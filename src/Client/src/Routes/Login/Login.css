@@ -97,11 +97,10 @@
   color: var(--white);
   box-shadow: 3px 3px var(--green-230);
   position: absolute;
-  width: 70%;  
+  width: 70%;
   gap: 20px;
   animation: slideUp 0.8s ease;
   z-index: 1;
-
 }
 
 /* Botoes de Login */
@@ -244,10 +243,10 @@ label {
   .backgroundImg {
     max-width: 100%;
   }
-/* 
+
   .login-txt {
     top: 20px;
-  } */
+  }
 
   .login-box {
     width: 650px;
@@ -267,7 +266,7 @@ label {
     flex-direction: column;
     height: auto;
   }
-  .left-side{
+  .left-side {
     background-color: var(--green-250);
   }
   .right-side {
@@ -293,7 +292,7 @@ label {
     text-align: center;
     padding: 0 10px;
   }
-  
+
   .backgroundImg {
     position: absolute;
     top: 50%;
@@ -337,8 +336,8 @@ label {
     text-align: center;
   }
 
-  .lead, .siglaLead {
+  .lead,
+  .siglaLead {
     display: none;
   }
 }
-

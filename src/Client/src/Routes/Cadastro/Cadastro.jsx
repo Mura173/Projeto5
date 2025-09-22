@@ -25,20 +25,16 @@ function Cadastro() {
       userData.email == undefined ||
       !userData.email ||
       userData.email.length > 100 ||
-
       userData.senha == "" ||
       userData.senha == undefined ||
       !userData.senha ||
       userData.senha.length > 20 ||
-
       userData.role == "" ||
       userData.role == undefined ||
       !userData.role ||
-
       userData.RA == "" ||
       userData.RA == undefined ||
       !userData.RA ||
-
       userData.name == "" ||
       userData.name == undefined ||
       !userData.name
@@ -54,9 +50,9 @@ function Cadastro() {
     let response = await fetch("http://localhost:3000/api/registerUser", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(userData)
+      body: JSON.stringify(userData),
     });
 
     if (response) {
