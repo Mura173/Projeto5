@@ -6,7 +6,7 @@
 
 # Nome do Projeto: LEAD
 
-## Integrantes: <a href="https://github.com/rodriguesbrun">Bruno Rodrigues</a>, <a href="https://github.com/Enzohenrique7">Enzo Henrique</a>, <a href="https://github.com/harryzuh">Harry Zuh</a>, <a href="https://github.com/Mura173">Murilo Ângelo</a>, <a href="https://github.com/vitorkolle">Vitor Kolle</a>
+## Integrantes: <a href="https://github.com/rodriguesbrun">Bruno Rodrigues</a>, <a href="https://github.com/Enzohenrique7">Enzo Henrique</a>, <a href="https://github.com/harryzuh">Harry Zhu</a>, <a href="https://github.com/Mura173">Murilo Ângelo</a>, <a href="https://github.com/vitorkolle">Vitor Kolle</a>
 
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/francisco-escobar/">Francisco Escobar</a>, <a href="https://www.linkedin.com/in/cristina-machado-corr%C3%AAa-leite-630309160/">Cristina Machado</a>, <a href="https://www.linkedin.com/in/katia-bossi/">Katia Bossi</a>, <a href="https://www.linkedin.com/in/leonardo-fabris-lugoboni-a3369416/">Leonardo Lugoboni</a>, <a href="https://www.linkedin.com/in/dolemes/">David Lemes</a>
 
