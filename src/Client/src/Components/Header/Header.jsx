@@ -1,9 +1,9 @@
 import './Header.css'
 import { useState } from 'react';
-import logoLead from '../assets/logoLEAD.svg'
+import logoLead from '../../assets/logoLEAD.svg'
 import LogoLiderancasEmpaticas from '../assets/LogoLE.svg'
 import Menu from '../../assets/Menu.png'
-import defaultImage from '../assets/defaultUserImage.svg'
+import defaultImage from '../../assets/defaultUserImage.svg'
 
 import MenuComponent from '../Menu/menu';
 
