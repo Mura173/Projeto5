@@ -2,7 +2,10 @@ import { Router } from 'express'
 import { pool } from './db.js'
 const r = Router()
 
-/**************************Testes******************************/
+import { getUsers, loginUser, registerUser, deleteUser, updateUser } from './Controllers/userController'
+
+
+/**************************Teste de conexão com o banco******************************/
 r.get('/db/health', async (_, res) => {
     try {
         const [rows] = await pool.query('SELECT 1 AS db_ok')
@@ -13,83 +16,23 @@ r.get('/db/health', async (_, res) => {
         res.status(500).json({ ok: false, db: 'down' })
     }
 })
+
 /****************************Usuários**********************************/
 //listar usuarios
-r.get('/users', async (_, res) => {
-    try {
-        const [rows] = await pool.query(
-            'select * from Usuario'
-        )
-        res.json(rows)
-    } catch {
-        res.status(500).json({ error: 'Erro ao listar usuários' })
-    }
-})
+r.get('/users', getUsers)
 
 //logar usuario
-r.post('/loginUser', async (req, res) => {
-    const {email, senha, RA} = req.body
+r.post('/loginUser', loginUser)
 
-    try {
-        const [rows] = await pool.query(
-            'select * from Usuario where email_usuario = ? and senha_usuario = ?',
-            [email, senha]
-        )
+//cadastrar usuario
+r.post('/registerUser', registerUser) 
 
-        if (rows.length < 1) {
-            return res.status(401).json({ error: 'Usuário ou senha incorretos' })
-        }
+//deletar usuario
+r.delete('/deleteUser/:id', deleteUser) 
 
-        const [rows2] = await pool.query(
-            'select * from Usuario where ID_Usuario = ?',
-            [rows[0].ID_Usuario]
-        )
+//atualizar usuario
+r.put('/updateUser', updateUser) 
+/******************************************************************** */
 
-        if (RA === rows2[0].tipo_usuario) {
-            res.json(rows)
-        } 
-        else {
-            return res.status(401).json({ error: 'Cargo incorreto' })
-        }
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: 'Erro ao listar usuários' })
-    }
-})
-
-//post usuario
-r.post('/registerUser', async (req, res) => {
-    const { nome, email, senha, tipo_usuario } = req.body
-
-    if (nome == '' || nome == undefined || !nome || nome.length > 60 ||
-        email == '' || email == undefined || !email || email.length > 100 ||
-        senha == '' || senha == undefined || !senha || senha.length > 20 ||
-        tipo_usuario == '' || tipo_usuario == undefined || !tipo_usuario
-    ) {
-        return res.status(400).json({ error: 'preencha todos os campos(nome, email, senha, tipo_usuario) no formato correto' })
-    }
-
-    if (tipo_usuario != 'Administrador' && tipo_usuario != 'Mentor' && tipo_usuario != 'Aluno') {
-        return res.status(400).json({ error: 'o tipo de usuario deve ser Administrador, Mentor ou Aluno' })
-    }
-
-    try {
-        // Insere no banco
-        const [ins] = await pool.query(
-            'INSERT INTO Usuario (nome_usuario, email_usuario, senha_usuario, tipo_usuario) VALUES (?, ?, ?, ?)',
-            [nome, email, senha, tipo_usuario]
-        )
-        // Busca o usuário recém-criado
-        const [rows] = await pool.query(
-            'SELECT * FROM Usuario WHERE ID_Usuario = ?',
-            [ins.insertId]
-        )
-        res.status(201).json(rows[0])
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: 'Erro ao criar usuário' })
-    }
-})
 
 export default r
