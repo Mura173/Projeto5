@@ -19,20 +19,39 @@ r.get('/db/health', async (_, res) => {
 
 /****************************Usuários**********************************/
 //listar usuarios
-r.get('/users', getUsers)
+r.get('/users', async (_, res) => {
+    const data = await getUsers()
+
+    res.status(data.status_code).json(data)
+})
 
 //logar usuario
-r.post('/loginUser', loginUser)
+r.post('/loginUser', async (req, res) => {
+    const data = await loginUser(req.body)
+
+    res.status(data.status_code).json(data)
+})
 
 //cadastrar usuario
-r.post('/registerUser', registerUser) 
+r.post('/registerUser', async (req, res) => {
+    const data = await registerUser(req.body)
+
+    res.status(data.status_code).json(data)
+}) 
 
 //deletar usuario
-r.delete('/deleteUser/:id', deleteUser) 
+r.delete('/deleteUser/:id', async (req, res) => {
+    const data = await deleteUser(req.params.id)
+
+    res.status(data.status_code).json(data)
+}) 
 
 //atualizar usuario
-r.put('/updateUser', updateUser) 
-/******************************************************************** */
+r.put('/updateUser', async (req, res) => {
+    const data = await updateUser(req.body)
 
+    res.status(data.status_code).json(data)
+}) 
+/******************************************************************** */
 
 export default r
