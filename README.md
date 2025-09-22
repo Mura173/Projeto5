@@ -21,8 +21,8 @@ Além de conectar quem deseja ajudar com quem precisa, o projeto também serve c
 -Raiz<br>
 |<br>
 |-->documentos<br>
-  &emsp;|-->antigos<br>
-  &emsp;|Documentação.docx<br>
+  &emsp;|-->[Entrega 1](https://github.com/2025-2-MCC2/Projeto5/tree/main/Documentos/Entrega%201)<br>
+  &emsp;|-->[Entrega 2](https://github.com/2025-2-MCC2/Projeto5/tree/main/Documentos/Entrega%202)<br>
 |-->executáveis<br>
   &emsp;|-->windows<br>
   &emsp;|-->android<br>
