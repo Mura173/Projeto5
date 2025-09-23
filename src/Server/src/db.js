@@ -1,11 +1,14 @@
-import 'dotenv/config'
-import mysql from 'mysql2/promise'
+import "dotenv/config";
+import pkg from "pg";
+const { Pool } = pkg;
 
-export const pool = await mysql.createPool({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DB,
-    waitForConnections: true,
-    connectionLimit: 10
-})
+export const pool = new Pool({
+  host: process.env.PG_HOST,
+  user: process.env.PG_USER,
+  password: process.env.PG_PASSWORD,
+  database: process.env.PG_DB,
+  port: process.env.PG_PORT,
+  ssl: process.env.PG_HOST?.includes("render.com")
+    ? { rejectUnauthorized: false } // necessário no Render
+    : false,
+});

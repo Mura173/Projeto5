@@ -1,137 +1,126 @@
-import { pool } from '../db.js'
+import { pool } from "../db.js";
 
-//listar usuarios
+// Listar usuários
 export async function getUsers() {
-    try {
-        const [rows] = await pool.query(
-            'select * from Usuario'
-        )
-        return {
-            users: rows,
-            status_code: 200
-        }
-    } catch {
-        return { 
-            error: 'Erro ao listar usuários',
-            status_code: 500
-        }
-    }
+  try {
+    const res = await pool.query("SELECT * FROM Usuario");
+    return { users: res.rows, status_code: 200 };
+  } catch (err) {
+    console.log(err);
+    return { error: "Erro ao listar usuários", status_code: 500 };
+  }
 }
 
-//logar usuario
+// Logar usuário
 export async function loginUser(data) {
-    const { email, senha, role } = data
+  const { email, senha, role } = data;
 
-    try {
-        const [rows] = await pool.query(
-            'select * from Usuario where email_usuario = ? and senha_usuario = ?',
-            [email, senha]
-        )
+  try {
+    const res = await pool.query(
+      "SELECT * FROM Usuario WHERE email_usuario = $1 AND senha_usuario = $2",
+      [email, senha]
+    );
 
-        if (rows.length < 1) {
-            return { error: 'Usuário ou senha incorretos', status_code: 401 }
-        }
-
-        const [rows2] = await pool.query(
-            'select * from Usuario where ID_Usuario = ?',
-            [rows[0].ID_Usuario]
-        )
-
-        if (role === rows2[0].tipo_usuario) {
-            return {user: rows, status_code: 200}
-        }
-        else {
-            return { error: 'Cargo incorreto', status_code: 401 }
-        }
-
-    } catch (err) {
-        console.log(err);
-        return {error: 'Erro ao listar usuários', status_code: 500}
+    if (res.rows.length < 1) {
+      return { error: "Usuário ou senha incorretos", status_code: 401 };
     }
+
+    const res2 = await pool.query(
+      "SELECT * FROM Usuario WHERE ID_Usuario = $1",
+      [res.rows[0].id_usuario]
+    );
+
+    if (role === res2.rows[0].tipo_usuario) {
+      return { user: res.rows, status_code: 200 };
+    } else {
+      return { error: "Cargo incorreto", status_code: 401 };
+    }
+  } catch (err) {
+    console.log(err);
+    return { error: "Erro ao logar usuário", status_code: 500 };
+  }
 }
 
-//cadastrar usuario
+// Cadastrar usuário
 export async function registerUser(data) {
-    const { nome, email, senha, tipo_usuario } = data
+  const { nome, email, senha, tipo_usuario } = data;
 
-    if (nome == '' || nome == undefined || !nome || nome.length > 60 ||
-        email == '' || email == undefined || !email || email.length > 100 ||
-        senha == '' || senha == undefined || !senha || senha.length > 20 ||
-        tipo_usuario == '' || tipo_usuario == undefined || !tipo_usuario
-    ) {
-        return { error: 'preencha todos os campos(nome, email, senha, tipo_usuario) no formato correto', status_code: 400 }
-    }
+  if (
+    !nome ||
+    nome.length > 60 ||
+    !email ||
+    email.length > 100 ||
+    !senha ||
+    senha.length > 200 ||
+    !tipo_usuario
+  ) {
+    return {
+      error:
+        "Preencha todos os campos (nome, email, senha, tipo_usuario) corretamente",
+      status_code: 400,
+    };
+  }
 
-    if (tipo_usuario != 'Administrador' && tipo_usuario != 'Mentor' && tipo_usuario != 'Aluno') {
-        return { error: 'o tipo de usuario deve ser Administrador, Mentor ou Aluno', status_code: 400 }
-    }
+  if (!["Administrador", "Mentor", "Aluno"].includes(tipo_usuario)) {
+    return {
+      error: "O tipo de usuário deve ser Administrador, Mentor ou Aluno",
+      status_code: 400,
+    };
+  }
 
-    try {
-        // Insere no banco
-        const [ins] = await pool.query(
-            'INSERT INTO Usuario (nome_usuario, email_usuario, senha_usuario, tipo_usuario) VALUES (?, ?, ?, ?)',
-            [nome, email, senha, tipo_usuario]
-        )
-        // Busca o usuário recém-criado
-        const [rows] = await pool.query(
-            'SELECT * FROM Usuario WHERE ID_Usuario = ?',
-            [ins.insertId]
-        )
-        return { user: rows, status_code: 201 }
-    } catch (err) {
-        console.log(err);
-        return { error: 'Erro ao cadastrar usuário', status_code: 500 }
-    }
+  try {
+    const res = await pool.query(
+      "INSERT INTO Usuario (nome_usuario, email_usuario, senha_usuario, tipo_usuario) VALUES ($1, $2, $3, $4) RETURNING *",
+      [nome, email, senha, tipo_usuario]
+    );
+
+    return { user: res.rows[0], status_code: 201 };
+  } catch (err) {
+    console.log(err);
+    return { error: "Erro ao cadastrar usuário", status_code: 500 };
+  }
 }
 
-//deletar usuario
+// Deletar usuário
 export async function deleteUser(id) {
-    try {
-        const [checkUser] = await pool.query(
-            'SELECT * FROM Usuario WHERE ID_Usuario = ?',
-            [id]
-        )
-
-        if (checkUser.length < 1) {
-            return{error: 'Usuário nao encontrado', status_code: 404}
-        }
-
-        const [rows] = await pool.query(
-            'DELETE FROM Usuario WHERE ID_Usuario = ?',
-            [id]
-        )
-        if (rows) {
-            return{message: 'Usuário deletado com sucesso', status_code: 200}
-        }
-        
-    } catch (err) {
-        console.log(err);
-        return{error: 'Erro ao deletar usuário', status_code: 500}
+  try {
+    const checkUser = await pool.query(
+      "SELECT * FROM Usuario WHERE ID_Usuario = $1",
+      [id]
+    );
+    if (checkUser.rows.length < 1) {
+      return { error: "Usuário não encontrado", status_code: 404 };
     }
+
+    await pool.query("DELETE FROM Usuario WHERE ID_Usuario = $1", [id]);
+    return { message: "Usuário deletado com sucesso", status_code: 200 };
+  } catch (err) {
+    console.log(err);
+    return { error: "Erro ao deletar usuário", status_code: 500 };
+  }
 }
 
-
-//atualizar usuario
+// Atualizar usuário
 export async function updateUser(data) {
-    const { id, nome, email, senha, tipo_usuario } = data
+  const { id, nome, email, senha, tipo_usuario } = data;
 
-    try {
-        const [checkUser] = await pool.query(
-            'SELECT * FROM Usuario WHERE ID_Usuario = ?',
-            [id]
-        )
-
-        if (checkUser.length < 1) {
-           return { error: 'Usuário nao encontrado', status_code: 404 }
-        }
-
-        const [rows] = await pool.query(
-            'UPDATE Usuario SET nome_usuario = ?, email_usuario = ?, senha_usuario = ?, tipo_usuario = ? WHERE ID_Usuario = ?',
-            [nome, email, senha, tipo_usuario, id]
-        )
-        return { message: 'Usuário atualizado com sucesso', status_code: 200}
-
-    } catch (err) {
-        return { error: 'Erro ao atualizar usuário', status_code: 500 }
+  try {
+    const checkUser = await pool.query(
+      "SELECT * FROM Usuario WHERE ID_Usuario = $1",
+      [id]
+    );
+    if (checkUser.rows.length < 1) {
+      return { error: "Usuário não encontrado", status_code: 404 };
     }
+
+    await pool.query(
+      "UPDATE Usuario SET nome_usuario = $1, email_usuario = $2, senha_usuario = $3, tipo_usuario = $4 WHERE ID_Usuario = $5",
+      [nome, email, senha, tipo_usuario, id]
+    );
+
+    return { message: "Usuário atualizado com sucesso", status_code: 200 };
+  } catch (err) {
+    console.log(err);
+    return { error: "Erro ao atualizar usuário", status_code: 500 };
+  }
 }
