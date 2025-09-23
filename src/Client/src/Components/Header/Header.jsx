@@ -5,7 +5,7 @@ import LogoLiderancasEmpaticas from "../../assets/logoLE.svg";
 import Menu from "../../assets/Menu.png";
 import defaultImage from "../../assets/defaultUserImage.svg";
 
-import MenuComponent from "../Menu/menu";
+import MenuComponent from "../Menu/Menu.jsx";
 
 function HeaderComponent() {
   const [menuStatus, setMenuStatus] = useState(false);
