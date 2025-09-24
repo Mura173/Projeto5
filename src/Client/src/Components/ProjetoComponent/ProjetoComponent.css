@@ -1,0 +1,8 @@
+.projeto-component {
+    height: 30vh;
+    background-color: #00B090;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vh 5vh;
+}
