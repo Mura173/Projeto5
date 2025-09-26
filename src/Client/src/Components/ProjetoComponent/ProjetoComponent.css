@@ -1,8 +1,31 @@
 .projeto-component {
-    height: 30vh;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; */
     background-color: #00B090;
+    padding: 2vh 5vh;
+    height: 150px;
+}
+
+.header-container {
     display: flex;
     justify-content: space-between;
+    align-items: start;
+    text-align: center;
     align-items: center;
-    padding: 2vh 5vh;
+}
+
+.group a {
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+}
+
+.title-info {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.title-project {
+    font-size: 20px;
 }
