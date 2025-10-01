@@ -1,7 +1,5 @@
 .projeto-component {
-    /* display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; */
-    background-color: #00B090;
+    background-color: #99D3C7;
     padding: 2vh 5vh;
     height: 150px;
 }
@@ -9,9 +7,9 @@
 .header-container {
     display: flex;
     justify-content: space-between;
-    align-items: start;
-    text-align: center;
     align-items: center;
+    text-align: center;
+    height: 100%;
 }
 
 .group a {

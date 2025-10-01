@@ -8,7 +8,7 @@
 body{
   font-family: "Montserrat", sans-serif;
   /* Não rolagem de tela */
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 a{

@@ -6,8 +6,16 @@ import ProjetoComponent from "../../Components/ProjetoComponent/ProjetoComponent
 function MeusProjetos(){
     return(
         <>
-        <HeaderComponent />
-        <ProjetoComponent />
+        <div className="meusprojetos-container">
+            <HeaderComponent />
+            <hr className="espacamento-componente"/>
+            <ProjetoComponent />
+            <hr className="espacamento-componente"/>
+            <ProjetoComponent />
+            <hr className="espacamento-componente"/>
+
+            <button className="voltar">Voltar</button>
+        </div>
         </>
     )
 }
