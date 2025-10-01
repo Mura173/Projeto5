@@ -1,0 +1,29 @@
+.projeto-component {
+    background-color: #99D3C7;
+    padding: 2vh 5vh;
+    height: 150px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.group a {
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+}
+
+.title-info {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.title-project {
+    font-size: 20px;
+}

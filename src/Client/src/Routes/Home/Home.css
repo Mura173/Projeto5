@@ -51,21 +51,23 @@
     width: 20vw;
     height: 10vh;
     border: none;
-    background-color: var(--button-color);
-    border-radius: 15px;
+    background-color: var(--green-150);
+    border-radius: 20px;
     align-items: center;
     justify-content: center;
     display: flex;
 
+    transition: 0.3s;
+
     /* Texto do botao */
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     color: white;
 }
 
 .meus-projetosBtn:hover{
     background-color: var(--button-color-hover);
-    transition: 0.5s;
+    cursor: pointer;
 }
 
 .buttonText{
