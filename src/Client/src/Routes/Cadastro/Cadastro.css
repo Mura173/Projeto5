@@ -72,11 +72,11 @@
   height: auto;
 }
 
-.roles button {
+.inactive {
   border-radius: 0;
   width: 130px;
   height: 40px;
-  background: var(--green-200);
+  background-color: var(--green-200);
   border: 2px solid var(--white);
   color: var(--white);
   font-weight: bold;
@@ -85,23 +85,28 @@
   flex: 1;
 }
 
+.active {
+  background-color: var(--white);
+}
+
+
 /* Primeiro botao */
-.roles button:first-child {
+.roles>button:first-child {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
 
 /* Segundo botao */
-.roles button:last-child {
+.roles>button:last-child {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
 
-.roles button:not(:last-child) {
+.roles>button:not(:last-child) {
   border-right: none;
 }
 
-.roles button:hover {
+.roles>button:hover {
   background: var(--white);
   color: var(--black);
   cursor: pointer;

@@ -113,16 +113,21 @@
   flex: 1;
 }
 
-.roles button {
+.inactive {
   border-radius: 0;
   width: 130px;
   height: 40px;
-  background: var(--green-200);
+  background-color: var(--green-200);
   border: 2px solid var(--white);
   color: var(--white);
   font-weight: bold;
   margin: 0;
   transition: 0.3s;
+  flex: 1;
+}
+
+.active {
+  background-color: var(--white);
 }
 
 /* Primeiro botao */
