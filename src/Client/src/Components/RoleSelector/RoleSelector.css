@@ -1,0 +1,46 @@
+:root {
+  --green-50: #38fba0;
+  --green-100: #00b090;
+  --green-150: #019176;
+  --green-200: #176549;
+  --green-230: #014130;
+  --green-250: #002118;
+  --white: #fff;
+  --blue-link: #6868ff;
+  --black: #000;
+}
+
+.roles {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 25px;
+  flex: 1;
+}
+
+.inactive {
+  border-radius: 0;
+  width: 130px;
+  height: 40px;
+  background-color: var(--green-200);
+  border: 2px solid var(--white);
+  color: var(--white);
+  font-weight: bold;
+  margin: 0;
+  transition: 0.3s;
+  flex: 1;
+}
+
+.active {
+  background-color: var(--white);
+  border-radius: 0;
+  width: 130px;
+  height: 40px;
+  background-color: var(--white);
+  border: 2px solid var(--white);
+  color: var(--green-250);
+  font-weight: bold;
+  margin: 0;
+  transition: 0.3s;
+  flex: 1;
+}

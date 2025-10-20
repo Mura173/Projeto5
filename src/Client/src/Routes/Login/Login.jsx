@@ -3,12 +3,18 @@ import "./Login.css";
 import LogoFecap from "../../assets/logofecap.png";
 import AguiaVoando from "../../assets/aguiavoando.svg";
 import Swal from "sweetalert2";
+import RoleSelector from "../../Components/RoleSelector/RoleSelector";
 
 function Login() {
-  let [role, setRole] = useState("Aluno", "Mentor", "Administrador")
+  let [role, setRole] = useState("");
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
 
+   function handleRoleChange(newRole) {
+      setRole(newRole)
+    }
+
+    console.log(role)
   async function userLogin() {
 
     let userData = {
@@ -78,11 +84,7 @@ function Login() {
           />
           {/* <h1 className="login-txt">Entrar</h1> */}
           <div className="login-box">
-            <div className="roles">
-              <button value={"Aluno"} onClick={() => setRole("Aluno")}>Aluno</button>
-              <button value={"Mentor"} onClick={() => setRole("Mentor")}>Mentor</button>
-              <button value={"Administrador"} onClick={() => setRole('Administrador')}>Administrador</button>
-            </div>
+            <RoleSelector onChange={handleRoleChange}/>
             <div className="labels">
               <label>E-mail</label>
               <input type="email" placeholder="Insira seu e-mail" onInput={(e) => setEmail(e.target.value)} />

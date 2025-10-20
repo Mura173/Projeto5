@@ -3,16 +3,21 @@ import "./Cadastro.css";
 import LogoFecap from "../../assets/logofecap.png";
 import LogoLead from "../../assets/logoLEAD.svg";
 import Swal from "sweetalert2";
+import RoleSelector from "../../Components/RoleSelector/RoleSelector";
 
 function Cadastro() {
   let [role, setRole] = useState("");
-  let [active, setActive] = useState("inactive");
   let [name, setName] = useState("");
   let [email, setEmail] = useState("");
   let [RA, setRA] = useState("");
   let [password, setPassword] = useState("");
 
+     function handleRoleChange(newRole) {
+      setRole(newRole)
+    }
+
   async function userRegister() {
+
     let userData = {
       nome: name,
       email: email,
@@ -58,9 +63,6 @@ function Cadastro() {
     }
   }
 
-  const handleRoleClick = (newRole) => {
-    setRole(newRole)
-  }
 
   return (
     <>
@@ -73,19 +75,7 @@ function Cadastro() {
 
           <div className="register-box">
 
-            <div className="roles">
-              <button className={active} onClick={() => handleRoleClick("Aluno")}>
-                Aluno
-              </button>
-
-              <button className={active} onClick={() => handleRoleClick("Mentor")}>
-                Mentor
-              </button>
-
-              <button className={active} onClick={() => handleRoleClick("Administrador")}>
-                Administrador
-              </button>
-            </div>
+           <RoleSelector onChange={handleRoleChange}/>
 
             <div className="labels">
 
