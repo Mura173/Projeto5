@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import RoleSelector from "../../Components/RoleSelector/RoleSelector";
 
 function Login() {
-  let [role, setRole] = useState("");
+  let [role, setRole] = useState("Aluno");
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
 
@@ -22,8 +22,6 @@ function Login() {
       senha: password,
       role: role
     }
-
-    console.log(userData);
     
 
 
@@ -60,6 +58,10 @@ function Login() {
       }, 1500)
 
     }
+
+    let user = await response.json()
+
+    localStorage.setItem("user", user.user[0])
   }
 
   return (
