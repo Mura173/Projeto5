@@ -18,6 +18,25 @@ export async function getUsers() {
     }
 }
 
+//verificar usuario
+export async function checkUser(email) {
+  try {
+        const [rows] = await pool.query(
+            'select * from Usuario where email_usuario = ?',
+            [email]
+        )
+        return {
+            users: rows,
+            status_code: 200
+        }
+    } catch {
+        return { 
+            error: 'Erro ao listar usuários',
+            status_code: 500
+        }
+    }
+}
+
 // Logar usuário
 export async function loginUser(data) {
   const { email, senha, role } = data

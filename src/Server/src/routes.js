@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { pool } from './db.js'
 const r = Router()
 
-import { getUsers, loginUser, registerUser, deleteUser, updateUser } from './Controllers/userController'
+import { getUsers, loginUser, registerUser, deleteUser, updateUser, checkUser } from './Controllers/userController'
 import { getGroups, getGroup, createGroup, deleteGroup, updateGroup } from './Controllers/groupController.js'
 
 
@@ -22,6 +22,13 @@ r.get('/db/health', async (_, res) => {
 //listar usuarios
 r.get('/users', async (_, res) => {
     const data = await getUsers()
+
+    res.status(data.status_code).json(data)
+})
+
+//verificar usuario
+r.get('/checkUser/:email', async (req, res) => {
+    const data = await checkUser(req.params.email)
 
     res.status(data.status_code).json(data)
 })

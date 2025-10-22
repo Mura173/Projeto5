@@ -23,8 +23,6 @@ function Cadastro() {
       senha: password,
       tipo_usuario: role
     }
-
-    console.log(userData)
     
 
     if (
@@ -41,15 +39,30 @@ function Cadastro() {
       });
     }
 
-    let response = await fetch("http://localhost:3000/api/registerUser", {
+      let verifyUser = await fetch(`http://localhost:3000/api/checkUser/${userData.email}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+
+    if (verifyUser.status == 200) {
+      Swal.fire({
+        title: "Erro!",
+        text: "Email ja cadastrado! Faça login",
+        icon: "error",
+        confirmButtonText: "OK",
+      })
+    }
+
+    else{
+      let response = await fetch("http://localhost:3000/api/registerUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
     })
-
-    console.log(await response.json())
     
 
     if (response.status == 201) {
@@ -63,6 +76,7 @@ function Cadastro() {
       setTimeout(() => {
         window.location.href = "/Login";
       }, 1500);
+    }
     }
   }
 
