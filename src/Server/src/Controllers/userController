@@ -18,6 +18,30 @@ export async function getUsers() {
     }
 }
 
+//verificar usuario
+export async function checkUser(email) {
+  try {
+        const [rows] = await pool.query(
+            'select * from Usuario where email_usuario = ?',
+            [email]
+        )
+
+        if (rows.length < 1) {
+            return { error: 'Usuário nao encontrado', status_code: 404 }
+        }
+        
+        return {
+            users: rows,
+            status_code: 200
+        }
+    } catch {
+        return { 
+            error: 'Erro ao listar usuários',
+            status_code: 500
+        }
+    }
+}
+
 // Logar usuário
 export async function loginUser(data) {
   const { email, senha, role } = data
@@ -52,7 +76,8 @@ export async function loginUser(data) {
 
 // Cadastrar usuário
 export async function registerUser(data) {
-  const { nome, email, senha, tipo_usuario } = data;
+  const { nome, email, senha, tipo_usuario } = data
+  
 
   if (
     !nome ||
