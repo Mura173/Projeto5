@@ -3,7 +3,7 @@ import { pool } from './db.js'
 const r = Router()
 
 import { getUsers, loginUser, registerUser, deleteUser, updateUser } from './Controllers/userController'
-import { getGroups, getGroup } from './Controllers/groupController.js'
+import { getGroups, getGroup, createGroup, deleteGroup, updateGroup } from './Controllers/groupController.js'
 
 
 /**************************Teste de conexão com o banco******************************/
@@ -70,5 +70,25 @@ r.get('/grupos/:id', async (req, res) => {
     res.status(data.status_code).json(data)
 })
 
+//criar grupo
+r.post('/criarGrupo', async (req, res) => {
+    const data = await createGroup(req.body)
+
+    res.status(data.status_code).json(data)
+})
+
+//deletar grupo
+r.delete('/deletarGrupo/:id', async (req, res) => {
+    const data = await deleteGroup(req.params.id)
+
+    res.status(data.status_code).json(data)
+})
+
+//atualizar grupo
+r.put('/atualizarGrupo', async (req, res) => {
+    const data = await updateGroup(req.body)
+
+    res.status(data.status_code).json(data)
+})
 
 export default r
