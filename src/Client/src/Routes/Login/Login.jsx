@@ -13,8 +13,7 @@ function Login() {
    function handleRoleChange(newRole) {
       setRole(newRole)
     }
-
-    console.log(role)
+    
   async function userLogin() {
 
     let userData = {
@@ -61,7 +60,8 @@ function Login() {
 
     let user = await response.json()
 
-    localStorage.setItem("user", user.user[0])
+    localStorage.setItem('user', user.user[0])
+
   }
 
   return (

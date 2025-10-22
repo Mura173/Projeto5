@@ -10,7 +10,6 @@ import Cadastro from "./Routes/Cadastro/Cadastro.jsx";
 import Home from "./Routes/Home/Home.jsx";
 import MeusProjetos from "./Routes/MeusProjetos/MeusProjetos.jsx"
 import Perfilusuario from "./Routes/Perfil_Usuario/perfilusuario.jsx";
-import RoleSelector from "./Components/RoleSelector/RoleSelector.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,15 +25,15 @@ const router = createBrowserRouter([
     element: <Cadastro />,
   },
   {
-    path: "/home",
+    path: "/Home",
     element: <Home />,
   },
   {
-    path: "/meusprojetos",
+    path: "/MeusProjetos",
     element: <MeusProjetos />,
   },
   {
-    path: "/perfil",
+    path: "/Perfil",
     element: <Perfilusuario />,
   },
 ]);

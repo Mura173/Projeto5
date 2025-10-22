@@ -6,10 +6,9 @@ import Swal from "sweetalert2";
 import RoleSelector from "../../Components/RoleSelector/RoleSelector";
 
 function Cadastro() {
-  let [role, setRole] = useState("");
+  let [role, setRole] = useState("Aluno");
   let [name, setName] = useState("");
   let [email, setEmail] = useState("");
-  let [RA, setRA] = useState("");
   let [password, setPassword] = useState("");
 
      function handleRoleChange(newRole) {
@@ -22,15 +21,16 @@ function Cadastro() {
       nome: name,
       email: email,
       senha: password,
-      RA: RA,
-      role: role,
+      tipo_usuario: role
     }
+
+    console.log(userData)
+    
 
     if (
       userData.email == "" || userData.email == undefined || !userData.email || userData.email.length > 100 ||
       userData.senha == "" || userData.senha == undefined || !userData.senha || userData.senha.length > 20 ||
       userData.role == "" || userData.role == undefined || !userData.role ||
-      userData.RA == "" || userData.RA == undefined || !userData.RA ||
       userData.name == "" || userData.name == undefined || !userData.name
     ) {
       Swal.fire({
@@ -47,9 +47,12 @@ function Cadastro() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
-    });
+    })
 
-    if (response) {
+    console.log(await response.json())
+    
+
+    if (response.status == 201) {
       Swal.fire({
         title: "Sucesso!",
         text: "Cadastro realizado com sucesso!",
@@ -58,7 +61,7 @@ function Cadastro() {
       });
 
       setTimeout(() => {
-        window.location.href = "/home";
+        window.location.href = "/Login";
       }, 1500);
     }
   }
@@ -71,7 +74,7 @@ function Cadastro() {
         <main className="main-cadastro">
 
           <img className="background-Img" src={LogoFecap} alt="logoFECAP" />
-          {/* <h1 className="register-txt">Cadastrar</h1> */}
+          <h1 className="register-txt">Cadastrar</h1>
 
           <div className="register-box">
 
@@ -93,15 +96,6 @@ function Cadastro() {
                 type="email"
                 placeholder="Insira seu e-mail"
                 onChange={(e) => setEmail(e.target.value)}
-              />
-
-              <p className="espacamento"></p>
-
-              <label>RA</label>
-              <input
-                type="text"
-                placeholder="Insira seu RA"
-                onChange={(e) => setRA(e.target.value)}
               />
 
               <p className="espacamento"></p>

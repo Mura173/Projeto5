@@ -52,7 +52,8 @@ export async function loginUser(data) {
 
 // Cadastrar usuário
 export async function registerUser(data) {
-  const { nome, email, senha, tipo_usuario } = data;
+  const { nome, email, senha, tipo_usuario } = data
+  
 
   if (
     !nome ||
