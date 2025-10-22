@@ -21,9 +21,43 @@
     margin-left: 50px;
 }
 
+.cards-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .card-body{
     height: 200px;
     width: 500px;
+    border-style: solid;
+    border-color: #bbb;
+    border-width: 1px;
+    margin-top: 30px;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-grupo{
+    height: 110px;
+    width: 300px;
+    border-style: solid;
+    border-color: #bbb;
+    border-width: 1px;
+    margin-top: 30px;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-course{
+    height: 110px;
+    width: 300px;
     border-style: solid;
     border-color: #bbb;
     border-width: 1px;
