@@ -25,6 +25,11 @@ export async function checkUser(email) {
             'select * from Usuario where email_usuario = ?',
             [email]
         )
+
+        if (rows.length < 1) {
+            return { error: 'Usuário nao encontrado', status_code: 404 }
+        }
+        
         return {
             users: rows,
             status_code: 200
