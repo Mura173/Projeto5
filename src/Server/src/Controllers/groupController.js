@@ -59,3 +59,27 @@ export async function getGroup(id) {
         }
     }
 }
+
+//criar grupo
+export async function createGroup(data) {
+    const { nome_grupo, data_criacao } = data
+
+    console.log(data)
+    
+    try {
+        const [ins] = await pool.query(
+            'INSERT INTO Grupo (nome_grupo, data_criacao) VALUES (?, ?)',
+            [nome_grupo, data_criacao]
+        )
+        return {
+            message: 'Grupo criado com sucesso',
+            data: data,
+            status_code: 200
+        }
+    } catch {
+        return {
+            error: 'Erro ao criar grupo',
+            status_code: 500
+        }
+    }
+}
