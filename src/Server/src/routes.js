@@ -1,9 +1,12 @@
 import { Router } from 'express'
 import { pool } from './db.js'
+
 const r = Router()
 
-import { controllerUserSearch, controllerUserLogin, controllerUserRegister, deleteUser, updateUser } from './Controllers/userController.js'
+import { controllerUserSearch, controllerUserLogin, controllerUserRegister, controllerUserSearchId, controllerUserDelete, controllerUserUpdate } from './Controllers/userController.js'
 import { getGroups, getGroup, createGroup, deleteGroup, updateGroup } from './Controllers/groupController.js'
+
+import { authMiddleware } from './Middlewares/authMiddleware.js'
 
 
 /**************************Teste de conexão com o banco******************************/
@@ -33,26 +36,46 @@ r.post('/loginUser', async (req, res) => {
     res.status(data.status_code).json(data)
 })
 
+//buscar usuario
+r.get('/user/:id', authMiddleware, async (req, res) => {
+    const data = await controllerUserSearchId(req.params.id)
+
+    res.status(data.status_code).json(data)
+})
+
 //cadastrar usuario
 r.post('/registerUser', async (req, res) => {
     const data = await controllerUserRegister(req.body)
 
     res.status(data.status_code).json(data)
-}) 
+})
 
 //deletar usuario
-r.delete('/deleteUser/:id', async (req, res) => {
-    const data = await deleteUser(req.params.id)
+r.delete('/deleteUser/:id', authMiddleware, async (req, res) => {
+    const { id } = req.params
+
+    if (parseInt(id, 10) !== req.user.id) {
+        return res.status(403).json({ error: 'Você só pode deletar a sua própria conta' })
+    }
+
+    const data = await controllerUserDelete(req.params.id)
 
     res.status(data.status_code).json(data)
-}) 
+})
 
 //atualizar usuario
-r.put('/updateUser', async (req, res) => {
-    const data = await updateUser(req.body)
+r.put('/updateUser/:id', authMiddleware, async (req, res) => {
+    const { id } = req.params
 
-    res.status(data.status_code).json(data)
-}) 
+    if (parseInt(id, 10) !== req.user.id) {
+        return res.status(403).json({ error: 'Você só pode editar a sua própria conta' })
+    }
+    const data = {nome: req.body.nome, tipo_usuario: req.body.tipo_usuario, id: req.params.id}
+    
+    const response = await controllerUserUpdate(data)
+
+    res.status(response.status_code).json(response)
+})
 /******************************************************************** */
 
 /*******************************Grupos*********************************** */

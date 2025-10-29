@@ -9,7 +9,7 @@ export const createToken = (payload, options = {}) => {
     const token = jwt.sign(
         { ...payload, jti },
         process.env.JWT_SECRET,
-        { expiresIn: process.env.JWT_EXPIRES || '1h', ...options }
+        { expiresIn: process.env.JWT_EXPIRES || '1h', ...options } 
     )
     
     return { token, jti }
