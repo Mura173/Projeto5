@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { pool } from './db.js'
 const r = Router()
 
-import { getUsers, loginUser, registerUser, deleteUser, updateUser, checkUser } from './Controllers/userController'
+import { getUsers, loginUser, registerUser, deleteUser, updateUser, checkUser } from './Controllers/userController.js'
 import { getGroups, getGroup, createGroup, deleteGroup, updateGroup } from './Controllers/groupController.js'
 
 
