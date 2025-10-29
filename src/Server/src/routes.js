@@ -48,24 +48,27 @@ r.post('/registerUser', async (req, res) => {
     const data = await controllerUserRegister(req.body)
 
     res.status(data.status_code).json(data)
-}) 
+})
 
 //deletar usuario
 r.delete('/deleteUser/:id', authMiddleware, async (req, res) => {
+    const { id } = req.params
 
-    
+    if (parseInt(id, 10) !== req.user.id) {
+        return res.status(403).json({ error: 'Você só pode deletar a sua própria conta' })
+    }
 
     const data = await controllerUserDelete(req.params.id)
-        
+
     res.status(data.status_code).json(data)
-}) 
+})
 
 //atualizar usuario
 r.put('/updateUser', authMiddleware, async (req, res) => {
     const data = await updateUser(req.body)
 
     res.status(data.status_code).json(data)
-}) 
+})
 /******************************************************************** */
 
 /*******************************Grupos*********************************** */

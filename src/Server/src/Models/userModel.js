@@ -1,3 +1,4 @@
+import { decode } from "jsonwebtoken"
 import { pool } from "../db.js"
 
 //listar usuarios
@@ -55,7 +56,7 @@ export async function validateUser(email, password, role) {
             'select * from Usuario where email_usuario = ? and senha_usuario = ?',
             [email, password]
         )
-
+        
         if (rows.length < 1) {
             return { error: 'Usuário ou senha incorretos', status_code: 401 }
         }

@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt'
 import { createToken, denyToken } from '../Services/tokenService.js'
 import { getUsers, validateUser, registerUser, getUser, deleteUser } from '../Models/userModel.js'
 import { sanitizeUser } from '../Services/dataSanitization.js'
+import { decode } from 'jsonwebtoken'
 
 
 // Listar usuários
@@ -24,22 +25,24 @@ export async function controllerUserSearch() {
 export async function controllerUserLogin(data) {
     const { email, senha, role } = data
 
+
     let response = await validateUser(email, senha, role)
 
     const user = response
-    
 
     if (user.status_code == 401) {
         return { error: 'Usuário ou senha incorretos', status_code: 401 }
     }
     
     const ok = bcrypt.compare(senha, user.user.senha_usuario)
+    
 
     if (!ok) {
         return { error: 'Usuário ou senha incorretos', status_code: 401 }
     }
 
-    const { token } = createToken({ id: user.id })
+    const { token } = createToken({ id: user.user.ID_Usuario })
+    
 
     return { token: token, user: sanitizeUser(user.user), status_code: 200 }
 }
@@ -57,8 +60,6 @@ export async function controllerUserSearchId(id) {
 // Cadastrar usuário
 export async function controllerUserRegister(data) {
     const { nome, email, senha, tipo_usuario } = data
-
-    data.senha = bcrypt.hashSync(senha, 10)
 
     if (
         !nome || nome.length > 60 || nome == undefined ||
