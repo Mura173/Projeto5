@@ -3,7 +3,7 @@ import { pool } from "../db.js"
 //listar usuarios
 export async function getUsers() {
     try {
-        const [rows] = await pool.query(
+        const [rows] = await pool.query( 
             'select * from Usuario'
         )
         return {
@@ -13,6 +13,36 @@ export async function getUsers() {
     } catch {
         return {
             error: 'Erro ao listar usuários',
+            status_code: 500
+        }
+    }
+}
+
+
+//buscar usuário
+export async function getUser(id) {
+    try {
+        const [rows] = await pool.query(
+            'select * from Usuario where ID_Usuario = ?',
+            [id]
+        )
+
+        if (rows.length < 1) {
+            return {
+                error: 'Usuário nao encontrado',
+                status_code: 404
+            }
+            
+        }
+        
+        return {
+            user: rows[0],
+            status_code: 200
+        }
+
+    } catch {
+        return {
+            error: 'Erro ao buscar usuário',
             status_code: 500
         }
     }

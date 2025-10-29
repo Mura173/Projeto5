@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt' 
 import { createToken, denyToken } from '../Services/tokenService.js'
-import { getUsers, validateUser, registerUser } from '../Models/userModel.js'
+import { getUsers, validateUser, registerUser, getUser } from '../Models/userModel.js'
 import { sanitizeUser } from '../Services/dataSanitization.js'
 
 
@@ -39,9 +39,21 @@ export async function controllerUserLogin(data) {
     return { token: token, user: sanitizeUser(user), status_code: 200 }
 }
 
+//buscar usuário
+export async function controllerUserSearchId(id) {
+    let response = await getUser(id)
+
+    return {
+        user: response.status_code == 200 ? sanitizeUser(response.user) : response.error,
+        status_code: response.status_code
+    }
+}
+
 // Cadastrar usuário
 export async function controllerUserRegister(data) {
     const { nome, email, senha, tipo_usuario } = data
+
+    data.senha = bcrypt.hashSync(senha, 10)
 
     if (
         !nome || nome.length > 60 || nome == undefined ||

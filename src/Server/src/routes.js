@@ -1,9 +1,12 @@
 import { Router } from 'express'
 import { pool } from './db.js'
+
 const r = Router()
 
-import { controllerUserSearch, controllerUserLogin, controllerUserRegister, deleteUser, updateUser } from './Controllers/userController.js'
+import { controllerUserSearch, controllerUserLogin, controllerUserRegister, controllerUserSearchId, deleteUser, updateUser } from './Controllers/userController.js'
 import { getGroups, getGroup, createGroup, deleteGroup, updateGroup } from './Controllers/groupController.js'
+
+import { authMiddleware } from './Middlewares/authMiddleware.js'
 
 
 /**************************Teste de conexão com o banco******************************/
@@ -29,6 +32,13 @@ r.get('/users', async (_, res) => {
 //logar usuario
 r.post('/loginUser', async (req, res) => {
     const data = await controllerUserLogin(req.body)
+
+    res.status(data.status_code).json(data)
+})
+
+//buscar usuario
+r.get('/user/:id', authMiddleware, async (req, res) => {
+    const data = await controllerUserSearchId(req.params.id)
 
     res.status(data.status_code).json(data)
 })
