@@ -1,152 +1,73 @@
-import { pool } from "../db.js"
 import bcrypt from 'bcrypt'
-import { createToken, denyToken } from '../services/tokenService.js'
+import { createToken, denyToken } from '../Services/tokenService.js'
+import { getUsers, validateUser, registerUser } from '../Models/userModel.js'
+import { sanitizeUser } from '../Services/dataSanitization.js'
 
-function sanitizeUser(u){ 
-    return {
-        id: u.ID_Usuario,
-        name: u.nome_usuario,
-        email: u.email_usuario
-    }
-}
 
 // Listar usuários
-export async function getUsers() {
-    try {
-        const [rows] = await pool.query(
-            'select * from Usuario'
-        )
-        return {
-            users: rows,
-            status_code: 200
-        }
-    } catch {
-        return {
-            error: 'Erro ao listar usuários',
-            status_code: 500
-        }
-    }
+export async function controllerUserSearch() {
+    let users = await getUsers()
+
+    let sanitizedUsersArray = []
+
+    users.users.forEach(user => {
+        let sanitizedUser = sanitizeUser(user)
+
+        sanitizedUsersArray.push(sanitizedUser)
+    })
+
+    return { users: sanitizedUsersArray, status_code: users.status_code }
 }
 
-//verificar usuario
-export async function checkUser(email) {
-    try {
-        const [rows] = await pool.query(
-            'select * from Usuario where email_usuario = ?',
-            [email]
-        )
-
-        if (rows.length < 1) {
-            return { error: 'Usuário nao encontrado', status_code: 404 }
-        }
-
-        return {
-            users: rows,
-            status_code: 200
-        }
-    } catch {
-        return {
-            error: 'Erro ao listar usuários',
-            status_code: 500
-        }
-    }
-}
 
 // Logar usuário
-export async function loginUser(data) {
+export async function controllerUserLogin(data) {
     const { email, senha, role } = data
 
-    try {
-        const [rows] = await pool.query(
-            'select * from Usuario where email_usuario = ? and senha_usuario = ?',
-            [email, senha]
-        )
+    let response = await validateUser(email, senha, role)
 
-        if (rows.length < 1) {
-            return { error: 'Usuário ou senha incorretos', status_code: 401 }
-        }
+    const user = response.user
 
-        const [rows2] = await pool.query(
-            'select * from Usuario where ID_Usuario = ?',
-            [rows[0].ID_Usuario]
-        )
+    const ok = bcrypt.compare(senha, user.senha_usuario)
 
-        if (role !== rows2[0].tipo_usuario) {
-             return { error: 'Cargo incorreto', status_code: 401 }
-        }
-        else {
-           const user = rows[0]
-
-           const ok = bcrypt.compare(senha, user.senha_usuario)
-
-           if (!ok){
-            return {error: 'Usuário ou senha incorretos', status_code: 401}
-           }
-
-           const { token } = createToken({ id: user.id })           
-           
-           return { token: token, user: sanitizeUser(user), status_code: 200 }
-        }
-
-    } catch (err) {
-        console.log(err);
-        return { error: 'Erro ao listar usuários', status_code: 500 }
+    if (!ok) {
+        return { error: 'Usuário ou senha incorretos', status_code: 401 }
     }
+
+    const { token } = createToken({ id: user.id })
+
+    return { token: token, user: sanitizeUser(user), status_code: 200 }
 }
 
 // Cadastrar usuário
-export async function registerUser(data) {
+export async function controllerUserRegister(data) {
     const { nome, email, senha, tipo_usuario } = data
 
-
     if (
-        !nome ||
-        nome.length > 60 ||
-        !email ||
-        email.length > 100 ||
-        !senha ||
-        senha.length > 200 ||
-        !tipo_usuario
+        !nome || nome.length > 60 || nome == undefined ||
+        !email || email.length > 100 || email ==  undefined ||
+        !senha || senha.length > 200 || senha == undefined ||
+        !tipo_usuario || tipo_usuario == undefined 
     ) {
         return {
-            error:
-                "Preencha todos os campos (nome, email, senha, tipo_usuario) corretamente",
+            error:"Preencha todos os campos (nome, email, senha, tipo_usuario) corretamente",
             status_code: 400,
-        };
+        }
     }
 
     if (!["Administrador", "Mentor", "Aluno"].includes(tipo_usuario)) {
         return {
-            error: "O tipo de usuário deve ser Administrador, Mentor ou Aluno",
+            error: "O tipo de usuário é inválido",
             status_code: 400,
         }
     }
 
-    const [checkUser] = await pool.query(
-        'SELECT * FROM Usuario WHERE email_usuario = ?',
-        [email]
-    )
+   let response = await registerUser(data)
 
-    if (checkUser.length > 0) {
-        return { error: 'Usuário ja cadastrado', status_code: 400 }
-    }
-
-    try {
-        // Insere no banco
-        const [ins] = await pool.query(
-            'INSERT INTO Usuario (nome_usuario, email_usuario, senha_usuario, tipo_usuario) VALUES (?, ?, ?, ?)',
-            [nome, email, senha, tipo_usuario]
-        )
-        // Busca o usuário recém-criado
-        const [rows] = await pool.query(
-            'SELECT * FROM Usuario WHERE ID_Usuario = ?',
-            [ins.insertId]
-        )
-        return { user: rows, status_code: 201 }
-    } catch (err) {
-        console.log(err)
-        return { error: 'Erro ao cadastrar usuário', status_code: 500 }
-    }
+   return{
+       user: response.status_code == 201 ? sanitizeUser(response.user) : response.error,
+       status_code: response.status_code
+   }
 }
 
 // Deletar usuário

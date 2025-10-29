@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { pool } from './db.js'
 const r = Router()
 
-import { getUsers, loginUser, registerUser, deleteUser, updateUser, checkUser } from './Controllers/userController.js'
+import { controllerUserSearch, controllerUserLogin, controllerUserRegister, deleteUser, updateUser } from './Controllers/userController.js'
 import { getGroups, getGroup, createGroup, deleteGroup, updateGroup } from './Controllers/groupController.js'
 
 
@@ -21,28 +21,21 @@ r.get('/db/health', async (_, res) => {
 /****************************Usuários**********************************/
 //listar usuarios
 r.get('/users', async (_, res) => {
-    const data = await getUsers()
-
-    res.status(data.status_code).json(data)
-})
-
-//verificar usuario
-r.get('/checkUser/:email', async (req, res) => {
-    const data = await checkUser(req.params.email)
+    const data = await controllerUserSearch()
 
     res.status(data.status_code).json(data)
 })
 
 //logar usuario
 r.post('/loginUser', async (req, res) => {
-    const data = await loginUser(req.body)
+    const data = await controllerUserLogin(req.body)
 
     res.status(data.status_code).json(data)
 })
 
 //cadastrar usuario
 r.post('/registerUser', async (req, res) => {
-    const data = await registerUser(req.body)
+    const data = await controllerUserRegister(req.body)
 
     res.status(data.status_code).json(data)
 }) 

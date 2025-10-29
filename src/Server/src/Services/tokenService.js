@@ -11,6 +11,7 @@ export const createToken = (payload, options = {}) => {
         process.env.JWT_SECRET,
         { expiresIn: process.env.JWT_EXPIRES || '1h', ...options }
     )
+    
     return { token, jti }
 }
 
