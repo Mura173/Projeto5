@@ -3,7 +3,7 @@ import { pool } from './db.js'
 
 const r = Router()
 
-import { controllerUserSearch, controllerUserLogin, controllerUserRegister, controllerUserSearchId, controllerUserDelete, updateUser } from './Controllers/userController.js'
+import { controllerUserSearch, controllerUserLogin, controllerUserRegister, controllerUserSearchId, controllerUserDelete, controllerUserUpdate } from './Controllers/userController.js'
 import { getGroups, getGroup, createGroup, deleteGroup, updateGroup } from './Controllers/groupController.js'
 
 import { authMiddleware } from './Middlewares/authMiddleware.js'
@@ -64,10 +64,17 @@ r.delete('/deleteUser/:id', authMiddleware, async (req, res) => {
 })
 
 //atualizar usuario
-r.put('/updateUser', authMiddleware, async (req, res) => {
-    const data = await updateUser(req.body)
+r.put('/updateUser/:id', authMiddleware, async (req, res) => {
+    const { id } = req.params
 
-    res.status(data.status_code).json(data)
+    if (parseInt(id, 10) !== req.user.id) {
+        return res.status(403).json({ error: 'Você só pode editar a sua própria conta' })
+    }
+    const data = {nome: req.body.nome, tipo_usuario: req.body.tipo_usuario, id: req.params.id}
+    
+    const response = await controllerUserUpdate(data)
+
+    res.status(response.status_code).json(response)
 })
 /******************************************************************** */
 

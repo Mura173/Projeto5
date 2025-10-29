@@ -134,3 +134,27 @@ export async function deleteUser(id) {
         return { error: 'Erro ao deletar usuário', status_code: 500 }
     }
 }
+
+export async function updateUser(data) {
+    const { id, nome, tipo_usuario } = data
+
+     try {
+        const [checkUser] = await pool.query(
+            'SELECT * FROM Usuario WHERE ID_Usuario = ?',
+            [id]
+        )
+
+        if (checkUser.length < 1) {
+            return { error: 'Usuário nao encontrado', status_code: 404 }
+        }
+
+        const [rows] = await pool.query(
+            'UPDATE Usuario SET nome_usuario = ?, tipo_usuario = ? WHERE ID_Usuario = ?',
+            [nome, tipo_usuario, id]
+        )
+        return { message: 'Usuário atualizado com sucesso', status_code: 200 }
+
+    } catch (err) {
+        return { error: 'Erro ao atualizar usuário', status_code: 500 }
+    }
+}
