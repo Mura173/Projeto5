@@ -115,3 +115,21 @@ export async function registerUser(data){
         return { error: 'Erro ao cadastrar usuário', status_code: 500 }
     }
 }
+
+//excluir usuario
+export async function deleteUser(id) {
+    try {
+        const [rows] = await pool.query(
+            'DELETE FROM Usuario WHERE ID_Usuario = ?',
+            [id]
+        )
+
+        if (rows) {
+            return { message: 'Usuário deletado com sucesso', status_code: 200 }
+        }
+
+    } catch (err) {
+        console.log(err)
+        return { error: 'Erro ao deletar usuário', status_code: 500 }
+    }
+}

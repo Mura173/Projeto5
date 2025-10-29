@@ -3,7 +3,7 @@ import { pool } from './db.js'
 
 const r = Router()
 
-import { controllerUserSearch, controllerUserLogin, controllerUserRegister, controllerUserSearchId, deleteUser, updateUser } from './Controllers/userController.js'
+import { controllerUserSearch, controllerUserLogin, controllerUserRegister, controllerUserSearchId, controllerUserDelete, updateUser } from './Controllers/userController.js'
 import { getGroups, getGroup, createGroup, deleteGroup, updateGroup } from './Controllers/groupController.js'
 
 import { authMiddleware } from './Middlewares/authMiddleware.js'
@@ -51,14 +51,17 @@ r.post('/registerUser', async (req, res) => {
 }) 
 
 //deletar usuario
-r.delete('/deleteUser/:id', async (req, res) => {
-    const data = await deleteUser(req.params.id)
+r.delete('/deleteUser/:id', authMiddleware, async (req, res) => {
 
+    
+
+    const data = await controllerUserDelete(req.params.id)
+        
     res.status(data.status_code).json(data)
 }) 
 
 //atualizar usuario
-r.put('/updateUser', async (req, res) => {
+r.put('/updateUser', authMiddleware, async (req, res) => {
     const data = await updateUser(req.body)
 
     res.status(data.status_code).json(data)

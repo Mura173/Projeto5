@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt' 
 import { createToken, denyToken } from '../Services/tokenService.js'
-import { getUsers, validateUser, registerUser, getUser } from '../Models/userModel.js'
+import { getUsers, validateUser, registerUser, getUser, deleteUser } from '../Models/userModel.js'
 import { sanitizeUser } from '../Services/dataSanitization.js'
 
 
@@ -26,9 +26,14 @@ export async function controllerUserLogin(data) {
 
     let response = await validateUser(email, senha, role)
 
-    const user = response.user
+    const user = response
+    
 
-    const ok = bcrypt.compare(senha, user.senha_usuario)
+    if (user.status_code == 401) {
+        return { error: 'Usuário ou senha incorretos', status_code: 401 }
+    }
+    
+    const ok = bcrypt.compare(senha, user.user.senha_usuario)
 
     if (!ok) {
         return { error: 'Usuário ou senha incorretos', status_code: 401 }
@@ -36,7 +41,7 @@ export async function controllerUserLogin(data) {
 
     const { token } = createToken({ id: user.id })
 
-    return { token: token, user: sanitizeUser(user), status_code: 200 }
+    return { token: token, user: sanitizeUser(user.user), status_code: 200 }
 }
 
 //buscar usuário
@@ -83,29 +88,17 @@ export async function controllerUserRegister(data) {
 }
 
 // Deletar usuário
-export async function deleteUser(id) {
-    try {
-        const [checkUser] = await pool.query(
-            'SELECT * FROM Usuario WHERE ID_Usuario = ?',
-            [id]
-        )
+export async function controllerUserDelete(id) {
+    let checkUser = await getUser(id)
 
-        if (checkUser.length < 1) {
-            return { error: 'Usuário nao encontrado', status_code: 404 }
-        }
-
-        const [rows] = await pool.query(
-            'DELETE FROM Usuario WHERE ID_Usuario = ?',
-            [id]
-        )
-        if (rows) {
-            return { message: 'Usuário deletado com sucesso', status_code: 200 }
-        }
-
-    } catch (err) {
-        console.log(err)
-        return { error: 'Erro ao deletar usuário', status_code: 500 }
+    if (checkUser.status_code == 404) {
+        return { error: 'Usuário nao encontrado', status_code: 404 }
     }
+
+    let response = await deleteUser(id)
+
+    return { message: response.message != undefined ? response.message : response.error, status_code: response.status_code }
+   
 }
 
 // Atualizar usuário
