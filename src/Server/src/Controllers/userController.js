@@ -1,8 +1,7 @@
 import bcrypt from 'bcrypt' 
-import { createToken, denyToken } from '../Services/tokenService.js'
+import { createToken } from '../Services/tokenService.js'
 import { getUsers, validateUser, registerUser, getUser, deleteUser, updateUser } from '../Models/userModel.js'
 import { sanitizeUser } from '../Services/dataSanitization.js'
-import { decode } from 'jsonwebtoken'
 
 
 // Listar usuários
@@ -17,7 +16,7 @@ export async function controllerUserSearch() {
         sanitizedUsersArray.push(sanitizedUser)
     })
 
-    return { users: sanitizedUsersArray, status_code: users.status_code }
+    return { response: sanitizedUsersArray, status_code: users.status_code }
 }
 
 
@@ -44,7 +43,7 @@ export async function controllerUserLogin(data) {
     const { token } = createToken({ id: user.user.ID_Usuario })
     
 
-    return { token: token, user: sanitizeUser(user.user), status_code: 200 }
+    return { token: token, response: sanitizeUser(user.user), status_code: 200 }
 }
 
 //buscar usuário
@@ -52,7 +51,7 @@ export async function controllerUserSearchId(id) {
     let response = await getUser(id)
 
     return {
-        user: response.status_code == 200 ? sanitizeUser(response.user) : response.error,
+        response: response.status_code == 200 ? sanitizeUser(response.user) : response.error,
         status_code: response.status_code
     }
 }
@@ -83,7 +82,7 @@ export async function controllerUserRegister(data) {
    let response = await registerUser(data)
 
    return{
-       user: response.status_code == 201 ? sanitizeUser(response.user) : response.error,
+       response: response.status_code == 201 ? sanitizeUser(response.user) : response.error,
        status_code: response.status_code
    }
 }
@@ -98,7 +97,7 @@ export async function controllerUserDelete(id) {
 
     let response = await deleteUser(id)
 
-    return { message: response.message != undefined ? response.message : response.error, status_code: response.status_code }
+    return { repsonse: response.message != undefined ? response.message : response.error, status_code: response.status_code }
    
 }
 
@@ -126,7 +125,7 @@ export async function controllerUserUpdate(data) {
    let response = await updateUser(data)
 
    return{
-       message: response.message != undefined ? response.message : response.error,
+       response: response.message != undefined ? response.message : response.error,
        status_code: response.status_code
    }
 }

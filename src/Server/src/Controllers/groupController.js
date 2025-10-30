@@ -1,169 +1,84 @@
-import { pool } from "../db.js";
+import { createGroup, deleteGroup, getGroup, getGroups, updateGroup } from "../Models/groupModel.js"
+import { sanitizeUser } from "../Services/dataSanitization.js"
 
 // listar grupos
-export async function getGroups() {
-    try {
-        const [grupos] = await pool.query(
-            'select * from Grupo'
-        )
-        return {
-            groups: grupos,
-            status_code: 200
-        }
+export async function controllerSearchGroups() {
+    let grupos = await getGroups()
 
-    } catch {
-        return {
-            error: 'Erro ao listar grupos',
-            status_code: 500
-        }
-    }
+    return { response: grupos.status_code == 200 ? grupos : grupos.error, status_code: grupos.status_code }
 }
 
 
 //procurar grupo
-export async function getGroup(id) {
-    try {
-        const [grupo] = await pool.query(
-            'select * from Grupo where ID_Grupo = ?',
-            [id]
-        )
+export async function controllerGroupSearch(id) {
 
-        if (grupo.length < 1) {
-            return {
-                error: 'Grupo nao encontrado',
-                status_code: 404
-            }
-        }
-        const [usersId] = await pool.query(
-            'select * from UsuarioGrupo where ID_Grupo = ?',
-            [id]
-        )
-
-        const usersArray = await Promise.all(
-
-            usersId.map(async user => {
-                const [userSelector] = await pool.query(
-                    'SELECT * FROM Usuario WHERE ID_Usuario = ?',
-                    [user.id_usuario]
-                )
-
-                return userSelector[0]
-            })
-
-        )
-
-        const response = {
-            grupo: grupo[0],
-            users: usersArray,
-            status_code: 200
-        }
-
-        return {
-            group: response,
-            status_code: 200
-        }
-    } catch {
-        return {
-            error: 'Erro ao procurar grupo',
-            status_code: 500
-        }
+    if (id < 1 || isNaN(id) || id == undefined) {
+        return { error: 'Informe um ID valido', status_code: 400 }
     }
+
+    let grupo = await getGroup(id)
+
+    let usersArray = []
+
+    grupo.group.users.forEach(user => {
+        let sanitizedUser = sanitizeUser(user)
+
+        usersArray.push(sanitizedUser)
+    })
+
+    grupo.group.users = usersArray
+
+    return { response: grupo.status_code == 200 ? grupo : grupo.error, status_code: grupo.status_code }
 }
 
 
 //criar grupo
-export async function createGroup(data) {
+export async function controllerCreateGroup(data) {
     const { nome_grupo, data_criacao } = data
-    
-    try {
-        const [ins] = await pool.query(
-            'INSERT INTO Grupo (nome_grupo, data_criacao) VALUES (?, ?)',
-            [nome_grupo, data_criacao]
-        )
 
-        if (
-            !nome_grupo || nome_grupo == undefined || nome_grupo == "" || nome_grupo.length > 60 ||
-            !data_criacao || data_criacao == undefined || data_criacao == "" || data_criacao.length != 10
-        ) {
-            return{
-                error: 'Preencha todos os campos corretamente',
-                status_code: 400
-            }
-        }
+    if (
+        !nome_grupo || nome_grupo == undefined || nome_grupo == "" || nome_grupo.length > 60 ||
+        !data_criacao || data_criacao == undefined || data_criacao == "" || data_criacao.length != 10
+    ) {
         return {
-            message: 'Grupo criado com sucesso',
-            data: data,
-            status_code: 200
-        }
-    } catch {
-        return {
-            error: 'Erro ao criar grupo',
-            status_code: 500
+            error: 'Preencha todos os campos corretamente',
+            status_code: 400
         }
     }
+
+    let response = await createGroup(data)
+
+    return { response: response.status_code == 200 ? response : response.error, status_code: response.status_code }
 }
 
 
-//deletar grupo
-export async function deleteGroup(id){
-    try {
-        const [checkGroup] = await pool.query(
-            'SELECT * FROM Grupo WHERE ID_Grupo = ?',
-            [id]
-        )
-
-        if (checkGroup.length < 1) {
-            return{error: 'Grupo nao encontrado', status_code: 404}
-        }
-
-        const [rows] = await pool.query(
-            'DELETE FROM Grupo WHERE ID_Grupo = ?',
-            [id]
-        )
-        if (rows) {
-            return{message: 'Grupo deletado com sucesso', status_code: 200}
-        }
-        
-    } catch (err) {
-        console.log(err);
-        return{error: 'Erro ao deletar grupo', status_code: 500}
+export async function controllerDeleteGroup(id) {
+     if (id < 1 || isNaN(id) || id == undefined) {
+        return { error: 'Informe um ID valido', status_code: 400 }
     }
+
+    let response = await deleteGroup(id)
+
+    return { response: response.status_code == 200 ? response.message : response.error, status_code: response.status_code }
 }
 
 
 //atualizar grupo
-export async function updateGroup(data){
+export async function controllerUpdateGroup(data) {
     const { id, nome_grupo, data_criacao } = data
 
-    try {
-        const [checkGroup] = await pool.query(
-            'SELECT * FROM Grupo WHERE ID_Grupo = ?',
-            [id]
-        )
-
-        if (checkGroup.length < 1) {
-            return { error: 'Grupo nao encontrado', status_code: 404 }
-        }
-
-        if (
+     if (
             !nome_grupo || nome_grupo == undefined || nome_grupo == "" || nome_grupo.length > 60 ||
             !data_criacao || data_criacao == undefined || data_criacao == "" || data_criacao.length != 10 ||
             !id || id == undefined || isNaN(id)
         ) {
-            return{
+            return {
                 error: 'Preencha todos os campos corretamente',
                 status_code: 400
             }
         }
 
-        const [rows] = await pool.query(
-            'UPDATE Grupo SET nome_grupo = ?, data_criacao = ? WHERE ID_Grupo = ?',
-            [nome_grupo, data_criacao, id]
-        )
+    const response = await updateGroup(data)
 
-        return { message: 'Grupo atualizado com sucesso', status_code: 200, data: data}
-
-    } catch (err) {
-        return { error: 'Erro ao atualizar grupo', status_code: 500 }
-    }
+    return { response: response.status_code == 200 ? response : response.error, status_code: response.status_code }
 }

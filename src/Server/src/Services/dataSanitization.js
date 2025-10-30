@@ -5,3 +5,4 @@ export function sanitizeUser(u){
         email: u.email_usuario
     }
 }
+
