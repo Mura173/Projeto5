@@ -1,4 +1,3 @@
-import { decode } from "jsonwebtoken"
 import { pool } from "../db.js"
 
 //listar usuarios
@@ -11,7 +10,9 @@ export async function getUsers() {
             users: rows,
             status_code: 200
         }
-    } catch {
+    } catch(err) {
+        console.log(err)
+        
         return {
             error: 'Erro ao listar usuários',
             status_code: 500
@@ -41,7 +42,9 @@ export async function getUser(id) {
             status_code: 200
         }
 
-    } catch {
+    } catch(err) {
+        console.log(err)
+
         return {
             error: 'Erro ao buscar usuário',
             status_code: 500
