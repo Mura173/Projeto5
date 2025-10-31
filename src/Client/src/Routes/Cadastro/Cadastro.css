@@ -309,8 +309,9 @@ label {
     overflow-y: auto;
   }
   .register-txt {
-    position: relative;
-    top: 0;
+    /* position: relative; */
+    top: 17%;
+    left: 35%;
     font-size: 28px;
     text-align: center;
     margin-bottom: 10px;
