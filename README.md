@@ -66,6 +66,20 @@ cd ./Projeto5
 ```
 
 ### Configurando o Back-end
+#### Criando e configurando o aquivo .env (Variáveis de ambiente)
+````bash
+cd .\src\Server
+
+echo "PORT=3000
+MYSQL_HOST=localhost
+MYSQL_USER=root
+MYSQL_DB=leadbd
+MYSQL_PASSWORD=(Insira aqui a senha de acesso ao seu MySQL Workbench. Caso não utilize senha, deixe em branco após o sinal de igual.)
+
+JWT_SECRET=lead2025
+JWT_EXPIRES=1h > .env
+````
+#### Baixando as dependências e iniciando o servidor
 ````bash
 cd ..
 cd ./src/Server
@@ -79,7 +93,7 @@ npm run dev
 ### Configurando o Front-end
 
 `````bash
-cd ./src/Client
+cd ../Client
 npm install
 
 # Inicie o servidor de desenvolvimento
@@ -88,8 +102,8 @@ npm run start
 
 ### Observações
 <ul>
-  <li>O front-end estará disponível em http://localhost:3000</li>
-  <li>O back-end estará rodando em http://localhost:5000</li>
+  <li>O front-end estará disponível em http://localhost:5173</li>
+  <li>O back-end estará rodando em http://localhost:3000</li>
   <li>Certifique-se de que as URLs de API estejam corretamente configuradas no front-end para comunicação com o back-end</li>
 </ul>
 
