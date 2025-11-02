@@ -12,6 +12,13 @@ import MeusProjetos from "./Routes/MeusProjetos/MeusProjetos.jsx"
 import Perfilusuario from "./Routes/Perfil_Usuario/perfilusuario.jsx";
 
 
+// subrotas da pagina Dashboard Estudante
+import ProjetoEstudante from "./Routes/ProjetoEstudante/ProjetoEstudante.jsx";
+import DashboardEstudante from "./Routes/ProjetoEstudante/DashboardEstudante/DashboardEstudante.jsx";
+import ContribuicaoEstudante from "./Routes/ProjetoEstudante/ContribuicaoEstudante/ContribuicaoEstudante.jsx";
+import RegistrarContribuicao from "./Routes/ProjetoEstudante/RegistrarContribuicao/RegistrarContribuicao.jsx";
+import MembrosEstudante from "./Routes/ProjetoEstudante/MembrosEstudante/MembrosEstudante.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +44,29 @@ const router = createBrowserRouter([
     path: "/Perfil",
     element: <Perfilusuario />,
   },
+  {
+    path: "/PaginaEstudante",
+    element: <ProjetoEstudante />,
+    children: [
+      { 
+        path: "", 
+        element: <DashboardEstudante />, 
+        index: true 
+      },
+      {
+        path: "Contribuicoes",
+        element: <ContribuicaoEstudante />,
+      },
+      {
+        path: "RegistrarContribuicao",
+        element: <RegistrarContribuicao />,
+      },
+      {
+        path: "Membros",
+        element: <MembrosEstudante />,
+      },
+    ],
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(
