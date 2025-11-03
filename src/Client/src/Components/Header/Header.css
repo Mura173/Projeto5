@@ -1,5 +1,5 @@
 .header-component {
-    height: 20vh;
+    height: 10vh;
     background-color: var(--background-header);
     display: flex;
     justify-content: space-between;
