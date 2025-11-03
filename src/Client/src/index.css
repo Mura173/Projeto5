@@ -1,5 +1,5 @@
 /* Variáveis globais */
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,9 +7,9 @@
 
 body{
   font-family: "Montserrat", sans-serif;
-  /* Não rolagem de tela */
+  /* Não rolagem de tela
   /* overflow: hidden; */
-}
+ }
 
 a{
   text-decoration: none;
@@ -17,4 +17,4 @@ a{
 
 a:hover{
   text-decoration: underline;
-}
+} 
