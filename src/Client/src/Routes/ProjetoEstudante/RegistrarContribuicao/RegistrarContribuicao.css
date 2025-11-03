@@ -5,7 +5,7 @@
 }
 
 .contribution-form {
-  background-color: #008374; 
+  background-color: var(--background-header); 
   padding: 2.5rem;
   border-radius: 16px;
   width: 100%;

@@ -11,7 +11,7 @@ const mockMembers = [
 function MembrosEstudante() {
   return (
     <div className="members-content-container">
-      <h2>Integrantes do Grupo</h2>
+      <h2 className='members-title'>Integrantes do Grupo</h2>
       <div className='members-grid'>
         {mockMembers.map((member) => (
           <div key={member.id} className='member-card'>

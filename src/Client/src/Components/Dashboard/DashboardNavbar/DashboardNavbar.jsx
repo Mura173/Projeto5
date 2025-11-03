@@ -14,15 +14,15 @@ function DashboardNavbar({ groupName }) {
                 <p>Visualizar Dashboard</p>
             </li>
             <li>
-                {/* <NavLink to="contributions" className="nav-link">Visualizar Contribuições</NavLink> */}
+                {/* <NavLink to="/" className="nav-link">Visualizar Contribuições</NavLink> */}
                 <p>Visualizar Contirbuições</p>
             </li>
             <li>
-                {/* <NavLink to="register" className="nav-link">Registrar Contribuições</NavLink> */}
+                {/* <NavLink to="/" className="nav-link">Registrar Contribuições</NavLink> */}
                 <p>Registrar Contribuições</p>
             </li>
             <li>
-                {/* <NavLink to="members" className="nav-link">Integrantes</NavLink> */}
+                {/* <NavLink to="/" className="nav-link">Integrantes</NavLink> */}
                 <p>Integrantes</p>
             </li>
         </ul>

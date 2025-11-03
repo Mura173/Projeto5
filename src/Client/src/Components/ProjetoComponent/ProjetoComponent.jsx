@@ -1,29 +1,14 @@
-import "./ProjetoComponent.css"
+import { Link } from 'react-router-dom';
+import './ProjetoComponent.css'
 
-function ProjetoComponent(){
-    return(
-        <>
-        <header className="projeto-component">
-            <div className="header-container">
-                <div className="group">
-                    <a href="#">Grupo 2 - 2025</a>
-                </div>
-                <div className="grupo-info">
-                    <p className="title-info">Data de início</p>
-                    <p className="title-project">10/03/2025</p>
-                </div>
-                <div className="grupo-info">
-                    <p className="title-info">Mentor</p>
-                    <p className="title-project">Fulano</p>
-                </div>
-
-                <div className="grupo-info">
-                    <p className="title-info">Arrecadação</p>
-                    <p className="title-project">20kg/R$400</p>
-                </div>
-            </div>
-        </header>
-        </>
+function ProjetoComponent({project}){
+    return (
+        <Link to={`project/${project.id}`} className="project-card">
+            <div className="card-item project-name">{project.name}</div>
+            <div className="card-item">{project.startDate}</div>
+            <div className="card-item">{project.mentor}</div>
+            <div className="card-item">{project.donation}</div>
+        </Link>
     )
 }
 

@@ -8,7 +8,7 @@ const MOCK_PROJECT = {
 }
 
 function ProjetoEstudante() {
-    const { projectId } = useParams();
+    const { projectId } = useParams(); // Pega o ID do projeto da URL 
 
     return (
         <div className="dashboard-page">

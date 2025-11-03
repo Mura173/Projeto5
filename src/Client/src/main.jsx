@@ -66,6 +66,14 @@ const router = createBrowserRouter([
         element: <MembrosEstudante />,
       },
     ],
+  },
+  // {
+  //   path: "/PaginaAdiministrador",
+  //   element: <PaginaAdm />,
+  // },
+  {
+    path: "*",
+    element: <div>Página não encontrada</div>,
   }
 ]);
 
