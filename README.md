@@ -81,8 +81,6 @@ JWT_EXPIRES=1h > .env
 ````
 #### Baixando as dependências e iniciando o servidor
 ````bash
-cd ..
-cd ./src/Server
 npm install
 
 # Inicie o servidor
