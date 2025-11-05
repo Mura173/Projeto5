@@ -17,7 +17,7 @@ function Home() {
                     Interdisciplinar para a organização Lideranças Empáticas. Nossa aplicação web tem como objetivo auxiliar os alunos e professores
                     a acompanhar o cadastro de arrecadações e doações.</p>
 
-                    <button onClick={() => window.location.href = '/meus-projetos'} className="meus-projetosBtn">
+                    <button onClick={() => window.location.href = 'meus-projetos'} className="meus-projetosBtn">
                         Meus projetos
                     </button>
 
