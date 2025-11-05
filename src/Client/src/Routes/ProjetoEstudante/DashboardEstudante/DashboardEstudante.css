@@ -5,23 +5,75 @@
 } */
 
 .dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
   display: flex;
+  flex-direction: column;
   gap: 1.5rem;
-  margin-bottom: 2rem;
-  /* flex-direction: column; */
+  width: 100%;
+}
+
+.dashboard-grid {
+  width: 100%;
+}
+
+.metrics-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.metric-card {
+  flex: 1 1 0;
+  min-width: 220px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 6px 18px rgba(12, 24, 32, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  height: 110px;
+}
+
+.metric-card .metric-title {
+  font-size: 0.9rem;
+  color: #333;
+  margin: 0;
+  font-weight: 600;
+}
+
+.metric-card .metric-value {
+  color: #0b7a63;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: auto;
 }
 
 .goals-section {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 20px;
+  box-shadow: 0 8px 24px rgba(12, 24, 32, 0.06);
+  width: 100%;
+  margin: 0.9rem 0;
+  display: block;
+  color: #111;
 }
 
 .goals-section h3 {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
+  margin: 0 0 12px 0;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
-
+@media (max-width: 768px) {
+  .metrics-row {
+    flex-direction: column;
+  }
+}
