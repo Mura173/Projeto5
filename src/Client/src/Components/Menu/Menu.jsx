@@ -33,11 +33,5 @@ function MenuComponent({menuStatus}){
     )
 }
 
-{location.pathname !== '/perfil' && (
-    <>
-        <NavLink to={'/perfil'}>Meu perfil</NavLink>
-        <hr />
-    </>
-)}
 
 export default MenuComponent
