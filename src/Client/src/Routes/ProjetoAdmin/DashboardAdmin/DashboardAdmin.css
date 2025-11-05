@@ -1,0 +1,36 @@
+.admin-content {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.admin-content h1 {
+  margin-bottom: 2rem;
+}
+
+.admin-grid {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.admin-group-progress {
+  background-color: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+}
+
+.admin-group-progress h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.admin-group-progress .progress-container {
+  margin-bottom: 1.5rem;
+}
+
+.admin-recent-history {
+  width: 100%;
+}
