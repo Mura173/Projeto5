@@ -91,7 +91,9 @@ npm run dev
 ### Configurando o Front-end
 
 `````bash
-cd ../Client
+(Em outro terminal)
+
+cd ./src/Client
 npm install
 
 # Inicie o servidor de desenvolvimento
