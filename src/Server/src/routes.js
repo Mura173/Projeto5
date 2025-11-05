@@ -77,7 +77,6 @@ r.put('/updateUser/:id', authMiddleware, async (req, res) => {
 
     res.status(response.status_code).json(response)
 })
-/******************************************************************** */
 
 /*******************************Grupos*********************************** */
 //Listar Grupos
@@ -126,23 +125,24 @@ r.get('/integrantes/:id', async (req, res) => {
 })
 
 //adicionar integrante
-r.post('/integrante', async (req, res) => {
+r.post('/adicionarIntegrante', async (req, res) => {
     const data = await controllerAddMember(req.body)
 
     res.status(data.status_code).json(data)
 })
 
 //remover integrante
-r.delete('/integrante', async (req, res) => {
+r.delete('/removerIntegrante', async (req, res) => {
     const data = await controllerDeleteMember(req.body)
 
     res.status(data.status_code).json(data)
 })
 
 //realocar integrante
-r.put('/integrante', async (req, res) => {
+r.put('/realocarIntegrante', async (req, res) => {
     const data = await controllerRelocateMember(req.body)
 
     res.status(data.status_code).json(data)
 })
+
 export default r
