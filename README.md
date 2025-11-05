@@ -66,19 +66,35 @@ cd ./Projeto5
 ```
 
 ### Configurando o Back-end
+#### Criando e configurando o aquivo .env (Variáveis de ambiente)
 ````bash
-cd ..
 cd ./src/Server
+
+echo "PORT=3000
+MYSQL_HOST=localhost
+MYSQL_USER=root
+MYSQL_DB=leadbd
+MYSQL_PASSWORD=(Insira aqui a senha de acesso ao seu MySQL Workbench. Caso não utilize senha, deixe em branco após o sinal de igual.)
+
+JWT_SECRET=lead2025
+JWT_EXPIRES=1h > .env
+````
+#### Baixando as dependências e iniciando o servidor
+````bash
 npm install
 
 # Inicie o servidor
 npm run dev
 
 ````
+<a href="./Imagens/Postman">Link para imagens de testes de Rotas com Postman</a> </br>
+
 
 ### Configurando o Front-end
 
 `````bash
+(Em outro terminal)
+
 cd ./src/Client
 npm install
 
@@ -88,8 +104,8 @@ npm run start
 
 ### Observações
 <ul>
-  <li>O front-end estará disponível em http://localhost:3000</li>
-  <li>O back-end estará rodando em http://localhost:5000</li>
+  <li>O front-end estará disponível em http://localhost:5173</li>
+  <li>O back-end estará rodando em http://localhost:3000</li>
   <li>Certifique-se de que as URLs de API estejam corretamente configuradas no front-end para comunicação com o back-end</li>
 </ul>
 
@@ -98,4 +114,8 @@ npm run start
 
 ## 🎓 Referências
 
-Aqui estão as referências usadas no projeto.
+<a href="https://liderancasempaticas.com/">Lideranças Empáticas</a> </br>
+<a href="https://sweetalert2.github.io/">Sweet Alert</a> </br>
+<a href="https://storyset.com/">StorySet</a> </br>
+
+

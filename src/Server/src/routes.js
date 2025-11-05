@@ -7,6 +7,7 @@ import { controllerUserSearch, controllerUserLogin, controllerUserRegister, cont
 import { controllerSearchGroups, controllerGroupSearch, controllerCreateGroup, controllerDeleteGroup, controllerUpdateGroup } from './Controllers/groupController.js'
 
 import { authMiddleware } from './Middlewares/authMiddleware.js'
+import { controllerAddMember, controllerDeleteMember, controllerMemberSearch, controllerRelocateMember } from './Controllers/memberController.js'
 
 
 /**************************Teste de conexão com o banco******************************/
@@ -76,7 +77,6 @@ r.put('/updateUser/:id', authMiddleware, async (req, res) => {
 
     res.status(response.status_code).json(response)
 })
-/******************************************************************** */
 
 /*******************************Grupos*********************************** */
 //Listar Grupos
@@ -114,6 +114,35 @@ r.put('/atualizarGrupo/:id', async (req, res) => {
     const response = await controllerUpdateGroup(data)
 
     res.status(response.status_code).json(response)
+})
+
+/******************************Integrantes***************************************/
+//listar integrantes
+r.get('/integrantes/:id', async (req, res) => {
+    const data = await controllerMemberSearch(req.params.id)
+
+    res.status(data.status_code).json(data)
+})
+
+//adicionar integrante
+r.post('/adicionarIntegrante', async (req, res) => {
+    const data = await controllerAddMember(req.body)
+
+    res.status(data.status_code).json(data)
+})
+
+//remover integrante
+r.delete('/removerIntegrante', async (req, res) => {
+    const data = await controllerDeleteMember(req.body)
+
+    res.status(data.status_code).json(data)
+})
+
+//realocar integrante
+r.put('/realocarIntegrante', async (req, res) => {
+    const data = await controllerRelocateMember(req.body)
+
+    res.status(data.status_code).json(data)
 })
 
 export default r
