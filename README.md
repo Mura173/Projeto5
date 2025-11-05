@@ -88,7 +88,6 @@ npm run dev
 
 ````
 <a href="./Imagens/Postman">Link para imagens de testes de Rotas com Postman</a> </br>
-<a href="https://vitorkolle-dev-41317.postman.co/workspace/Vitor-Kolle's-Workspace~00cc803b-3b07-4813-838a-568a33dabc36/collection/48532630-4fc9eda5-b52e-444c-bbfa-3d49108b3159?action=share&creator=48532630">Link para a Collection no Postman com todas as configurações necessárias para as rotas</a>
 
 
 ### Configurando o Front-end
