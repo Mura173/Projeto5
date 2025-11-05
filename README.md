@@ -68,7 +68,7 @@ cd ./Projeto5
 ### Configurando o Back-end
 #### Criando e configurando o aquivo .env (Variáveis de ambiente)
 ````bash
-cd .\src\Server
+cd ./src/Server
 
 echo "PORT=3000
 MYSQL_HOST=localhost
@@ -91,7 +91,9 @@ npm run dev
 ### Configurando o Front-end
 
 `````bash
-cd ../Client
+(Em outro terminal)
+
+cd ./src/Client
 npm install
 
 # Inicie o servidor de desenvolvimento
@@ -110,4 +112,8 @@ npm run start
 
 ## 🎓 Referências
 
-Aqui estão as referências usadas no projeto.
+<a href="https://liderancasempaticas.com/">Lideranças Empáticas</a> </br>
+<a href="https://sweetalert2.github.io/">Sweet Alert</a> </br>
+<a href="https://storyset.com/">StorySet</a> </br>
+
+
