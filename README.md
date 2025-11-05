@@ -112,7 +112,8 @@ npm run start
 
 ## 🎓 Referências
 
-<a href="https://liderancasempaticas.com/">Lideranças Empáticas</a>
-<a href="https://sweetalert2.github.io/">Sweet Alert</a>
+<a href="https://liderancasempaticas.com/">Lideranças Empáticas</a> </br>
+<a href="https://sweetalert2.github.io/">Sweet Alert</a> </br>
+<a href="https://storyset.com/">StorySet</a> </br>
 
 
