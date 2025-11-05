@@ -51,8 +51,7 @@ function MenuComponent({ menuStatus }) {
 
           <NavLink
             to={"/meus-projetos"}
-            className={closeNavButton("/meus-projetos")}
-          >
+            className={closeNavButton("/meus-projetos")}>
             Meus projetos
           </NavLink>
           <hr className={closeNavButton("/meus-projetos")} />

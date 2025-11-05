@@ -10,20 +10,16 @@ function DashboardNavbar({ groupName }) {
         </div>
         <ul className="nav-links">
             <li>
-                {/* <NavLink to="." end className="nav-link">Visualizar Dashboard</NavLink> */}
-                <p>Visualizar Dashboard</p>
+                <NavLink to="." end className="nav-link">Visualizar Dashboard</NavLink>
             </li>
             <li>
-                {/* <NavLink to="/" className="nav-link">Visualizar Contribuições</NavLink> */}
-                <p>Visualizar Contirbuições</p>
+                <NavLink to="contribuicoes" className="nav-link">Visualizar Contribuições</NavLink>
             </li>
             <li>
-                {/* <NavLink to="/" className="nav-link">Registrar Contribuições</NavLink> */}
-                <p>Registrar Contribuições</p>
+                <NavLink to="registrar-contribuicao" className="nav-link">Registrar Contribuições</NavLink>
             </li>
             <li>
-                {/* <NavLink to="/" className="nav-link">Integrantes</NavLink> */}
-                <p>Integrantes</p>
+                <NavLink to="membros" className="nav-link">Integrantes</NavLink>
             </li>
         </ul>
     </nav>

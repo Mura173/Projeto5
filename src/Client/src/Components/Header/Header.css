@@ -24,3 +24,7 @@
 .menu, .userImage{
     width: 40%;
 }
+
+.pointer-button {
+    cursor: pointer;
+}

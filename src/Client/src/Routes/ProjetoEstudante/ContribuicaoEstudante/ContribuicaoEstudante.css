@@ -1,29 +1,12 @@
 .contributions-container {
   width: 100%;
-  margin-bottom: 1.5rem;
-}
-
-.contributions-table {
-  width: 100%;
-  border-collapse: collapse;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: auto;
-}
-
-.contributions-table th,
-.contributions-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  white-space: nowrap;
 }
 
 .contributions-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .contributions-header h2 {
@@ -46,6 +29,27 @@
   background-color: #0056b3;
 }
 
+.contributions-table {
+  width: 100%;
+  border-collapse: collapse; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden; 
+}
+
+.contributions-table th,
+.contributions-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.contributions-table th {
+  background-color: #f4f4f4;
+  font-weight: 600;
+  color: #333;
+}
+
 .contributions-table tbody tr {
   background-color: #fff;
   transition: background-color 0.2s ease;
@@ -55,44 +59,6 @@
   background-color: #f9f9f9;
 }
 
-.contributions-header,
-.contributions-table {
-  width: 100%;
-}
-
-.contributions-header {
-  background: transparent;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.contributions-table {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(12, 24, 32, 0.06);
-  width: 100%;
-}
-
-.contributions-table thead tr {
-  background: #f6f6f6;
-}
-
-.contributions-table th,
-.contributions-table td {
-  padding: 0.9rem 1rem;
-  border-bottom: 1px solid #eee;
-  color: #222;
-  font-size: 0.95rem;
-}
-
 .contributions-table tbody tr:last-child td {
   border-bottom: none;
-}
-
-.contributions-table {
-  display: block;
-  overflow-x: auto;
 }
