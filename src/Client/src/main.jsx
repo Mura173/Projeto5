@@ -19,6 +19,11 @@ import ContribuicaoEstudante from "./Routes/ProjetoEstudante/ContribuicaoEstudan
 import RegistrarContribuicao from "./Routes/ProjetoEstudante/RegistrarContribuicao/RegistrarContribuicao.jsx";
 import MembrosEstudante from "./Routes/ProjetoEstudante/MembrosEstudante/MembrosEstudante.jsx";
 
+// subrotas da pagina Dashboard Admin
+import ProjetoAdmin from "./Routes/ProjetoAdmin/ProjetoAdmin.jsx";
+import DashboardAdmin from "./Routes/ProjetoAdmin/DashboardAdmin/DashboardAdmin.jsx";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -67,10 +72,21 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/PaginaAdiministrador",
-  //   element: <PaginaAdm />,
-  // },
+  {
+    path: "/PaginaAdmin",
+    element: <ProjetoAdmin />,
+    children: [
+      {
+        path: "",
+        element: <DashboardAdmin />,
+        index: true,
+      },
+      // {
+      //   path: "Usuarios",
+      //   element: <UsuariosAdmin />,
+      // }
+    ]
+  },
   {
     path: "*",
     element: <div>Página não encontrada</div>,
