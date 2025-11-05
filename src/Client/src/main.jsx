@@ -38,19 +38,19 @@ const router = createBrowserRouter([
     element: <Cadastro />,
   },
   {
-    path: "/Home",
+    path: "/home",
     element: <Home />,
   },
   {
-    path: "/MeusProjetos",
+    path: "/meus-projetos",
     element: <MeusProjetos />,
   },
   {
-    path: "/Perfil",
+    path: "/perfil",
     element: <Perfilusuario />,
   },
   {
-    path: "/PaginaEstudante",
+    path: "/pagina-estudante",
     element: <ProjetoEstudante />,
     children: [
       { 
@@ -59,21 +59,21 @@ const router = createBrowserRouter([
         index: true 
       },
       {
-        path: "Contribuicoes",
+        path: "contribuicoes",
         element: <ContribuicaoEstudante />,
       },
       {
-        path: "RegistrarContribuicao",
+        path: "registrar-contribuicao",
         element: <RegistrarContribuicao />,
       },
       {
-        path: "Membros",
+        path: "membros",
         element: <MembrosEstudante />,
       },
     ],
   },
   {
-    path: "/PaginaAdmin",
+    path: "/pagina-admin",
     element: <ProjetoAdmin />,
     children: [
       {
