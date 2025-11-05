@@ -1,11 +1,11 @@
 .register-container {
   display: flex;
   justify-content: center;
-  align-items: center;   
+  align-items: center;
 }
 
 .contribution-form {
-  background-color: var(--background-header); 
+  background-color: var(--background-header);
   padding: 2.5rem;
   border-radius: 16px;
   width: 100%;
@@ -24,7 +24,6 @@
   margin-bottom: 1.5rem;
 }
 
-
 .form-group label {
   position: absolute;
   left: -9999px;
@@ -38,7 +37,7 @@
   border: 2px solid #000;
   border-radius: 12px;
   background-color: #f4f4f4;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .form-row {
@@ -47,7 +46,7 @@
 }
 
 .form-row .form-group {
-  flex: 1; 
+  flex: 1;
 }
 
 .form-group input[type="date"] {
