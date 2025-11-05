@@ -1,5 +1,5 @@
 import {Outlet, useParams} from 'react-router-dom'
-import HeaderComponent from "../../Components/Header/Header";
+import HeaderComponent from '../../components/Header/Header';
 import DashboardNavbar from "../../Components/Dashboard/DashboardNavbar/DashboardNavbar";
 
 const MOCK_PROJECT = {
