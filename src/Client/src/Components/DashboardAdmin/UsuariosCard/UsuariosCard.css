@@ -1,0 +1,58 @@
+.user-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 0.5rem; 
+  transition: background-color 0.2s ease-in-out;
+}
+
+.user-card:hover {
+  background-color: #f9f9f9;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  flex: 3; 
+  gap: 1.5rem;
+}
+
+.user-name {
+  font-weight: 600;
+  width: 150px; 
+}
+
+.user-role {
+  font-size: 0.9rem;
+  color: #555;
+  width: 80px;
+}
+
+.user-date {
+  font-size: 0.9rem;
+  color: #555;
+  width: 100px;
+}
+
+.user-group-action {
+  flex: 1; 
+  display: flex;
+  justify-content: flex-end;
+}
+
+.user-group-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.group-select {
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}

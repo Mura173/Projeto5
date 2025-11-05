@@ -1,0 +1,40 @@
+.users-page-container h2 {
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.users-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.users-list-header .user-info {
+  display: flex;
+  align-items: center;
+  flex: 3;
+  gap: 1.5rem;
+}
+
+.users-list-header .user-name {
+  width: 150px;
+}
+
+.users-list-header .user-role {
+  width: 80px;
+}
+
+.users-list-header .user-date {
+  width: 100px;
+}
+
+.users-list-header .user-group-action {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}

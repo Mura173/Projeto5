@@ -6,16 +6,10 @@ function DashboardNavbarAdmin() {
     <nav className="admin-navbar">
       <ul className="admin-nav-links">
         <li>
-          {/* <NavLink to="/*" end className="admin-nav-link">
-            Dashboard ADM
-          </NavLink> */}
-          <p>Dashboard ADM</p>
+          <NavLink to="." end className="admin-nav-link">Dashboard ADM</NavLink>
         </li>
         <li>
-          {/* <NavLink to="/*" className="admin-nav-link">
-            Usuários
-          </NavLink> */}
-          <p>Usuários</p>
+          <NavLink to="usuarios" className="admin-nav-link">Usuários</NavLink>
         </li>
       </ul>
     </nav>

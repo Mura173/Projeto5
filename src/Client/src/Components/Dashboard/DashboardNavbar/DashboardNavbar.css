@@ -24,6 +24,9 @@
   margin: 0;
   padding: 0;
   gap: 2rem;
+  background: transparent;       
+  outline: none;              
+  border: none;
 }
 
 .nav-link {
@@ -47,6 +50,7 @@
 .nav-link.active { 
   color: #0056b3;
   font-weight: bold;
+  background-color: transparent;
 }
 
 
@@ -58,4 +62,10 @@
   width: 100%;
   height: 4px;
   background-color: #0056b3;
+}
+
+.nav-link:focus,
+.nav-link:active {
+  outline: none;
+  background: transparent;
 }

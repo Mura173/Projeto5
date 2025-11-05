@@ -5,7 +5,7 @@
   width: 100%;
   height: 60px;
   padding: 0 2rem;
-  background-color: #333; /* ps: alterar essa cor dps */
+  background-color: #1B3D36;
   border-bottom: 1px solid #555;
   box-sizing: border-box;
 }
@@ -16,6 +16,9 @@
   margin: 0;
   padding: 0;
   gap: 2.5rem; 
+  background: transparent;       
+  outline: none;              
+  border: none;  
 }
 
 .admin-nav-link {
@@ -36,6 +39,7 @@
 .admin-nav-link.active {
   color: #00B090; 
   font-weight: 700;
+  background-color: transparent;
 }
 
 
@@ -47,4 +51,12 @@
   width: 100%;
   height: 4px;
   background-color: #00B090; 
+  
+}
+
+.admin-nav-link:focus,
+.admin-nav-link:active {
+  outline: none;
+  background: transparent;
+  box-shadow: none;
 }

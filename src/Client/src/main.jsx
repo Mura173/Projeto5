@@ -22,6 +22,7 @@ import MembrosEstudante from "./Routes/ProjetoEstudante/MembrosEstudante/Membros
 // subrotas da pagina Dashboard Admin
 import ProjetoAdmin from "./Routes/ProjetoAdmin/ProjetoAdmin.jsx";
 import DashboardAdmin from "./Routes/ProjetoAdmin/DashboardAdmin/DashboardAdmin.jsx";
+import UsuariosAdmin from "./Routes/ProjetoAdmin/UsuariosAdmin/UsuariosAdmin.jsx";
 
 
 const router = createBrowserRouter([
@@ -81,10 +82,10 @@ const router = createBrowserRouter([
         element: <DashboardAdmin />,
         index: true,
       },
-      // {
-      //   path: "Usuarios",
-      //   element: <UsuariosAdmin />,
-      // }
+      {
+        path: "usuarios",
+        element: <UsuariosAdmin />,
+      }
     ]
   },
   {
