@@ -68,7 +68,7 @@ cd ./Projeto5
 ### Configurando o Back-end
 #### Criando e configurando o aquivo .env (Variáveis de ambiente)
 ````bash
-cd .\src\Server
+cd ./src/Server
 
 echo "PORT=3000
 MYSQL_HOST=localhost
@@ -112,4 +112,7 @@ npm run start
 
 ## 🎓 Referências
 
-Aqui estão as referências usadas no projeto.
+<a href="https://liderancasempaticas.com/">Lideranças Empáticas</a>
+<a href="https://sweetalert2.github.io/">Sweet Alert</a>
+
+
