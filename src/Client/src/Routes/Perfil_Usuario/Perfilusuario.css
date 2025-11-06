@@ -1,128 +1,128 @@
-:root{
-    --background-card: #D9D9D9;
-    --cor-texto-curso: #313131;
+:root {
+  --background-card: #d9d9d9;
+  --cor-texto-curso: #313131;
 }
 
-.container-profile{
-    margin: 30px;
+.container-profile {
+  margin: 30px;
 }
 
-.header-profile{
-    display: flex;
-    align-items: center;
+.header-profile {
+  display: flex;
+  align-items: center;
 }
 
-.email-profile>a{
-    font-weight: bold;
+.email-profile > a {
+  font-weight: bold;
 }
 
-.image-profile{
-    height: 100px;
-    width: 100px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 6vh;
+.image-profile {
+  height: 100px;
+  width: 100px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 6vh;
 }
 
-.name{
-    font-size: 45px;
-    font-weight: bold;
-    margin-left: 50px;
+.name {
+  font-size: 45px;
+  font-weight: bold;
+  margin-left: 50px;
 }
 
-.cards{
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    width: 100%;
-    padding-inline: 10px;
-    flex-wrap: wrap;
+.cards {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  width: 100%;
+  padding-inline: 10px;
+  flex-wrap: wrap;
 }
 
-.card-body{
-    height: 35vh;
-    width: 35vw;
-    background-color: var(--background-card);
-    border-width: 1px;
-    margin-top: 30px;
-    border-radius: 5px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.card-body {
+  height: 35vh;
+  width: 35vw;
+  background-color: var(--background-card);
+  border-width: 1px;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.card-title{
-    font-weight: normal;
-    font-size: 25px;
+.card-title {
+  font-weight: normal;
+  font-size: 25px;
 }
 
-.card-subtitle{
-    font-weight: bold;
+.card-subtitle {
+  font-weight: bold;
 }
 
-.card-grupo{
-    height: 16vh;
-    width: 30vw;
-    background-color: var(--background-card);
-    margin-top: 30px;
-    border-radius: 5px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.card-grupo {
+  height: 16vh;
+  width: 30vw;
+  background-color: var(--background-card);
+  margin-top: 30px;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.txt-grupo{
-    font-weight: bolder;
+.txt-grupo {
+  font-weight: bolder;
 }
 
-.link-grupo{
-    font-weight: bold;
+.link-grupo {
+  font-weight: bold;
 }
 
-.card-curso{
-    height: 16vh;
-    width: 30vw;
-    background-color: var(--background-card);
-    margin-top: 30px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+.card-curso {
+  height: 16vh;
+  width: 30vw;
+  background-color: var(--background-card);
+  margin-top: 30px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
-.txt-curso{
-    display: flex;
-    gap: .5vw;
-}
-
-.txt-titulo{
-    font-weight: bolder;
-    margin-left: 20px;
+.txt-curso {
+  display: flex;
+  gap: 0.5vw;
 }
 
-.txt-descricao{
-    color: var(--cor-texto-curso);
-    font-weight: bold;
+.txt-titulo {
+  font-weight: bolder;
+  margin-left: 20px;
 }
 
-.biografia{
-    display: flex;
-    width: 85%;
-    justify-content: end;
+.txt-descricao {
+  color: var(--cor-texto-curso);
+  font-weight: bold;
 }
 
-.titulo-biografia{
-    font-weight: bolder;
+.biografia {
+  display: flex;
+  width: 85%;
+  justify-content: end;
 }
 
-.txt-biografia{
-    color: var(--cor-texto-curso);
-    font-weight: bold;
-    text-align: center;
-    width: 30vw;
+.titulo-biografia {
+  font-weight: bolder;
+}
+
+.txt-biografia {
+  color: var(--cor-texto-curso);
+  font-weight: bold;
+  text-align: center;
+  width: 30vw;
 }

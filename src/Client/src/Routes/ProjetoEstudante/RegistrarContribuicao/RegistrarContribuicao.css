@@ -1,48 +1,79 @@
 .register-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 1.25rem;
+  padding-top: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: auto;
+  background: linear-gradient(180deg, rgba(0, 176, 144, 0.02), transparent);
 }
 
 .contribution-form {
-  background-color: var(--background-header);
-  padding: 2.5rem;
+  margin-top: 8px;
+  background-color: var(--background-header, #176549);
+  padding: 1.75rem;
   border-radius: 16px;
   width: 100%;
-  max-width: 600px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 680px;
+  box-shadow: 0 10px 30px rgba(12, 24, 32, 0.08);
+  color: #fff;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .contribution-form h2 {
-  color: white;
+  color: #fff;
   text-align: center;
-  margin-bottom: 2rem;
-  font-weight: 600;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.2px;
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 100%;
 }
 
 .form-group label {
-  position: absolute;
-  left: -9999px;
+  display: block;
+  margin-bottom: 0.35rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  font-size: 0.92rem;
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
   width: 100%;
-  padding: 1rem;
-  font-size: 1rem;
-  border: 2px solid #000;
-  border-radius: 12px;
-  background-color: #f4f4f4;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.98);
+  color: #163d3a;
   box-sizing: border-box;
+  transition: box-shadow 0.12s ease, transform 0.08s ease;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9aa5a1;
 }
 
 .form-row {
   display: flex;
   gap: 1rem;
+  align-items: stretch;
 }
 
 .form-row .form-group {
@@ -50,22 +81,108 @@
 }
 
 .form-group input[type="date"] {
-  color: #757575;
+  color: #555;
 }
 
 .submit-button {
   width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: white;
-  background-color: #007bff;
+  padding: 0.95rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: #007bff;
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  box-shadow: 0 8px 22px rgba(0, 86, 179, 0.12);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(0, 86, 179, 0.14);
+  background: #0056b3;
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  background: #0056b3;
+}
+
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 10px 24px rgba(0, 123, 255, 0.18);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 10px 24px rgba(0, 176, 144, 0.12);
+  border-color: rgba(0, 176, 144, 0.9);
+}
+
+.form-help {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.35rem;
+}
+
+.contribution-form:hover {
+  transform: translateY(-2px);
+  transition: transform 0.12s ease;
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .contribution-form {
+    padding: 1rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    margin: 0.6rem auto;
+  }
+
+  .contribution-form h2 {
+    font-size: 1.05rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .form-group {
+    margin-bottom: 0.75rem;
+  }
+
+  .form-group label {
+    color: #fff;
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .submit-button {
+    padding: 0.85rem;
+    font-size: 0.98rem;
+    border-radius: 10px;
+  }
+
+  .form-help {
+    font-size: 0.82rem;
+  }
 }

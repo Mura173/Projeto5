@@ -1,84 +1,142 @@
-:root{
-    --background-header: #176549;
-    --background-body: #FFFFFF;
-    --lead-font-color: #00B090;
-    --button-color: #00B090;
-    --button-color-hover: #176549;
+:root {
+  --background-header: #176549;
+  --background-body: #ffffff;
+  --lead-font-color: #00b090;
+  --button-color: #00b090;
+  --button-color-hover: #176549;
 }
 
 .main-home {
-    background-color: var(--background-body);
-    height: 80vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: var(--background-body);
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.container-home{
-    height: 80%;
-    width: 90%;
+.container-home {
+  height: 80%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3vh;
+}
+
+.container-home h1 {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 7vh;
+  font-family: "Inter", sans-serif;
+  gap: 1vh;
+}
+
+.leadTitle {
+  color: var(--lead-font-color);
+}
+
+.container-home p {
+  text-align: justify;
+  font-weight: bold;
+  font-family: "Inter", sans-serif;
+  font-size: 3vh;
+  width: 85%;
+  margin-top: 1vh;
+}
+
+.meus-projetosBtn {
+  width: 20vw;
+  height: 10vh;
+  border: none;
+  background-color: var(--green-150);
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  transition: 0.3s;
+
+  /* Texto do botao */
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.meus-projetosBtn:hover {
+  background-color: var(--button-color-hover);
+  cursor: pointer;
+}
+
+.buttonText {
+  color: #fff;
+  text-align: center;
+  height: 50%;
+}
+
+.homeImage {
+  width: 80%;
+  height: 80%;
+  object-fit: fill;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .main-home {
+    height: auto;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
+
+  .container-home {
+    height: auto;
+    width: 95%;
+    max-width: 720px;
+    margin: 1rem auto;
+    padding: 1rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3vh;
-}
+    gap: 1.25rem;
+  }
 
-.container-home h1{
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    font-size: 7vh;
-    font-family: 'Inter', sans-serif;
-    gap: 1vh;
-}
+  .container-home h1 {
+    font-size: 8vw;
+    line-height: 1.05;
+    text-align: center;
+  }
 
-.leadTitle{
-    color: var(--lead-font-color);
-}
+  .container-home p {
+    font-size: 3.6vw;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
 
-.container-home p{
-    text-align: justify;
-    font-weight: bold;
-    font-family: 'Inter', sans-serif;
-    font-size: 3vh;
-    width: 85%;
-    margin-top: 1vh;
-}
-
-.meus-projetosBtn {
-    width: 20vw;
-    height: 10vh;
-    border: none;
-    background-color: var(--green-150);
-    border-radius: 20px;
+  .meus-projetosBtn {
+    width: 80%;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 1rem;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    display: flex;
+  }
 
-    transition: 0.3s;
+  .buttonText {
+    font-size: 1rem;
+  }
 
-    /* Texto do botao */
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-}
-
-.meus-projetosBtn:hover{
-    background-color: var(--button-color-hover);
-    cursor: pointer;
-}
-
-.buttonText{
-    color: #fff;
-    text-align: center;
-    height: 50%;
-}
-
-.homeImage{
-    width: 80%;
-    height: 80%;
-    object-fit: fill;
-    z-index: 0;
+  .homeImage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-top: 0.5rem;
+  }
 }
