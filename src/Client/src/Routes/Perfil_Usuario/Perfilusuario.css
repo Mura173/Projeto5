@@ -126,3 +126,67 @@
   text-align: center;
   width: 30vw;
 }
+
+@media (max-width: 768px) {
+  .container-profile {
+    margin: 10px;
+  }
+
+  .header-profile {
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+
+  .image-profile {
+    height: 60px;
+    width: 60px;
+    font-size: 2rem;
+  }
+
+  .name {
+    font-size: 30px;
+    margin-left: 10px;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .card-body,
+  .card-grupo,
+  .card-curso {
+    width: 90vw;
+    height: auto;
+    margin-top: 0;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .biografia {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    order: 1;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .txt-biografia {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+    margin: 10px auto;
+    order: 2;
+    text-align: justify;
+    font-size: 16px;
+  }
+
+  .txt-titulo{
+    margin-left: 5px;
+  }
+}
