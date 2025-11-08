@@ -10,7 +10,7 @@ export async function getMembers(id) {
 
         if (membersId.length < 1) {
             return { error: "Integrantes nao encontrados", status_code: 404 }
-            
+
         }
 
         const rows = await Promise.all(
@@ -52,6 +52,51 @@ export async function addMember(data) {
 
         if (checkUser.length < 1) {
             return { error: "Usuário nao encontrado", status_code: 404 };
+        }
+
+        const [checkMember] = await pool.query(
+            "SELECT * FROM UsuarioGrupo WHERE ID_Grupo = ? AND ID_Usuario = ?",
+            [id_grupo, id_usuario]
+        )
+
+        if (checkMember.length > 0) {
+            return { error: "Usuário ja pertence ao grupo", status_code: 400 };
+        }
+
+
+        // validação para nao ter mais de um mentor
+        if (checkUser[0].tipo_usuario == "Mentor") {
+
+            const [selectGroupMembersId] = await pool.query(
+                "SELECT * FROM UsuarioGrupo WHERE ID_Grupo = ?",
+                [id_grupo]
+            )
+
+            let mentorArray = [];
+
+            for (const member of selectGroupMembersId) {
+                const [selectUser] = await pool.query(
+                    "SELECT * FROM Usuario WHERE ID_Usuario = ?",
+                    [member.id_usuario]
+                )
+
+                if (selectUser[0].tipo_usuario === 'Mentor') {
+                    mentorArray.push(selectUser[0].ID_Usuario);
+                }
+            }
+
+            if (mentorArray.length > 0) {
+                return { error: "O grupo nao pode ter mais de um mentor", status_code: 400 }
+            }
+        }
+
+        const [selectUserIdFromGroups] = await pool.query(
+            "SELECT * FROM UsuarioGrupo WHERE ID_Usuario = ?",
+            [id_usuario]
+        )
+
+        if (selectUserIdFromGroups.length > 0) {
+            return { error: "Usuário ja pertence a outro grupo", status_code: 400 }
         }
 
         const [rows] = await pool.query(
