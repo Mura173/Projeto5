@@ -21,14 +21,17 @@ export async function getDonations() {
 
 export async function insertDonation(data){
     try {
-        const { tipoDoacao, quantidade, ID_Usuario, peso_doacao, nome_alimento, imagem_comprovante } = data
+        const tipoDoacao = data.tipo_doacao
 
         if (tipoDoacao == "Dinheiro") {
+
+         const {quantidade, ID_Usuario, imagem_comprovante } = data
 
             const [rows] = await pool.query(
                 'INSERT INTO Doacao (tipo_doacao, quantidade, ID_Usuario) VALUES (?, ?, ?)',
                 [tipoDoacao, quantidade, ID_Usuario]
             )
+            
 
             const [rows2] = await pool.query(
                 'insert into Dinheiro (valor, imagem_comprovante, ID_Doacao) values (?, ?, ?)',
@@ -43,6 +46,8 @@ export async function insertDonation(data){
         
 
         if (tipoDoacao == "Alimento") {
+            const { quantidade, ID_Usuario, peso_doacao, nome_alimento } = data
+
             const [checkFood] = await pool.query(
                 'select * from Alimento where nome_alimento = ?',
                 [nome_alimento]    
@@ -61,10 +66,11 @@ export async function insertDonation(data){
             )
 
             const porcentagemPeso = peso_doacao / checkFood[0].peso_base
-            const porcentagemPontuacao = porcentagemPeso * checkFood[0].pontuacao
-
+            const porcentagemPontuacao = porcentagemPeso * checkFood[0].pontos_base
+            
+            
             const [rows2] = await pool.query(
-                'update Docao set pontuacao = ? where ID_Doacao = ?',
+                'update Doacao set pontuacao = ? where ID_Doacao = ?',
                 [porcentagemPontuacao, rows.insertId]
             )
 
@@ -81,7 +87,7 @@ export async function insertDonation(data){
             }
 
             const [rows3] = await pool.query(
-                'update Grupo set pontos = pontos + ? where ID_Grupo = ?',
+                'update Grupo set pontuacao = pontuacao + ? where ID_Grupo = ?',
                 [porcentagemPontuacao, searchGroup[0].ID_Grupo]
             )
 
@@ -107,6 +113,7 @@ export async function deleteDonation(id) {
             'select ID_Usuario from Doacao where ID_Doacao = ?',
             [id]
         )
+        
 
         const [searchDonation] = await pool.query(
             'select * from Doacao where ID_Doacao = ?',
@@ -125,10 +132,12 @@ export async function deleteDonation(id) {
             [searchUser[0].ID_Usuario]
         )
 
+
         const [removePoints] = await pool.query(
-            'update Grupo set pontos = pontos - ? where ID_Grupo = ?',
+            'update Grupo set pontuacao = pontuacao - ? where ID_Grupo = ?',
             [searchDonation[0].pontuacao, searchGroup[0].ID_Grupo]
         )
+        
 
         const [rows] = await pool.query(
             'delete from Doacao where ID_Doacao = ?',
