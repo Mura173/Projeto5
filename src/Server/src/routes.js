@@ -8,6 +8,7 @@ import { controllerSearchGroups, controllerGroupSearch, controllerCreateGroup, c
 
 import { authMiddleware } from './Middlewares/authMiddleware.js'
 import { controllerAddMember, controllerDeleteMember, controllerMemberSearch, controllerRelocateMember } from './Controllers/memberController.js'
+import { controllerDonationSearch, controllerInsertDonation, controllerRemoveDonation } from './Controllers/donationController.js'
 
 
 /**************************Teste de conexão com o banco******************************/
@@ -145,4 +146,25 @@ r.put('/realocarIntegrante', async (req, res) => {
     res.status(data.status_code).json(data)
 })
 
+/******************************Doações******************************** */
+//listar doações
+r.get('/doacoes', async (_, res) => {
+    const data = await controllerDonationSearch()
+
+    res.status(data.status_code).json(data)
+})
+
+//criar doação
+r.post('/criarDoacao', async (req, res) => {
+    const data = await controllerInsertDonation(req.body)
+
+    res.status(data.status_code).json(data)
+})
+
+//deletar doação
+r.delete('/deletarDoacao/:id', async (req, res) => {
+    const data = await controllerRemoveDonation(req.params.id)
+
+    res.status(data.status_code).json(data)
+})
 export default r

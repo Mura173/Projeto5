@@ -68,6 +68,23 @@ export async function insertDonation(data){
                 [porcentagemPontuacao, rows.insertId]
             )
 
+           const [searchGroup] = await pool.query(
+                'select ID_Grupo from UsuarioGrupo where ID_Usuario = ?',
+                [ID_Usuario]
+            )
+
+            if (searchGroup.length < 1) {
+                return {
+                    error: "Grupo não encontrado para destinar pontuação",
+                    status_code: 404
+                }
+            }
+
+            const [rows3] = await pool.query(
+                'update Grupo set pontos = pontos + ? where ID_Grupo = ?',
+                [porcentagemPontuacao, searchGroup[0].ID_Grupo]
+            )
+
             return {
                 message: `Doação cadastrada com sucesso, pontos atribuídos: ${porcentagemPontuacao}`,
                 status_code: 201
@@ -78,6 +95,54 @@ export async function insertDonation(data){
     } catch (error) {
         return {
             error: `Erro ao inserir doação: ${error}`,
+            status_code: 500
+        }
+    }
+}
+
+export async function deleteDonation(id) {
+    try {
+
+        const [searchUser] = await pool.query(
+            'select ID_Usuario from Doacao where ID_Doacao = ?',
+            [id]
+        )
+
+        const [searchDonation] = await pool.query(
+            'select * from Doacao where ID_Doacao = ?',
+            [id]
+        )
+
+        if (searchDonation.length < 1) {
+            return {
+                error: "Doação nao encontrada",
+                status_code: 404
+            }
+        }
+
+        const [searchGroup] = await pool.query(
+            'select ID_Grupo from UsuarioGrupo where ID_Usuario = ?',
+            [searchUser[0].ID_Usuario]
+        )
+
+        const [removePoints] = await pool.query(
+            'update Grupo set pontos = pontos - ? where ID_Grupo = ?',
+            [searchDonation[0].pontuacao, searchGroup[0].ID_Grupo]
+        )
+
+        const [rows] = await pool.query(
+            'delete from Doacao where ID_Doacao = ?',
+            [id]
+        )
+
+        return {
+            message: `Doação deletada com sucesso, pontos removidos: ${searchDonation[0].pontuacao}`,
+            status_code: 200
+        }
+
+    } catch (error) {
+        return {
+            error: "Erro ao deletar doação",
             status_code: 500
         }
     }
