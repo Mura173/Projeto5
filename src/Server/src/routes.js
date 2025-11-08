@@ -10,6 +10,9 @@ import { authMiddleware } from './Middlewares/authMiddleware.js'
 import { controllerAddMember, controllerDeleteMember, controllerMemberSearch, controllerRelocateMember } from './Controllers/memberController.js'
 import { controllerDonationSearch, controllerInsertDonation, controllerRemoveDonation } from './Controllers/donationController.js'
 
+import upload from './Middlewares/uploadConfig.js'
+import fs from 'fs'
+import { log } from 'console'
 
 /**************************Teste de conexão com o banco******************************/
 r.get('/db/health', async (_, res) => {
@@ -154,12 +157,15 @@ r.get('/doacoes', async (_, res) => {
     res.status(data.status_code).json(data)
 })
 
-//criar doação
-r.post('/criarDoacao', async (req, res) => {
-    const data = await controllerInsertDonation(req.body)
 
-    res.status(data.status_code).json(data)
-})
+// Criar doação
+r.post('/criarDoacao', upload.single('imagem_comprovante'), async (req, res) => {
+        const img = req.file ? req.file.filename : null
+
+        const data = await controllerInsertDonation(req.body, img)
+
+        res.status(data.status_code).json(data)
+});
 
 //deletar doação
 r.delete('/deletarDoacao/:id', async (req, res) => {

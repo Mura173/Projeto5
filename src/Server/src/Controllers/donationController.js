@@ -7,20 +7,22 @@ export async function controllerDonationSearch() {
     return { response: donations.status_code == 200 ? donations : donations.error, status_code: donations.status_code }
 }
 
-export async function controllerInsertDonation(data) {
+export async function controllerInsertDonation(data, img) {
     const tipo_doacao = data.tipo_doacao
 
     if (tipo_doacao == 'Dinheiro') {
 
-         const {quantidade, ID_Usuario, imagem_comprovante } = data
+         data.imagem_comprovante = img
+         const {quantidade, ID_Usuario} = data
+        
 
         if (!quantidade || quantidade == undefined || isNaN(quantidade) || quantidade < 1 ||
             !ID_Usuario || ID_Usuario == undefined || isNaN(ID_Usuario) || ID_Usuario < 1 ||
-            !imagem_comprovante || imagem_comprovante == undefined || imagem_comprovante.length > 255
+            !img || img == undefined || img.length > 255
         ) {
             return { error: 'Preencha os campos para doação de dinheiro corretamente', status_code: 400 }
         }
-
+        
         let response = await insertDonation(data)
         
         return { response: response.status_code == 201 ? response : response.error, status_code: response.status_code }
