@@ -1,4 +1,5 @@
-import { getDonations } from "../Models/donationModel"
+import { deleteDonation, getDonations, insertDonation } from "../Models/donationModel.js"
+
 
 export async function controllerDonationSearch() {
     let donations = await getDonations()
@@ -7,9 +8,11 @@ export async function controllerDonationSearch() {
 }
 
 export async function controllerInsertDonation(data) {
-    const { tipoDoacao, quantidade, ID_Usuario, peso_doacao, nome_alimento, imagem_comprovante } = data
+    const tipo_doacao = data.tipo_doacao
 
-    if (tipoDoacao == 'Dinheiro') {
+    if (tipo_doacao == 'Dinheiro') {
+
+         const {quantidade, ID_Usuario, imagem_comprovante } = data
 
         if (!quantidade || quantidade == undefined || isNaN(quantidade) || quantidade < 1 ||
             !ID_Usuario || ID_Usuario == undefined || isNaN(ID_Usuario) || ID_Usuario < 1 ||
@@ -19,12 +22,13 @@ export async function controllerInsertDonation(data) {
         }
 
         let response = await insertDonation(data)
-
+        
         return { response: response.status_code == 201 ? response : response.error, status_code: response.status_code }
     }
 
 
-    if (tipoDoacao == 'Alimento') {
+    if (tipo_doacao == 'Alimento') {
+     const { quantidade, ID_Usuario, peso_doacao, nome_alimento } = data
 
         if (!quantidade || quantidade == undefined || isNaN(quantidade) || quantidade < 1 ||
             !ID_Usuario || ID_Usuario == undefined || isNaN(ID_Usuario) || ID_Usuario < 1 ||
@@ -47,7 +51,7 @@ export async function controllerRemoveDonation(id) {
         return { error: 'Informe um ID valido', status_code: 400 }
     }
 
-    let response = await removeDonation(id)
+    let response = await deleteDonation(id)
 
     return { response: response.status_code == 200 ? response : response.error, status_code: response.status_code }
 }
