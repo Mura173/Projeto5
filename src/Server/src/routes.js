@@ -11,8 +11,7 @@ import { controllerAddMember, controllerDeleteMember, controllerMemberSearch, co
 import { controllerDonationSearch, controllerInsertDonation, controllerRemoveDonation } from './Controllers/donationController.js'
 
 import upload from './Middlewares/uploadConfig.js'
-import fs from 'fs'
-import { log } from 'console'
+
 
 /**************************Teste de conexão com o banco******************************/
 r.get('/db/health', async (_, res) => {

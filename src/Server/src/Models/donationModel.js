@@ -1,4 +1,5 @@
 import { pool } from "../db.js"
+import fs from 'fs'
 
 export async function getDonations() {
     try {
@@ -135,7 +136,8 @@ export async function deleteDonation(id) {
                 error: "Doação nao encontrada",
                 status_code: 404
             }
-        }
+        }        
+        
 
         const [searchGroup] = await pool.query(
             'select ID_Grupo from UsuarioGrupo where ID_Usuario = ?',
@@ -155,13 +157,13 @@ export async function deleteDonation(id) {
         )
 
         return {
-            message: `Doação deletada com sucesso, pontos removidos: ${searchDonation[0].pontuacao}`,
+            message: `Doação deletada com sucesso, pontos removidos: ${searchDonation[0].pontuacao === null ? 0 : searchDonation[0].pontuacao}`,
             status_code: 200
         }
 
     } catch (error) {
         return {
-            error: "Erro ao deletar doação",
+            error: `Erro ao deletar doação: ${error}`,
             status_code: 500
         }
     }
