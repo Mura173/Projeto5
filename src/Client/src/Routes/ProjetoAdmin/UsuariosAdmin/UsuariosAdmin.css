@@ -1,3 +1,16 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.users-page-container {
+  animation: fadeIn 1s ease-in-out;
+}
+
 .users-page-container h2 {
   margin-bottom: 2rem;
   font-weight: 600;
@@ -39,6 +52,13 @@
   justify-content: flex-end;
 }
 
-@media (max-width: 768px){
-  
+@media (max-width: 768px) {
+  .users-page-container h2 {
+    padding: 0 1rem;
+    font-size: 1.5rem;
+  }
+
+  .users-list-header {
+    display: none;
+  }
 }
