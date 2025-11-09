@@ -57,7 +57,7 @@ function formatMoney(amount) {
 
 function DashboardAdmin() {
   return (
-    <>
+    <div className="admin-c">
       <h1>Admin Dashboard</h1>
       <br />
       <div className="admin-grid">
@@ -95,7 +95,7 @@ function DashboardAdmin() {
           donations={adminRecentDonations}
         />
       </div>
-    </>
+    </div>
   );
 }
 

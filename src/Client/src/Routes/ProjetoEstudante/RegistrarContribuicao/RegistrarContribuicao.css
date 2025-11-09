@@ -1,3 +1,21 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .register-container {
   display: flex;
   justify-content: center;
@@ -8,6 +26,7 @@
   width: 100%;
   min-height: auto;
   background: linear-gradient(180deg, rgba(0, 176, 144, 0.02), transparent);
+  animation: fadeIn 1s ease-in-out;
 }
 
 .contribution-form {

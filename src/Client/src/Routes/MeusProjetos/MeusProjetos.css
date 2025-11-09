@@ -1,7 +1,26 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .projects-content {
   max-width: 1000px;
   margin: 2rem auto; /* Centers the content on the page */
   padding: 0 1rem;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .content-title {
@@ -41,10 +60,9 @@
 }
 
 .content-title {
-  margin-bottom: 0; /* Remove old margin */
+  margin-bottom: 0;
 }
 
-/* projeto: layout e conteúdo do cartão */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -62,6 +80,8 @@
   padding: 1rem;
   align-items: flex-start;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+  animation: slideIn 1s ease-in-out;
 }
 
 .project-thumb {

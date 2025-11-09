@@ -1,3 +1,12 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 :root {
   --background-header: #176549;
   --background-body: #ffffff;
@@ -23,6 +32,7 @@
   align-items: center;
   justify-content: center;
   gap: 3vh;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .container-home h1 {
@@ -63,6 +73,8 @@
   font-size: 20px;
   font-weight: bold;
   color: white;
+
+  animation: fadeIn 2s ease-in-out;
 }
 
 .meus-projetosBtn:hover {

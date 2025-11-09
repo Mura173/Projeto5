@@ -1,3 +1,23 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotateIn {
+  0% {
+    transform: rotate(-180deg) scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
 .members-title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
@@ -34,6 +54,7 @@
   flex-grow: 1;
   min-width: 200px;
   max-width: 100%;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .member-avatar {
@@ -42,6 +63,7 @@
   border-radius: 50%;
   background-color: #f0f0f0;
   margin-bottom: 1rem;
+  animation: rotateIn 1s ease-in-out;
 }
 
 .member-name {

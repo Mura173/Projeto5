@@ -13,6 +13,9 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  box-sizing: border-box;
+  max-height: 100vh;
+  overflow-y: auto;
   height: 80%;
   width: 16%;
   z-index: 9999;
@@ -29,6 +32,9 @@
   flex-direction: column;
   justify-content: start;
   align-items: center;
+  box-sizing: border-box;
+  max-height: 100vh;
+  overflow-y: auto;
   height: 80%;
   width: 16%;
   z-index: 9999;
@@ -83,65 +89,79 @@
 
 @media (max-width: 768px) {
   :root {
-    --menu-width-mobile: 86%;
-    --menu-padding-top-mobile: 10px;
+    --menu-width-mobile: 100%;
+    --menu-padding-top-mobile: 12px;
+    --menu-font-size-mobile: 1.1rem;
+    --menu-icon-size-mobile: 20px;
+    --menu-gap-mobile: 10px;
   }
 
   .open,
   .closing {
-    top: var(--header-height, 64px);
+    top: var(--header-height, 56px);
     right: 0;
     width: var(--menu-width-mobile);
     max-width: none;
-    height: calc(100vh - var(--header-height, 64px));
+    height: calc(100vh - var(--header-height, 56px));
     padding-top: var(--menu-padding-top-mobile);
+    padding-bottom: 12px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
     border-radius: 0;
     overflow-y: auto;
-    z-index: 999;
+    -webkit-overflow-scrolling: touch;
+    z-index: 10000;
+    background-color: var(--background-menu);
   }
 
   .container-menu {
-    padding: 6px 8px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--menu-gap-mobile);
   }
 
   .container-menu a {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
     width: 100%;
-    padding: 12px 10px;
-    margin: 6px 0;
-    font-size: 1rem;
+    padding: 14px 12px;
+    margin: 0;
+    font-size: var(--menu-font-size-mobile);
     text-align: center;
     color: #fff;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background: transparent;
   }
 
+  .container-menu a .icon,
+  .container-menu a svg {
+    width: var(--menu-icon-size-mobile);
+    height: var(--menu-icon-size-mobile);
+    flex-shrink: 0;
+  }
+
   .container-menu hr {
-    margin: 6px 0;
+    margin: 8px 0;
     border: none;
     height: 1px;
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
   }
 
-  .open {
-    animation: slideInFromRight 0.3s cubic-bezier(0.22, 0.98, 0.36, 1) forwards;
+  .container-menu a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
   }
 
-  .closing {
-    animation: slideOutToRight 0.24s ease-in forwards;
-  }
-
-  .container-menu a svg,
-  .container-menu a .icon {
-    width: 18px;
-    height: 18px;
-    vertical-align: middle;
-    margin-right: 8px;
+  .container-menu a .label {
+    display: block;
+    flex: 0 1 auto;
+    text-align: center;
   }
 }
