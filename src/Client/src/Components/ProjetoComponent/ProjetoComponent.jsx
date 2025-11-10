@@ -9,7 +9,6 @@ function ProjetoComponent({ project, user, handleDelete }){
         handleDelete(project.ID_Grupo);
     };
 
-    //ID_Grupo, nome_grupo, data_criacao, pontuacao
     return (
         <div className="project-card">
             <Link to={`/grupos/${project.ID_Grupo}`} className="card-item project-name">

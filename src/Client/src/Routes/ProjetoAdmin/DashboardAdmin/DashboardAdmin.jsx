@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 const adminKpiData = {
   totalDonated: 2400,
   totalGroups: 5,
-  totalFood: 1800, // kg
+  totalFood: 1800,
 };
 
 
@@ -27,7 +27,7 @@ function DashboardAdmin() {
         const response = await fetch("http://localhost:3000/api/grupos");
         const data = await response.json();
         if (response.ok) {
-          setGroups(data.response.groups); //
+          setGroups(data.response.groups); 
         }
       } catch (error) {
         console.error("Erro ao buscar grupos:", error);

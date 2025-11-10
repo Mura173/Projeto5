@@ -2,7 +2,7 @@ import { createContext, useContext, useState} from 'react';
 
 const AuthContext = createContext();
 
-//useEffect n tava redirecionando direito qnd o user ja tava logado
+
 const getInitialUser = () => {
   const storedUser = localStorage.getItem('user');
   

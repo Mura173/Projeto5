@@ -16,28 +16,6 @@ function formatMoney(amount) {
 
 function DashboardEstudante() {
   const { groupData } = useOutletContext();
-  // const [recentDonations, setRecentDonations] = useState([]);
-
-  // useEffect(() => {
-  //   if (groupData) {
-  //     async function fetchRecentDonations() {
-  //       try {
-  //         const response = await fetch(`http://localhost:3000/api/doacoes/${groupData.grupo.ID_Grupo}`);
-  //         const data = await response.json();
-  //         if (response.ok) {
-  //           setRecentDonations(data.response.slice(0, 3));
-  //         }
-  //       } catch (error) {
-  //         console.error("Erro ao buscar doações recentes:", error);
-  //       }
-  //     }
-  //     fetchRecentDonations();
-  //   }
-  // }, [groupData]);
-
-  // const totalMoney = groupData.totalMoney || 0;
-  // const totalFood = groupData.totalFood || "0 kg";
-  // const totalScore = groupData.grupo.pontuacao || 0;
 
   const moneyPercent = (groupData.totalMoney / goalData.moneyGoal) * 100;
   const foodPercent = (groupData.totalFood / goalData.foodGoal) * 100;
