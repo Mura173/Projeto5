@@ -81,7 +81,7 @@ function MeusProjetos() {
       <main className="projects-content">
         <h1 className="content-title">Meus Projetos</h1>
         
-        {user && user.response.cargo === "Administrador" && (
+        {user && user.tipo_usuario === "Administrador" && (
           <button className="footer-button create-group-btn" onClick={handleCreateGroup}>
             Criar Novo Grupo
           </button>
@@ -90,7 +90,6 @@ function MeusProjetos() {
         <br />
         <div className="projects-list-container">
           {/* data dos grupos */}
-          
           {groups.length === 0 ? (
             <p className="no-groups-message">Ainda não há grupos cadastrados.</p>): (
               groups.map((group) => (

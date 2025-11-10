@@ -112,7 +112,6 @@ function RegistrarContribuicao() {
             required
           >
             <option value="">Selecione o Tipo</option>
-            {/* Vitor aqui é com vc */}
             <option value="Alimento">Alimento</option>
             <option value="Dinheiro">Dinheiro</option>
           </select>

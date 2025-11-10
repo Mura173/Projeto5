@@ -26,6 +26,7 @@ app.get("/health", (_, response) => {
     response.json({ ok: true, server: 'up' })
 })
 
+
 // rotas da api
 app.use('/api', routes)
 
