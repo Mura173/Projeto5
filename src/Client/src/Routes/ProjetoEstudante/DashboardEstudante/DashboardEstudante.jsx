@@ -16,31 +16,31 @@ function formatMoney(amount) {
 
 function DashboardEstudante() {
   const { groupData } = useOutletContext();
-  const [recentDonations, setRecentDonations] = useState([]);
+  // const [recentDonations, setRecentDonations] = useState([]);
 
-  useEffect(() => {
-    if (groupData) {
-      async function fetchRecentDonations() {
-        try {
-          const response = await fetch(`http://localhost:3000/api/doacoes/${groupData.grupo.ID_Grupo}`);
-          const data = await response.json();
-          if (response.ok) {
-            setRecentDonations(data.response.slice(0, 3));
-          }
-        } catch (error) {
-          console.error("Erro ao buscar doações recentes:", error);
-        }
-      }
-      fetchRecentDonations();
-    }
-  }, [groupData]);
+  // useEffect(() => {
+  //   if (groupData) {
+  //     async function fetchRecentDonations() {
+  //       try {
+  //         const response = await fetch(`http://localhost:3000/api/doacoes/${groupData.grupo.ID_Grupo}`);
+  //         const data = await response.json();
+  //         if (response.ok) {
+  //           setRecentDonations(data.response.slice(0, 3));
+  //         }
+  //       } catch (error) {
+  //         console.error("Erro ao buscar doações recentes:", error);
+  //       }
+  //     }
+  //     fetchRecentDonations();
+  //   }
+  // }, [groupData]);
 
-  const totalMoney = groupData.totalMoney || 0;
-  const totalFood = groupData.totalFood || "0 kg";
-  const totalScore = groupData.grupo.pontuacao || 0;
+  // const totalMoney = groupData.totalMoney || 0;
+  // const totalFood = groupData.totalFood || "0 kg";
+  // const totalScore = groupData.grupo.pontuacao || 0;
 
-  const moneyPercent = (totalMoney / goalData.moneyGoal) * 100;
-  const foodPercent = (totalFood / goalData.foodGoal) * 100;
+  const moneyPercent = (groupData.totalMoney / goalData.moneyGoal) * 100;
+  const foodPercent = (groupData.totalFood / goalData.foodGoal) * 100;
 
   return (
     <div className="dashboard-container">
@@ -50,19 +50,19 @@ function DashboardEstudante() {
         <div className="metrics-row">
           <div className="metric-card">
             <div className="metric-title">Pontuação Total</div>
-            <div className="metric-value">{totalScore}</div>
+            <div className="metric-value">{groupData.totalScore}</div>
           </div>
 
           <div className="metric-card">
             <div className="metric-title">Total Arrecadado (R$)</div>
             <div className="metric-value">
-              {formatMoney(totalMoney)}
+              {formatMoney(groupData.totalMoney)}
             </div>
           </div>
 
           <div className="metric-card">
             <div className="metric-title">Total Arrecadado (Alimentos)</div>
-            <div className="metric-value">{totalFood}</div>
+            <div className="metric-value">{groupData.totalFood}</div>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ function DashboardEstudante() {
         <h3>Metas de arrecadação</h3>
         <DashboardBarra
           title="Meta (R$)"
-          label={`${formatMoney(totalMoney)} / ${formatMoney(
+          label={`${formatMoney(groupData.totalMoney)} / ${formatMoney(
             goalData.moneyGoal
           )}`}
           percentage={moneyPercent}
@@ -85,7 +85,7 @@ function DashboardEstudante() {
 
       <DashboardTabela
         title="Histórico Recente de Doações"
-        donations={recentDonations}
+        donations={groupData.recentDonations}
       />
     </div>
   );
