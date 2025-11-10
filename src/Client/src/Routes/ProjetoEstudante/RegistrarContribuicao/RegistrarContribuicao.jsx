@@ -21,16 +21,16 @@ function RegistrarContribuicao() {
   useEffect(() => {
     async function fetchAlimentos() {
       try {
-        const response = await fetch('http://localhost:3000/alimentos'); 
+        const response = await fetch('http://localhost:3000/api/alimentos'); 
         const data = await response.json();
         
         if (response.ok) {
           setAlimentosList(data.alimentos); 
         } else {
-          console.error("Failed to fetch food list:", data.error);
+          console.error("Falha em buscar a lista:", data.error);
         }
       } catch (error) {
-        console.error("Error fetching food list:", error);
+        console.error("Erro ao buscar a lista:", error);
       }
     }
     fetchAlimentos();
@@ -57,7 +57,6 @@ function RegistrarContribuicao() {
       formData.append('quantidade', foodQuantity); 
       formData.append('peso_doacao', foodWeight);  
 
-     console.log("Doação Enviada", newDonation)
 
   } else if (donationType === 'Dinheiro') {
       formData.append('quantidade', moneyValue); 
@@ -73,7 +72,7 @@ function RegistrarContribuicao() {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/criarDoacao', {
+      const response = await fetch('http://localhost:3000/api/criarDoacao', {
         method: 'POST',
         body: formData,
       });
@@ -112,7 +111,6 @@ function RegistrarContribuicao() {
             required
           >
             <option value="">Selecione o Tipo</option>
-            {/* Vitor aqui é com vc */}
             <option value="Alimento">Alimento</option>
             <option value="Dinheiro">Dinheiro</option>
           </select>
@@ -165,9 +163,6 @@ function RegistrarContribuicao() {
                 />
               </div>
             </div>
-            <p className='form-help'>
-              Peso Total é usado para calcular os pontos.
-            </p>
           </>
         )}
         {/* Dinheiro */}
@@ -197,6 +192,9 @@ function RegistrarContribuicao() {
                 required
               />
             </div>
+            <p className='form-help'>
+              Imagens não podem ser maiores que 2MB e devem ser nos formatos JPG ou PNG.
+            </p>
           </>
         )}
 

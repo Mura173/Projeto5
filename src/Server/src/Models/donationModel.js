@@ -40,7 +40,7 @@ export async function insertDonation(data) {
             const { quantidade, ID_Usuario, imagem_comprovante } = data
 
             const [rows] = await pool.query(
-                'INSERT INTO Doacao (tipo_doacao, quantidade, ID_Usuario) VALUES (?, ?, ?)',
+                'INSERT INTO Doacao (tipo_doacao, quantidade, ID_Usuario, peso_doacao, pontuacao) VALUES (?, ?, ?, 0, 0)',
                 [tipoDoacao, quantidade, ID_Usuario]
             )
 
@@ -72,7 +72,7 @@ export async function insertDonation(data) {
             }
 
             const [rows] = await pool.query(
-                'INSERT INTO Doacao (tipo_doacao, quantidade, peso_doacao, nome_alimento, ID_Usuario) VALUES (?, ?, ?, ?, ?)',
+                'INSERT INTO Doacao (tipo_doacao, quantidade, peso_doacao, nome_alimento, ID_Usuario, pontuacao) VALUES (?, ?, ?, ?, ?, 0)',
                 [tipoDoacao, quantidade, peso_doacao, nome_alimento, ID_Usuario]
             )
 
@@ -166,5 +166,39 @@ export async function deleteDonation(id) {
             error: `Erro ao deletar doação: ${error}`,
             status_code: 500
         }
+    }
+}
+
+export async function getAlimentos() {
+    try {
+        const [rows] = await pool.query(
+            'SELECT nome_alimento FROM Alimento ORDER BY nome_alimento ASC'
+        )
+        return {
+            alimentos: rows,
+            status_code: 200
+        }
+    } catch (error) {
+        return {
+            error: 'Erro ao listar alimentos',
+            status_code: 500
+        }
+    }
+}
+
+export async function getDonationsByGroup(groupId) {
+    try {
+        const [rows] = await pool.query(
+            `SELECT d.tipo_doacao, d.quantidade, d.peso_doacao, d.valor, d.data_doacao, u.nome_usuario
+             FROM Doacao d
+             JOIN Usuario u ON d.ID_Usuario = u.ID_Usuario
+             WHERE d.ID_Grupo = ?
+             ORDER BY d.data_doacao DESC`,
+            [groupId]
+        )
+        return { donations: rows, status_code: 200 }
+    } catch (error) {
+        console.log(error);
+        return { error: 'Erro ao listar doações do grupo', status_code: 500 }
     }
 }

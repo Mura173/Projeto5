@@ -1,33 +1,41 @@
-import "./COntribuicaoEstudante.css";
-
-const mockDonations = [
-  {
-    id: 1,
-    donorName: "Alice",
-    donationType: "Alimento",
-    amount: "15 kg",
-    date: "2025-10-20",
-  },
-  {
-    id: 2,
-    donorName: "Bob",
-    donationType: "Dinheiro",
-    amount: "R$150",
-    date: "2025-10-22",
-  },
-  {
-    id: 3,
-    donorName: "Alice",
-    donationType: "Alimento",
-    amount: "50 kg",
-    date: "2025-10-24",
-  },
-];
+import "./ContribuicaoEstudante.css";
+import { useState, useEffect } from 'react';
 
 function ContribuicaoEstudante() {
+  const [donations, setDonations] = useState([]);
+
+  useEffect(() => {
+    async function fetchDonations() {
+      try {
+        const response = await fetch(`http://localhost:3000/api/doacoes`);
+        const data = await response.json();
+        
+        if (response.ok) {
+          setDonations(data.response.donations); 
+        } else {
+          console.error("Erro ao buscar doações:", data.error);
+        }
+      } catch (error) {
+        console.error("Erro de rede:", error);
+      }
+    }
+    fetchDonations();
+  }, []); 
+
+
+  const formatAmount = (donation) => {
+    if (donation.tipo_doacao === 'Dinheiro') {
+      return (donation.quantidade || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    }
+    if (donation.tipo_doacao === 'Alimento') {
+      return `${donation.peso_doacao || 0} kg (${donation.quantidade || 0} un)`;
+    }
+    return donation.quantidade;
+  };
+
   return (
     <div className="contributions-content-container">
-      <div className="contirbutions-header">
+      <div className="contributions-header">
         <h2>Visualizar Contribuições</h2>
         <br />
         <button className="report-button">Gerar Relatório</button>
@@ -36,19 +44,20 @@ function ContribuicaoEstudante() {
       <table className="contributions-table">
         <thead>
           <tr>
-            <th>Doador (Aluno)</th>
+            <th>Doador (ID do Aluno)</th>
             <th>Tipo</th>
-            <th>Doação (Quantidade)</th>
+            <th>Doação</th>
             <th>Data</th>
           </tr>
         </thead>
         <tbody>
-          {mockDonations.map((donation) => (
-            <tr key={donation.id}>
-              <td>{donation.donorName}</td>
-              <td>{donation.donationType}</td>
-              <td>{donation.amount}</td>
-              <td>{donation.date}</td>
+
+          {donations.map((donation) => (
+            <tr key={donation.ID_Doacao}> 
+              <td>{donation.ID_Usuario}</td> 
+              <td>{donation.tipo_doacao}</td>
+              <td>{formatAmount(donation)}</td>
+              <td>{donation.data_doacao ? new Date(donation.data_doacao).toLocaleDateString() : 'Data N/A'}</td>
             </tr>
           ))}
         </tbody>

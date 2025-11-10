@@ -54,7 +54,7 @@ const router = createBrowserRouter([
     element: <Perfilusuario />,
   },
   {
-    path: "/pagina-estudante",
+    path: "/grupos/:groupId",
     element: (
     <ProtectedRoute>
       <ProjetoEstudante />

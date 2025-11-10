@@ -23,7 +23,12 @@
   flex: 2; 
   text-align: left;
   font-weight: bold;
-  text-decoration: underline;
+  text-decoration: none;
+  color: #176549;
+}
+
+.project-name:hover {
+  color: #00b090; 
 }
 
 .project-actions {
