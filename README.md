@@ -16,6 +16,17 @@ Este projeto foi desenvolvido com o objetivo de facilitar a colaboração entre 
 Além de conectar quem deseja ajudar com quem precisa, o projeto também serve como uma ferramenta educacional, permitindo que mentores orientem alunos na aplicação de conhecimentos em contextos reais. Os dados das contribuições podem ser visualizados em tempo real, facilitando a análise de impacto e a tomada de decisões.
 <br><br>
 
+## 📄 Entregas
+| **Disciplina**              | **Entrega 1**                      | **Entrega 2**                        |
+|-------------------------|--------------------------------|----------------------------------|
+| **Cálculo II**          | [Polinômio de Taylor](https://github.com/2025-2-MCC2/Projeto5/blob/main/Documentos/Entrega%201/C%C3%A1lculo%202/Entrega1-Calculo2.pdf)                    | [Máximos e mínimos](https://github.com/2025-2-MCC2/Projeto5/blob/main/Documentos/Entrega%202/C%C3%A1lculo%202/Entrega%202_Calculo_Maximos%20e%20Minimos.docx.pdf)|
+| **Web Full Stack**      | [Deploy](https://github.com/2025-2-MCC2/Projeto5/tree/main/Documentos/Entrega%201/Desenvolvimento%20Web%20Full%20Stack)       | [Deploy](#)           |
+| **Gestão Empresarial**      | [Missão, Visão, Valores](https://github.com/2025-2-MCC2/Projeto5/blob/main/Documentos/Entrega%201/Gest%C3%A3o%20Empresarial%20e%20Din%C3%A2micas%20das%20Organiza%C3%A7%C3%B5es/Entrega%201%20-%20Gest%C3%A3o%20Empresarial.pdf)    | [Fluxograma](https://github.com/2025-2-MCC2/Projeto5/tree/main/Documentos/Entrega%202/Gest%C3%A3o%20Empresarial%20e%20Din%C3%A2micas%20das%20Organiza%C3%A7%C3%B5es)     |
+| **Projeto Interdisciplinar**| [Figma](https://github.com/2025-2-MCC2/Projeto5/blob/main/Documentos/Entrega%201/Projeto%20Interdisciplinar%20Programa%C3%A7%C3%A3o%20Web/Link%20para%20o%20prot%C3%B3tipo%20no%20Figma%20L.E.A.D.pdf)                     | [Projeto de Extensão](https://github.com/2025-2-MCC2/Projeto5/blob/main/Documentos/Entrega%202/Projeto%20Interdisciplinar%20Programa%C3%A7%C3%A3o%20Web/Documento%20-%20Projeto%20de%20Extens%C3%A3o%20L.E.A.D-%20COM%20Empresa.pdf)         |
+| **Projetos Banco de Dados** | [DER](https://github.com/2025-2-MCC2/Projeto5/blob/main/Documentos/Entrega%201/Projetos%20em%20Banco%20de%20Dados/DER_Entrega1_BD_Grupo5.pdf)                       | [Descrição das tabelas](https://github.com/2025-2-MCC2/Projeto5/blob/main/Documentos/Entrega%202/Projetos%20em%20Banco%20de%20Dados/Descricao_das_tabelas.md) |
+
+</br>
+
 ## 🛠 Estrutura de pastas
 
 -Raiz<br>
