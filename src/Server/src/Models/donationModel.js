@@ -191,10 +191,8 @@ export async function getDonationsByGroup(groupId) {
         const [rows] = await pool.query(
             `SELECT d.tipo_doacao, d.quantidade, d.peso_doacao, d.valor, d.data_doacao, u.nome_usuario
              FROM Doacao d
-            JOIN Usuario u ON d.ID_Usuario = u.ID_Usuario
-             JOIN UsuarioGrupo ug ON u.ID_Usuario = ug.id_usuario
-             LEFT JOIN Dinheiro din ON d.ID_Doacao = din.ID_Doacao
-             WHERE ug.id_grupo = ?
+             JOIN Usuario u ON d.ID_Usuario = u.ID_Usuario
+             WHERE d.ID_Grupo = ?
              ORDER BY d.data_doacao DESC`,
             [groupId]
         )

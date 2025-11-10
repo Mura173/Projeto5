@@ -3,7 +3,6 @@ import HeaderComponent from '../../components/Header/Header';
 import DashboardNavbar from "../../Components/Dashboard/DashboardNavbar/DashboardNavbar";
 import { useState, useEffect } from 'react'; 
 
-// const MOCK_PROJECT = { ... }
 
 function ProjetoEstudante() {
     const { groupId } = useParams(); 
