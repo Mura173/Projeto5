@@ -40,7 +40,7 @@ export async function insertDonation(data) {
             const { quantidade, ID_Usuario, imagem_comprovante } = data
 
             const [rows] = await pool.query(
-                'INSERT INTO Doacao (tipo_doacao, quantidade, ID_Usuario) VALUES (?, ?, ?)',
+                'INSERT INTO Doacao (tipo_doacao, quantidade, ID_Usuario, peso_doacao, pontuacao) VALUES (?, ?, ?, 0, 0)',
                 [tipoDoacao, quantidade, ID_Usuario]
             )
 
@@ -72,7 +72,7 @@ export async function insertDonation(data) {
             }
 
             const [rows] = await pool.query(
-                'INSERT INTO Doacao (tipo_doacao, quantidade, peso_doacao, nome_alimento, ID_Usuario) VALUES (?, ?, ?, ?, ?)',
+                'INSERT INTO Doacao (tipo_doacao, quantidade, peso_doacao, nome_alimento, ID_Usuario, pontuacao) VALUES (?, ?, ?, ?, ?, 0)',
                 [tipoDoacao, quantidade, peso_doacao, nome_alimento, ID_Usuario]
             )
 
