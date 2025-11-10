@@ -1,15 +1,34 @@
 import { Link } from 'react-router-dom';
-import './ProjetoComponent.css'
+import './ProjetoComponent.css';
 
-function ProjetoComponent({project}){
+//Alterei as props -> Harry
+function ProjetoComponent({ project, user, handleDelete }){
+    
+    const onDeleteClick = (e) => {
+        e.preventDefault(); 
+        handleDelete(project.ID_Grupo);
+    };
+
+    //ID_Grupo, nome_grupo, data_criacao, pontuacao
     return (
-        <Link to={`project/${project.id}`} className="project-card">
-            <div className="card-item project-name">{project.name}</div>
-            <div className="card-item">{project.startDate}</div>
-            <div className="card-item">{project.mentor}</div>
-            <div className="card-item">{project.donation}</div>
-        </Link>
+        <div className="project-card">
+            <Link to={`/grupos/${project.ID_Grupo}`} className="card-item project-name">
+                {project.nome_grupo}
+            </Link>
+            
+            <div className="card-item">{new Date(project.data_criacao).toLocaleDateString()}</div>
+            
+            <div className="card-item">{project.pontuacao} Pontos</div>
+            
+            <div className="card-item project-actions">
+                {user && user.tipo_usuario === "Administrador" && (
+                    <button className="delete-button" onClick={onDeleteClick}>
+                        Deletar
+                    </button>
+                )}
+            </div>
+        </div>
     )
 }
 
-export default ProjetoComponent
+export default ProjetoComponent;

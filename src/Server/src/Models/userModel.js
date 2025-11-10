@@ -161,3 +161,21 @@ export async function updateUser(data) {
         return { error: 'Erro ao atualizar usuário', status_code: 500 }
     }
 }
+
+//Alimentos
+export async function getAlimentos() {
+    try {
+        const [rows] = await pool.query(
+            'SELECT nome_alimento FROM Alimento ORDER BY nome_alimento ASC'
+        )
+        return {
+            alimentos: rows,
+            status_code: 200
+        }
+    } catch (error) {
+        return {
+            error: 'Erro ao listar alimentos',
+            status_code: 500
+        }
+    }
+}

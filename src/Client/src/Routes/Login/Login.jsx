@@ -5,10 +5,17 @@ import AguiaVoando from "../../assets/aguiavoando.svg";
 import Swal from "sweetalert2";
 import RoleSelector from "../../Components/RoleSelector/RoleSelector";
 
+//
+import { useAuth } from "../../Context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
+
 function Login() {
   let [role, setRole] = useState("Aluno");
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
+
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   function handleRoleChange(newRole) {
     setRole(newRole);
@@ -65,7 +72,9 @@ function Login() {
 
     let user = await response.json();
 
-    localStorage.setItem("user", user.user[0]);
+    // localStorage.setItem("user", user.user[0]);
+    const loggedInUser = user.user[0];
+    login(loggedInUser);
   }
 
   return (

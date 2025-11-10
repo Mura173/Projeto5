@@ -2,7 +2,13 @@ import "./Home.css";
 import homeAnimation from "../../assets/homeAnimation.svg";
 import HeaderComponent from "../../components/Header/Header";
 
+import { useAuth } from "../../Context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
+
 function Home() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <>
       <HeaderComponent />
@@ -20,12 +26,23 @@ function Home() {
             acompanhar o cadastro de arrecadações e doações.
           </p>
 
-          <button
-            onClick={() => (window.location.href = "meus-projetos")}
-            className="meus-projetosBtn"
-          >
-            Meus projetos
-          </button>
+          <div className="home-buttons-container">
+            <button
+              onClick={() => navigate("/meus-projetos")}
+              className="meus-projetosBtn"
+            >
+              Meus projetos
+            </button>
+
+            {user && user.tipo_usuario === "Administrador" && (
+              <button
+                onClick={() => navigate("/pagina-admin")}
+                className="meus-projetosBtn admin-panel-btn" 
+              >
+                Painel Adm
+              </button>
+            )}
+          </div>
         </div>
         <img src={homeAnimation} alt="" className="homeImage" />
       </main>
