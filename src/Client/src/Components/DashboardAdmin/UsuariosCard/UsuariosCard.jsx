@@ -13,8 +13,7 @@ function UsuariosCard({ user }) {
   function handleGroupChange(event) {
     const newGroupId = event.target.value;
     setSelectedGroup(newGroupId);
-    
-    // console.log(`Alocando ${user.name} para o grupo ${newGroupId}`);
+  
   }
 
   return (

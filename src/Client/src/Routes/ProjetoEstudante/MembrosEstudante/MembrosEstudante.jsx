@@ -3,13 +3,6 @@ import defaultUserIcon from '../../../assets/defaultUserImage.svg'
 import { useOutletContext } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-// const mockMembers = [
-//   { id: 1, name: "Alice", role: "Student" },
-//   { id: 2, name: "Bob", role: "Student" },
-//   { id: 3, name: "Charlie", role: "Student" },
-//   { id: 4, name: "Dr. Ana", role: "Mentor" },
-// ];
-
 function MembrosEstudante() {
   const { groupData } = useOutletContext(); 
   const [members, setMembers] = useState([]);

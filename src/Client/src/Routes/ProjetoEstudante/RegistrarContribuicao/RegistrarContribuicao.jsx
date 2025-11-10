@@ -8,12 +8,12 @@ function RegistrarContribuicao() {
   const { user } = useAuth();
 
   //Mudanças para receber a lista de alimentos 
-  const [donationType, setDonationType] = useState(''); // 'Alimento' or 'Dinheiro'
+  const [donationType, setDonationType] = useState('');
   const [alimentosList, setAlimentosList] = useState([]);
   //Alimento
   const [selectedAlimento, setSelectedAlimento] = useState('');
   const [foodQuantity, setFoodQuantity] = useState(''); 
-  const [foodWeight, setFoodWeight] = useState('');     // kg
+  const [foodWeight, setFoodWeight] = useState('');     
   //Dinheiro
   const [moneyValue, setMoneyValue] = useState(''); 
   const [receiptImage, setReceiptImage] = useState(null);

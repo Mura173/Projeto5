@@ -36,7 +36,7 @@ function MeusProjetos() {
   }
 
   function handleCreateGroup() {
-    // Eu n sei mas ta aqui
+
     Swal.fire("Aviso", "A página de 'Criar Grupo' ainda será construída.", "info");
   }
 
@@ -72,7 +72,6 @@ function MeusProjetos() {
     }
   };
 
-  console.log(user);
   
 
   return (
