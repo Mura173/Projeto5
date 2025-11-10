@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
+
 import "./Menu.css";
 
 function MenuComponent({ menuStatus }) {
@@ -7,6 +10,14 @@ function MenuComponent({ menuStatus }) {
   const timeoutRef = useRef(null);
   const [visible, setVisible] = useState(!!menuStatus);
   const [stateClass, setStateClass] = useState(menuStatus ? "open" : "closed");
+
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  }
 
   useEffect(() => {
     clearTimeout(timeoutRef.current);
@@ -61,9 +72,7 @@ function MenuComponent({ menuStatus }) {
           </NavLink>
           <hr className={closeNavButton("/home")} />
 
-          <NavLink to={"/login"} className={""}>
-            Logout
-          </NavLink>
+          {user && (<NavLink to={'/login'} onClick={handleLogout} className="">Logout</NavLink>)}
         </div>
       )}
     </div>

@@ -24,6 +24,9 @@ import ProjetoAdmin from "./Routes/ProjetoAdmin/ProjetoAdmin.jsx";
 import DashboardAdmin from "./Routes/ProjetoAdmin/DashboardAdmin/DashboardAdmin.jsx";
 import UsuariosAdmin from "./Routes/ProjetoAdmin/UsuariosAdmin/UsuariosAdmin.jsx";
 
+//Context para autenticação MENTOR, ADMIN e ESTUDANTE
+import { AuthProvider } from "./Context/AuthContext.jsx";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +55,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/pagina-estudante",
-    element: <ProjetoEstudante />,
+    element: (
+    <ProtectedRoute role="Aluno">
+      <ProjetoEstudante />
+    </ProtectedRoute>
+    ),
     children: [
       { 
         path: "", 
@@ -75,7 +82,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/pagina-admin",
-    element: <ProjetoAdmin />,
+    element: (
+    <ProtectedRoute role="Administrador">
+      <ProjetoAdmin />
+    </ProtectedRoute>
+    ),
     children: [
       {
         path: "",
@@ -95,7 +106,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <AuthProvider>
     <RouterProvider router={router} />
-  </StrictMode>
+  </AuthProvider>
 );
