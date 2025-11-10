@@ -6,9 +6,9 @@ import { useState, useEffect } from 'react';
 
 
 const adminKpiData = {
-  totalDonated: 5000,
-  totalGroups: 8,
-  totalFood: 5300, // kg
+  totalDonated: 2400,
+  totalGroups: 5,
+  totalFood: 1800, // kg
 };
 
 
