@@ -147,6 +147,26 @@
   box-shadow: 0 12px 28px rgba(12, 24, 32, 0.12);
 }
 
+.create-group-btn {
+  background-color: #007bff; /* Blue */
+  width: auto;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.create-group-btn:hover {
+  background-color: #0056b3;
+}
+
+.no-groups-message {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #4a6572; 
+  padding: 2rem;
+  font-weight: 500;
+}
+
 @media (max-width: 768px) {
   .projects-content {
     max-width: 100%;
