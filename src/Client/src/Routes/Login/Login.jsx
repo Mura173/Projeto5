@@ -73,7 +73,8 @@ function Login() {
     let user = await response.json();
 
     // localStorage.setItem("user", user.user[0]);
-    const loggedInUser = user.user[0];
+    const loggedInUser = user;
+    
     login(loggedInUser);
   }
 

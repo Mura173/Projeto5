@@ -8,7 +8,7 @@ import { controllerSearchGroups, controllerGroupSearch, controllerCreateGroup, c
 
 import { authMiddleware } from './Middlewares/authMiddleware.js'
 import { controllerAddMember, controllerDeleteMember, controllerMemberSearch, controllerRelocateMember } from './Controllers/memberController.js'
-import { controllerDonationSearch, controllerInsertDonation, controllerRemoveDonation, controllerGetAlimentos } from './Controllers/donationController.js'
+import { controllerDonationSearch, controllerInsertDonation, controllerRemoveDonation } from './Controllers/donationController.js'
 
 import upload from './Middlewares/uploadConfig.js'
 
@@ -170,12 +170,6 @@ r.post('/criarDoacao', upload.single('imagem_comprovante'), async (req, res) => 
 r.delete('/deletarDoacao/:id', async (req, res) => {
     const data = await controllerRemoveDonation(req.params.id)
 
-    res.status(data.status_code).json(data)
-})
-
-//listar alimentos
-r.get('/alimentos', async (_, res) => {
-    const data = await controllerGetAlimentos()
     res.status(data.status_code).json(data)
 })
 export default r
