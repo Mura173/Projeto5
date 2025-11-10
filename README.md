@@ -83,10 +83,10 @@ cd ./Projeto5
 cd ./src/Server
 
 echo "PORT=3000
-MYSQL_HOST=localhost
+MYSQL_HOST=mysql.railway.internal
 MYSQL_USER=root
-MYSQL_DB=leadbd
-MYSQL_PASSWORD=(Insira aqui a senha de acesso ao seu MySQL Workbench. Caso não utilize senha, deixe em branco após o sinal de igual.)
+MYSQL_DB=railway
+MYSQL_PASSWORD=UUibQPMMyiQgoMWZFbLQQhoXKjnkNSAB
 
 JWT_SECRET=lead2025
 JWT_EXPIRES=1h > .env
