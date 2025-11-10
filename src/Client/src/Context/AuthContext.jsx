@@ -1,34 +1,34 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { createContext, useContext, useState} from 'react';
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+//useEffect n tava redirecionando direito qnd o user ja tava logado
+const getInitialUser = () => {
+  const storedUser = localStorage.getItem('user');
+  if (storedUser) {
+    try {
+      return JSON.parse(storedUser);
+    } catch (e) {
+      console.error("Failed to parse user from localStorage", e);
+      localStorage.removeItem('user');
+      return null;
     }
-  }, []);
+  }
+  return null;
+};
+
+
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(getInitialUser());
 
   const login = (userData) => {
     localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
-    
-    // if (userData.tipo_usuario === 'Administrador') {
-    //   navigate('/pagina-admin');
-    // } else {
-    //   navigate('/home'); 
-    // }
   };
 
   const logout = () => {
     localStorage.removeItem('user');
     setUser(null);
-    navigate('/login');
   };
 
   return (
