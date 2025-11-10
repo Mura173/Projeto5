@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 function ProjetoEstudante() {
     const { groupId } = useParams(); 
     const [group, setGroup] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchGroupDetails() {
@@ -17,7 +18,7 @@ function ProjetoEstudante() {
                 const data = await response.json();
 
                 if (response.ok) {
-                    setGroup(data.response.group.grupo); 
+                    setGroup(data.response.group); 
                 } else {
                     console.error("Erro ao buscar grupo:", data.error);
                 }
@@ -30,6 +31,15 @@ function ProjetoEstudante() {
 
         fetchGroupDetails();
     }, [groupId]); 
+
+    if (loading) {
+        return (
+            <>
+                <HeaderComponent />
+                <div>Carregando dados do grupo...</div>
+            </>
+        );
+    }
 
     if (!group) {
         return (

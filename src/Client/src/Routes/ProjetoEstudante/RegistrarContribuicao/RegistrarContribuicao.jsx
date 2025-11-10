@@ -21,7 +21,7 @@ function RegistrarContribuicao() {
   useEffect(() => {
     async function fetchAlimentos() {
       try {
-        const response = await fetch('http://localhost:3000/alimentos'); 
+        const response = await fetch('http://localhost:3000/api/alimentos'); 
         const data = await response.json();
         
         if (response.ok) {

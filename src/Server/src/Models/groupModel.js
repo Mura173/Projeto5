@@ -53,10 +53,21 @@ export async function getGroup(id) {
 
         )
 
+        const [money] = await pool.query(
+            "SELECT SUM(valor) as totalMoney FROM Dinheiro d JOIN Doacao do ON d.ID_Doacao = do.ID_Doacao WHERE do.ID_Grupo IN (SELECT id_usuario FROM UsuarioGrupo WHERE id_grupo = ?)`",
+            [id]
+        )
+        const [food] = await pool.query(
+            "SELECT SUM(d.peso_doacao) as totalFood FROM Doacao d WHERE d.tipo_doacao = 'Alimento' AND d.ID_Usuario IN (SELECT id_usuario FROM UsuarioGrupo WHERE id_grupo = ?)",
+            [id]
+        )
+
         const response = {
             grupo: grupo[0],
             users: usersArray,
-            status_code: 200
+            status_code: 200,
+            totalMoney: money[0].totalMoney || 0,
+            totalFood: food[0].totalFood || 0
         }
 
         return {
