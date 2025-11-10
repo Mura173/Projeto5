@@ -4,4 +4,4 @@ Pasta direcionada para as entregas de Projetos em Banco de Dados
 [DER](https://github.com/2025-2-MCC2/Projeto5/blob/main/Documentos/Entrega%201/Projetos%20em%20Banco%20de%20Dados/DER_Entrega1_BD_Grupo5.pdf)
 
 # Entrega 2
-
+[Descrição das tabelas utilizadas no projeto](https://github.com/2025-2-MCC2/Projeto5/blob/main/Documentos/Entrega%202/Projetos%20em%20Banco%20de%20Dados/Descricao_das_tabelas.md)
