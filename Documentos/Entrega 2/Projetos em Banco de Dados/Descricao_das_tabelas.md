@@ -1,10 +1,10 @@
 # Descrição das Tabelas Utilizadas no Projeto
 ## Introdução
-  Esta entrega tem como objetivo apresentar a estrutura do banco de dados do projeto L.E.A.D., desenvolvido conforme as demandas da iniciativa Lideranças Empáticas — um programa voltado à arrecadação e gestão de doações em contextos sociais e educacionais no Centro Universitário da FECAP. Com base nos conteúdos estudados na disciplina de Projeto de Banco de Dados, esta etapa busca demonstrar a criação de tabelas essenciais para o funcionamento do sistema, incluindo a definição de campos, tipos de dados, chaves primárias e relacionamentos necessários.
+  Esta entrega tem como objetivo apresentar a estrutura do banco de dados do projeto L.E.A.D., desenvolvido a partir das demandas e necessidades da iniciativa Lideranças Empáticas — um programa voltado à arrecadação e gestão de doações em contextos sociais e educacionais no Centro Universitário da FECAP. Com base nos conteúdos estudados na disciplina de Projeto de Banco de Dados, este trabalho busca demonstrar e analisar a criação de tabelas essenciais para o funcionamento do sistema, incluindo a definição de campos, tipos de dados, chaves primárias e relacionamentos necessários.
 <br/>
 
 ## Desenvolvimento
-  Análise das tabelas
+  Análise das tabelas do projeto
 <br/>
 
 ### Tabela Usuario
@@ -110,13 +110,13 @@ create table Doacao(
 
 ```
 
-A tabela **Doacao** registra todas as contribuições realizadas no projeto, sejam elas em dinheiro ou em alimentos. O campo `ID_Doacao` funciona como chave primária, identificando cada doação de forma única. Entre os pontos estruturais positivos, destacam-se:
+A tabela **Doacao** registra cada oferta feita ao projeto, sejam elas em dinheiro ou em alimentos. O campo `ID_Doacao` serve de chave primária, distinguindo cada doação duma forma singular. Dentre os pontos positivos, destacam-se:
 
-- O uso do `ENUM` em `tipo_doacao`, garantindo que apenas categorias válidas sejam cadastradas;
-- A obrigatoriedade das informações principais da doação, como quantidade, peso e pontuação;
-- A referência ao usuário que realizou a doação por meio da chave estrangeira `ID_Usuario`, mantendo a integridade dos dados e permitindo rastreamento das contribuições.
+- A utilização de `ENUM` em `tipo_doacao`, certificando-se de que só categorias validas são registradas;
+- A obrigatoriedade dos dados chave da doação, como quantidade, peso e pontuação;
+- A conexão ao usuário que fez a doação por intermédio da chave estrangeira `ID_Usuario`, mantendo a integridade dos dados e permitindo rastreio das contribuições.
 
-Além disso, o campo `nome_alimento` possibilita registrar o alimento doado quando necessário. Assim, esta tabela é central no sistema, pois concentra toda a movimentação de doações e associa essas ações aos usuários participantes do projeto.
+Além disso, o campo `nome_alimento` permite o registro do alimento doado, quando necessário. Desse jeito, esta tabela é fundamental no sistema, ela reúne toda a circulação de doações e junta essas ações aos usuários engajados no projeto.
 
 <br/>
 
@@ -140,12 +140,9 @@ A tabela **Dinheiro** complementa as informações das doações financeiras, vi
 
 Com isso, a tabela cumpre um papel importante no controle financeiro do projeto, registrando o valor doado e assegurando que cada doação em dinheiro tenha sua comprovação devidamente vinculada.
 
-
 <br/>
 
 --- 
-<br/>
-
 ### Conclusão
 
   O banco de dados **L.E.A.D.** apresenta uma modelagem clara e adequada ao controle de doações dentro do projeto Lideranças Empáticas. A estrutura contempla desde o cadastro de usuários e grupos até o registro detalhado das contribuições, garantindo organização e integridade das informações. O uso de chaves estrangeiras e do `ON DELETE CASCADE` contribui para um gerenciamento consistente das relações, enquanto a padronização de dados, como tipos de doação e pontuações, facilita a análise e o acompanhamento do desempenho dos grupos.
