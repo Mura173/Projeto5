@@ -54,7 +54,7 @@ export async function getGroup(id) {
         )
 
         const [money] = await pool.query(
-            "SELECT SUM(valor) as totalMoney FROM Dinheiro d WHERE ID_Grupo = ? AND tipo_doacao = 'Dinheiro'",
+            "SELECT SUM(valor) as totalMoney FROM Dinheiro WHERE ID_Grupo = ? AND tipo_doacao = 'Dinheiro'",
             [id]
         )
         const [food] = await pool.query(
