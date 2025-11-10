@@ -15,7 +15,7 @@ function MeusProjetos() {
   useEffect(() => {
     async function fetchGroups() {
       try {
-        const response = await fetch("http://localhost:3000/grupos"); 
+        const response = await fetch("http://localhost:3000/api/grupos"); 
         const data = await response.json();
 
         if (response.ok) {
@@ -72,13 +72,16 @@ function MeusProjetos() {
     }
   };
 
+  console.log(user);
+  
+
   return (
     <div className="projects-page">
       <Header />
       <main className="projects-content">
         <h1 className="content-title">Meus Projetos</h1>
         
-        {user && user.tipo_usuario === "Administrador" && (
+        {user && user.response.cargo === "Administrador" && (
           <button className="footer-button create-group-btn" onClick={handleCreateGroup}>
             Criar Novo Grupo
           </button>
@@ -87,6 +90,7 @@ function MeusProjetos() {
         <br />
         <div className="projects-list-container">
           {/* data dos grupos */}
+          
           {groups.length === 0 ? (
             <p className="no-groups-message">Ainda não há grupos cadastrados.</p>): (
               groups.map((group) => (

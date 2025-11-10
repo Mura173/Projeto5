@@ -1,4 +1,4 @@
-import { deleteDonation, getDonations, insertDonation, getAlimentos } from "../Models/donationModel.js"
+import { deleteDonation, getDonations, insertDonation } from "../Models/donationModel.js"
 
 
 export async function controllerDonationSearch() {
@@ -56,9 +56,4 @@ export async function controllerRemoveDonation(id) {
     let response = await deleteDonation(id)
 
     return { response: response.status_code == 200 ? response : response.error, status_code: response.status_code }
-}
-
-export async function controllerGetAlimentos() {
-    let data = await getAlimentos();
-    return data;
 }
