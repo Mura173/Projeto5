@@ -5,6 +5,7 @@ import "./MeusProjetos.css";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../Context/AuthContext.jsx";
 import Swal from "sweetalert2";
+import HeaderComponent from "@components/Header/Header.jsx";
 
 function MeusProjetos() {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ function MeusProjetos() {
 
   return (
     <div className="projects-page">
-      <Header />
+      <HeaderComponent />
       <main className="projects-content">
         <h1 className="content-title">Meus Projetos</h1>
         
