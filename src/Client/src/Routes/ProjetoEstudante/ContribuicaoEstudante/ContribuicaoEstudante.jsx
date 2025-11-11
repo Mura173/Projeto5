@@ -7,7 +7,7 @@ function ContribuicaoEstudante() {
   useEffect(() => {
     async function fetchDonations() {
       try {
-        const response = await fetch(`http://localhost:3000/api/doacoes`);
+        const response = await fetch(`https://lead-back-end.vercel.app/api/doacoes`);
         const data = await response.json();
         
         if (response.ok) {

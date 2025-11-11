@@ -3,7 +3,7 @@ import "./Cadastro.css";
 import LogoFecap from "../../assets/logofecap.png";
 import LogoLead from "../../assets/logoLEAD.svg";
 import Swal from "sweetalert2";
-import RoleSelector from "@components/RoleSelector/RoleSelector";
+import RoleSelector from "../../Components/RoleSelector/RoleSelector";
 
 function Cadastro() {
   let [role, setRole] = useState("Aluno");
@@ -39,24 +39,8 @@ function Cadastro() {
       });
     }
 
-      let verifyUser = await fetch(`http://localhost:3000/api/checkUser/${userData.email}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      }
-    })
-
-    if (verifyUser.status == 200) {
-      Swal.fire({
-        title: "Erro!",
-        text: "Email ja cadastrado! Faça login",
-        icon: "error",
-        confirmButtonText: "OK",
-      })
-    }
-
     else{
-      let response = await fetch("http://localhost:3000/api/registerUser", {
+      let response = await fetch("https://lead-back-end.vercel.app/api/registerUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

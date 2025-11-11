@@ -11,7 +11,7 @@ function MembrosEstudante() {
     if (groupData) {
       async function fetchMembers() {
         try {
-          const response = await fetch(`http://localhost:3000/api/integrantes/${groupData.grupo.ID_Grupo}`);
+          const response = await fetch(`https://lead-back-end.vercel.app/api/integrantes/${groupData.grupo.ID_Grupo}`);
           const data = await response.json();
           
           if (response.ok) {
