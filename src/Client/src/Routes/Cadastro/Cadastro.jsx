@@ -27,7 +27,7 @@ function Cadastro() {
 
     if (
       userData.email == "" || userData.email == undefined || !userData.email || userData.email.length > 100 ||
-      userData.password == "" || userData.password == undefined || !userData.password || userData.password.length > 20 ||
+      userData.senha == "" || userData.senha == undefined || !userData.senha || userData.senha.length > 20 ||
       userData.tipo_usuario == "" || userData.tipo_usuario == undefined || !userData.tipo_usuario ||
       userData.nome == "" || userData.nome == undefined || !userData.nome
     ) {
