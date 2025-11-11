@@ -1,6 +1,6 @@
 import "./Perfilusuario.css";
 
-import HeaderComponent from "../../components/Header/Header";
+import HeaderComponent from "../../components/Header/Header.jsx";
 
 function Perfilusuario() {
   return (

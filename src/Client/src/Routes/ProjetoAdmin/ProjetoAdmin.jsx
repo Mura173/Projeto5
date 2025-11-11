@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import HeaderComponent from '../../components/Header/Header';
+import HeaderComponent from '../../components/Header/Header.jsx';
 import DashboardNavbarAdmin from '../../Components/DashboardAdmin/DashboardNavbarAdmin/DashboardNavbarAdmin';
 import './ProjetoAdmin.css';
 
