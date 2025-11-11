@@ -9,4 +9,4 @@ Pasta direcionada para as entregas de Desenvolvimento Web Full Stack
 # Entrega 2
 
 - [Deploy front-end](https://lead-front-end.vercel.app/)
-- [Deploy back-end](https://lead-back-end-git-main-vitorkolles-projects.vercel.app/)
+- [Deploy back-end](https://lead-back-end-git-main-vitorkolles-projects.vercel.app/health)
