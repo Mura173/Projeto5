@@ -1,5 +1,5 @@
 import { Outlet, useParams } from 'react-router-dom';
-import HeaderComponent from '../../components/Header/Header';
+import HeaderComponent from '../../components/Header/Header.jsx';
 import DashboardNavbar from "../../Components/Dashboard/DashboardNavbar/DashboardNavbar";
 import { useState, useEffect } from 'react'; 
 import { MOCK_DATA, FALLBACK_GROUP } from '../../mockData';
