@@ -1,6 +1,6 @@
 import "./Home.css";
 import homeAnimation from "../../assets/homeAnimation.svg";
-import HeaderComponent from "../../components/Header/Header.jsx";
+import HeaderComponent from "../../components/Header/Header.jsx"
 
 import { useAuth } from "../../Context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
