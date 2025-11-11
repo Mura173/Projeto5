@@ -28,8 +28,8 @@ function Cadastro() {
     if (
       userData.email == "" || userData.email == undefined || !userData.email || userData.email.length > 100 ||
       userData.senha == "" || userData.senha == undefined || !userData.senha || userData.senha.length > 20 ||
-      userData.role == "" || userData.role == undefined || !userData.role ||
-      userData.name == "" || userData.name == undefined || !userData.name
+      userData.tipo_usuario == "" || userData.tipo_usuario == undefined || !userData.tipo_usuario ||
+      userData.nome == "" || userData.nome == undefined || !userData.nome
     ) {
       Swal.fire({
         title: "Erro!",
@@ -39,24 +39,8 @@ function Cadastro() {
       });
     }
 
-      let verifyUser = await fetch(`http://localhost:3000/api/checkUser/${userData.email}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      }
-    })
-
-    if (verifyUser.status == 200) {
-      Swal.fire({
-        title: "Erro!",
-        text: "Email ja cadastrado! Faça login",
-        icon: "error",
-        confirmButtonText: "OK",
-      })
-    }
-
     else{
-      let response = await fetch("http://localhost:3000/api/registerUser", {
+      let response = await fetch("https://lead-back-end.vercel.app/api/registerUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

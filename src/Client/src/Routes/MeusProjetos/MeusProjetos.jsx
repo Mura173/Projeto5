@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/Header/Header.jsx";
-import ProjetoComponent from "../../Components/ProjetoComponent/ProjetoComponent.jsx";
+import ProjetoComponent from "@components/ProjetoComponent/ProjetoComponent.jsx";
 import "./MeusProjetos.css";
 
 import { useState, useEffect } from "react";
@@ -15,7 +14,7 @@ function MeusProjetos() {
   useEffect(() => {
     async function fetchGroups() {
       try {
-        const response = await fetch("http://localhost:3000/api/grupos"); 
+        const response = await fetch("hhttps://lead-back-end.vercel.app/api/grupos"); 
         const data = await response.json();
 
         if (response.ok) {

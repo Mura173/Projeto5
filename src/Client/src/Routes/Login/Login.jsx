@@ -3,7 +3,7 @@ import "./Login.css";
 import LogoFecap from "../../assets/logofecap.png";
 import AguiaVoando from "../../assets/aguiavoando.svg";
 import Swal from "sweetalert2";
-import RoleSelector from "../../Components/RoleSelector/RoleSelector";
+import RoleSelector from "@components/RoleSelector/RoleSelector.jsx";
 
 //
 import { useAuth } from "../../Context/AuthContext.jsx";
@@ -49,7 +49,7 @@ function Login() {
       });
     }
 
-    let response = await fetch("http://localhost:3000/api/loginUser", {
+    let response = await fetch("https://lead-back-end.vercel.app/api/loginUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
