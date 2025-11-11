@@ -3,7 +3,7 @@ import "./Cadastro.css";
 import LogoFecap from "../../assets/logofecap.png";
 import LogoLead from "../../assets/logoLEAD.svg";
 import Swal from "sweetalert2";
-import RoleSelector from "../../Components/RoleSelector/RoleSelector";
+import RoleSelector from "@components/RoleSelector/RoleSelector";
 
 function Cadastro() {
   let [role, setRole] = useState("Aluno");

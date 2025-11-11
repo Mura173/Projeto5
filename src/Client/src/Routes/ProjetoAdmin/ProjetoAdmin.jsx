@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import HeaderComponent from '../../components/Header/Header.jsx'
-import DashboardNavbarAdmin from '../../components/DashboardAdmin/DashboardNavbarAdmin/DashboardNavbarAdmin.jsx';
+import HeaderComponent from '@components/Header/Header.jsx'
+import DashboardNavbarAdmin from '@components/DashboardAdmin/DashboardNavbarAdmin/DashboardNavbarAdmin.jsx';
 import './ProjetoAdmin.css';
 
 function ProjetoAdmin() {

@@ -3,7 +3,7 @@ import "./Login.css";
 import LogoFecap from "../../assets/logofecap.png";
 import AguiaVoando from "../../assets/aguiavoando.svg";
 import Swal from "sweetalert2";
-import RoleSelector from "../../components/RoleSelector/RoleSelector.jsx";
+import RoleSelector from "@components/RoleSelector/RoleSelector.jsx";
 
 //
 import { useAuth } from "../../Context/AuthContext.jsx";
