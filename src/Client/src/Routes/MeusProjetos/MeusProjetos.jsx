@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header.jsx";
-import ProjetoComponent from "../../Components/ProjetoComponent/ProjetoComponent.jsx";
+import ProjetoComponent from "../../components/ProjetoComponent/ProjetoComponent.jsx";
 import "./MeusProjetos.css";
 
 import { useState, useEffect } from "react";
